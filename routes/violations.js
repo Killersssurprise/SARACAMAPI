@@ -77,7 +77,7 @@ router.post("/", jsonParser, function (req, res) {
     };
     var answ='';
     var httpreq = http.request(options, function (response) {
-        response.setEncoding('utf8');
+        //response.setEncoding('utf8');
         response.on('data', function (chunk) {
             //console.log(chunk);
             answ+=chunk;
