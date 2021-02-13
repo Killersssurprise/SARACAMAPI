@@ -91,7 +91,7 @@ router.post("/", jsonParser, function (req, res) {
     httpreq.write(data);
     httpreq.end();
 
-    res.send(data);
+    //res.send(data);
 });
 
 
