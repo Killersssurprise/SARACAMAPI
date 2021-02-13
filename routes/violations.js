@@ -82,11 +82,13 @@ router.post("/", jsonParser, function (req, res) {
             //console.log(chunk);
             answ+=chunk;
         }).on('end',function(){
-            //var str=JSON.parse(answ)
-            // fs.writeFileSync('192.168.72.11_violations.json',
-            //     '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}');
-            console.log(answ);
-            res.send(answ);
+            var str=JSON.parse(answ)
+             //fs.writeFileSync('192.168.72.11_violations.json',
+              //   '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}');
+
+            let s = '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}';
+            console.log(s);
+            res.send(s);
         });
     });
     httpreq.write(data);
