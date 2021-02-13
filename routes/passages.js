@@ -86,8 +86,13 @@ router.post("/", jsonParser, function (req, res) {
             let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
             console.log(s);
             res.send(s);
+        }).on('error', (err) => {
+            let s = '{"status":'+"inactive"+'}';
+            res.send(s);
+            console.error(err.stack);
         });
     });
+
     httpreq.write(data);
     httpreq.end();
 
