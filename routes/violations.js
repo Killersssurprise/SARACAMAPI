@@ -75,16 +75,17 @@ router.post("/", jsonParser, function (req, res) {
         }
 
     };
-    var answ;
+    var answ='';
     var httpreq = http.request(options, function (response) {
         response.setEncoding('utf8');
         response.on('data', function (chunk) {
-            console.log(chunk);
-            answ=chunk;
+            //console.log(chunk);
+            answ+=chunk;
         }).on('end',function(){
             //var str=JSON.parse(answ)
             // fs.writeFileSync('192.168.72.11_violations.json',
             //     '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}');
+            console.log(answ);
             res.send(answ);
         });
     });
