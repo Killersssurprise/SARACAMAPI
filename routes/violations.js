@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const fs = require("fs");
-var querystring = require('querystring');
 var http = require('http');
-const app = express();
 const jsonParser = express.json();
 
 var login = "admin";
@@ -83,12 +80,14 @@ router.post("/", jsonParser, function (req, res) {
             answ+=chunk;
         }).on('end',function(){
             var str=JSON.parse(answ)
-             //fs.writeFileSync('192.168.72.11_violations.json',
-              //   '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}');
 
             let s = '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}';
             console.log(s);
             res.send(s);
+        }).on('error', (err) => {
+            let s = '{"status":'+"inactive"+'}';
+            res.send(s);
+            console.error(err.stack);
         });
     });
     httpreq.write(data);
