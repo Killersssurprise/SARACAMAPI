@@ -35,6 +35,54 @@ var ip='192.168.72.11';
 });*/
 
 router.post("/", jsonParser, function (req, res) {
+
+    var st = req.param('start_time');
+    var et = req.param('end_time');
+    var lg = req.param('login');
+    var ps=  req.param('password');
+    var i =  req.param('ip');
+
+    if (typeof lg !== 'undefined' && lg !== null){
+        login = lg;
+    }else{
+        let s = '{"error":'+"no param login"+'}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof ps !== 'undefined' && ps !== null){
+        password = ps;
+    }else{
+        let s = '{"error":'+"no param password"+'}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof st !== 'undefined' && st !== null){
+        timestampStart = st;
+    }else{
+        let s = '{"error":'+"no param start_time"+'}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof et !== 'undefined' && et !== null){
+        timestampEnd = et;
+    }else{
+        let s = '{"error":'+"no param end_time"+'}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof ip !== 'undefined' && ip !== null){
+        ip = i;
+    }else{
+        let s = '{"error":'+"no param ip"+'}';
+        res.send(s);
+        return;
+    }
+
+
     var data = JSON.stringify({ "auth": {
             "login": login,
             "password": password
