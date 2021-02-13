@@ -79,7 +79,7 @@ router.post("/", jsonParser, function (req, res) {
             //console.log(chunk);
             answ+=chunk;
         }).on('end',function(){
-            var str=JSON.parse(answ)
+            var str=JSON.parse(answ);
 
             let s = '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}';
             console.log(s);
