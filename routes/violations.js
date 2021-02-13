@@ -79,7 +79,7 @@ router.post("/", jsonParser, function (req, res) {
     var httpreq = http.request(options, function (response) {
         response.setEncoding('utf8');
         response.on('data', function (chunk) {
-            console.log("body: " + chunk);
+            console.log(chunk);
             answ=chunk;
         }).on('end',function(){
             //var str=JSON.parse(answ)
