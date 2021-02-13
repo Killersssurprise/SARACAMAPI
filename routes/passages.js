@@ -81,7 +81,7 @@ router.post("/", jsonParser, function (req, res) {
             //console.log(chunk);
             answ+=chunk;
         }).on('end',function(){
-            var str=JSON.parse(answ)
+            var str=JSON.parse(answ);
 
             let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
             console.log(s);
