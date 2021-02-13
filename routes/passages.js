@@ -123,27 +123,32 @@ router.post("/", jsonParser, function (req, res) {
 
     };
     var answ='';
-    var httpreq = http.request(options, function (response) {
-        //response.setEncoding('utf8');
-        response.on('data', function (chunk) {
-            //console.log(chunk);
-            answ+=chunk;
-        }).on('end',function(){
-            var str=JSON.parse(answ);
+    try {
+        var httpreq = http.request(options, function (response) {
+            //response.setEncoding('utf8');
+            response.on('data', function (chunk) {
+                //console.log(chunk);
+                answ += chunk;
+            }).on('end', function () {
+                var str = JSON.parse(answ);
 
-            let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
-            console.log(s);
-            res.send(s);
-        }).on('error', (err) => {
-            let s = '{"status":'+"inactive"+'}';
-            res.send(s);
-            console.error(err.stack);
+                let s = '{"common":' + JSON.stringify(str['getStats']['common']['total']) + '}';
+                console.log(s);
+                res.send(s);
+            }).on('error', (err) => {
+                let s = '{"status":' + "inactive" + '}';
+                res.send(s);
+                console.error(err.stack);
+            });
         });
-    });
 
-    httpreq.write(data);
-    httpreq.end();
+        httpreq.write(data);
+        httpreq.end();
 
+    } catch (e) {
+
+        console.log(e);
+    }
     //res.send(data);
 });
 

@@ -5,11 +5,11 @@ var http = require('http');
 const jsonParser = express.json();
 
 var login = "admin";
-var password="Fk5bu8jG";
+var password = "Fk5bu8jG";
 var job = "getStats";
-var timestampStart=1612818000;
-var timestampEnd=1612891239;
-var ip='192.168.72.11';
+var timestampStart = 1612818000;
+var timestampEnd = 1612891239;
+var ip = '192.168.72.11';
 
 /* GET users listing. */
 /*router.post('/', function(req, res) {
@@ -33,7 +33,55 @@ var ip='192.168.72.11';
 });*/
 
 router.post("/", jsonParser, function (req, res) {
-    var data = JSON.stringify({ "auth": {
+
+    var st = req.param('start_time');
+    var et = req.param('end_time');
+    var lg = req.param('login');
+    var ps = req.param('password');
+    var i = req.param('ip');
+
+    if (typeof lg !== 'undefined' && lg !== null) {
+        login = lg;
+    } else {
+        let s = '{"error":' + "no param login" + '}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof ps !== 'undefined' && ps !== null) {
+        password = ps;
+    } else {
+        let s = '{"error":' + "no param password" + '}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof st !== 'undefined' && st !== null) {
+        timestampStart = st;
+    } else {
+        let s = '{"error":' + "no param start_time" + '}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof et !== 'undefined' && et !== null) {
+        timestampEnd = et;
+    } else {
+        let s = '{"error":' + "no param end_time" + '}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof ip !== 'undefined' && ip !== null) {
+        ip = i;
+    } else {
+        let s = '{"error":' + "no param ip" + '}';
+        res.send(s);
+        return;
+    }
+
+    var data = JSON.stringify({
+        "auth": {
             "login": login,
             "password": password
         },
@@ -72,32 +120,37 @@ router.post("/", jsonParser, function (req, res) {
         }
 
     };
-    var answ='';
-    var httpreq = http.request(options, function (response) {
-        //response.setEncoding('utf8');
-        response.on('data', function (chunk) {
-            //console.log(chunk);
-            answ+=chunk;
-        }).on('end',function(){
-            var str=JSON.parse(answ);
+    var answ = '';
+    try {
+        var httpreq = http.request(options, function (response) {
+            //response.setEncoding('utf8');
+            response.on('data', function (chunk) {
+                //console.log(chunk);
+                answ += chunk;
+            }).on('end', function () {
+                var str = JSON.parse(answ);
 
-            let s = '{"violations":'+JSON.stringify(str['getStats']['violation']['total'])+'}';
-            console.log(s);
-            res.send(s);
-        }).on('error', (err) => {
-            let s = '{"status":'+"inactive"+'}';
-            res.send(s);
-            console.error(err.stack);
+                let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
+                console.log(s);
+                res.send(s);
+            }).on('error', (err) => {
+                let s = '{"status":' + "inactive" + '}';
+                res.send(s);
+                console.error(err.stack);
+                return;
+            });
         });
-    });
-    httpreq.write(data);
-    httpreq.end();
+        httpreq.write(data);
+        httpreq.end();
+    } catch (e) {
 
+        console.log(e);
+    }
     //res.send(data);
 });
 
 
-function getFakeJson(){
+function getFakeJson() {
 
     let json = "{\n" +
         "    \"glossary\": {\n" +
