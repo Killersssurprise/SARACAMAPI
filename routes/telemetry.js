@@ -69,7 +69,8 @@ router.post("/", jsonParser, function (req, res) {
             "job": job,
             "getTelemetry": {
                 // "type": "Stat: Targets per 10 sec"
-                "type": "Health: PC voltage"
+                "type": "Health: PC voltage",
+                "func": "min"
             }
         }
     });
