@@ -10,6 +10,7 @@ var violationsRouter = require('./routes/violations');
 var passagesRouter = require('./routes/passages');
 var isActiveRouter = require('./routes/isActive');
 var fullinfo = require('./routes/fullinfo');
+var fullcaminfo = require('./routes/fullcaminfo');
 
 const https = require('https');
 var app = express();
@@ -36,6 +37,8 @@ app.use('/violations', violationsRouter);
 app.use('/passages', passagesRouter);
 app.use('/is-active', isActiveRouter);
 app.use('/fullinfo', fullinfo);
+app.use('/fullcaminfo', fullcaminfo);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
