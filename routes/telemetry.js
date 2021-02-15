@@ -6,7 +6,7 @@ const jsonParser = express.json();
 
 var login = "admin";
 var password = "Fk5bu8jG";
-var job = "getStats";
+var job = "getTelemetry";
 var timestampStart = 1612818000;
 var timestampEnd = 1612891239;
 var ip = '192.168.72.11';
@@ -67,25 +67,8 @@ router.post("/", jsonParser, function (req, res) {
         },
         "request": {
             "job": job,
-            "getStats": {
-                "timestampStart": timestampStart,
-                "timestampEnd": timestampEnd,
-                "speedThresholds": [
-                    {
-                        "name": "Превышение на 20", "min": 23, "max": 43
-                    },
-                    {
-                        "name": "Превышение на 40",
-                        "min": 43, "max": 63
-                    },
-                    {
-                        "name": "Превышение на 60", "min": 63, "max": 83
-                    },
-                    {
-                        "name": "Превышение на 80", "min": 83, "max": 0
-                    }
-                ],
-                "showInfo": true
+            "getTelemetry": {
+                "type": "Stat:%20Targets%20per%2010%20sec"
             }
         }
     });
@@ -93,7 +76,7 @@ router.post("/", jsonParser, function (req, res) {
     var options = {
         host: ip,
         path: '/api11.php',
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(data)
@@ -108,11 +91,9 @@ router.post("/", jsonParser, function (req, res) {
                 //console.log(chunk);
                 answ += chunk;
             }).on('end', function () {
-                var str = JSON.parse(answ);
-
-                let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
-                console.log(s);
-                res.send(s);
+              
+                console.log(answ);
+                res.send(answ);
             }).on('error', (err) => {
                 let s = '{"status":' + "inactive" + '}';
                 res.send(s);
