@@ -10,6 +10,7 @@ var job = "getStats";
 var timestampStart = 1612818000;
 var timestampEnd = 1612891239;
 var ip = '192.168.72.11';
+var deviceType ='kordon';
 
 /* GET users listing. */
 /*router.post('/', function(req, res) {

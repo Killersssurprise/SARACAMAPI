@@ -12,24 +12,10 @@ var timestampEnd = 1612891239;
 var ip = '192.168.72.11';
 var deviceType ='kordon';
 
-/* GET users listing. */
-/*router.post('/', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-
-    var login = req.param('login');
-    var password=  req.param('password');
-    var ip =  req.param('ip');
-
-    console.log("ip: "+ip);
-    console.log("login: "+login);
-    console.log("password: "+password);
-
-    res.send(getFakeJson());
-
-});*/
-
 router.post("/", jsonParser, function (req, res) {
 
+    var st = req.param('start_time');
+    var et = req.param('end_time');
     var lg = req.param('login');
     var ps = req.param('password');
     var i = req.param('ip');
@@ -46,6 +32,22 @@ router.post("/", jsonParser, function (req, res) {
         password = ps;
     } else {
         let s = '{"error":' + "no param password" + '}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof st !== 'undefined' && st !== null) {
+        timestampStart = st;
+    } else {
+        let s = '{"error":' + "no param start_time" + '}';
+        res.send(s);
+        return;
+    }
+
+    if (typeof et !== 'undefined' && et !== null) {
+        timestampEnd = et;
+    } else {
+        let s = '{"error":' + "no param end_time" + '}';
         res.send(s);
         return;
     }
@@ -106,19 +108,18 @@ router.post("/", jsonParser, function (req, res) {
                 //console.log(chunk);
                 answ += chunk;
             }).on('end', function () {
-                //var str=JSON.parse(answ)
+                var str = JSON.parse(answ);
 
-                //let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
-                let s = '{"status":' + "active" + '}';
+                let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
                 console.log(s);
                 res.send(s);
             }).on('error', (err) => {
                 let s = '{"status":' + "inactive" + '}';
                 res.send(s);
                 console.error(err.stack);
+                return;
             });
         });
-
         httpreq.write(data);
         httpreq.end();
     } catch (e) {
@@ -127,5 +128,6 @@ router.post("/", jsonParser, function (req, res) {
     }
     //res.send(data);
 });
+
 
 module.exports = router;
