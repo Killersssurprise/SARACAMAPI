@@ -68,7 +68,7 @@ router.post("/", jsonParser, function (req, res) {
         "request": {
             "job": job,
             "getTelemetry": {
-                "type": "Stat:%20Targets%20per%2010%20sec"
+                "type": "Stat: Targets per 10 sec"
             }
         }
     });
