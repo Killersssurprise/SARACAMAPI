@@ -12,6 +12,7 @@ var isActiveRouter = require('./routes/isActive');
 var fullinfo = require('./routes/fullinfo');
 var fullcaminfo = require('./routes/fullcaminfo');
 var telemetry = require('./routes/telemetry');
+var zabbix = require('./routes/zabbix');
 
 const https = require('https');
 var app = express();
@@ -40,6 +41,7 @@ app.use('/is-active', isActiveRouter);
 app.use('/fullinfo', fullinfo);
 app.use('/fullcaminfo', fullcaminfo);
 app.use('/telemetry', telemetry);
+app.use('/zabbix', telemetry);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
