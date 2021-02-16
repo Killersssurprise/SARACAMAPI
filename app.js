@@ -41,7 +41,7 @@ app.use('/is-active', isActiveRouter);
 app.use('/fullinfo', fullinfo);
 app.use('/fullcaminfo', fullcaminfo);
 app.use('/telemetry', telemetry);
-app.use('/zabbix', telemetry);
+app.use('/zabbix', zabbix);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
