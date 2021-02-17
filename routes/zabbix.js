@@ -167,7 +167,7 @@ async function ask(res) {
     const Zabbix = require('zabbix-promise')
 
     const zabbix = new Zabbix({
-        url: '192.168.72.11',
+        url: '192.168.72.11:10050/',
         user: 'admin',
         password: '123456'
     })
