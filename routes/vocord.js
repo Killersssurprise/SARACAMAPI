@@ -42,8 +42,8 @@ router.post("/", jsonParser, function (req, res) {
 
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
-
-                let s = '{"passages":' + JSON.stringify(body.TotalItems) + '}';
+                
+                let s = '{"passages":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
                 console.log(s);
                 res.send(s);
             }
