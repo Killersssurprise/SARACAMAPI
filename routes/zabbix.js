@@ -167,14 +167,14 @@ async function ask(res) {
     const Zabbix = require('zabbix-promise')
 
     const zabbix = new Zabbix({
-        url: '192.168.72.11:10050/',
+        url: '192.168.72.11:80/',
         user: 'admin',
         password: '123456'
-    })
+    });
 
     const main = async () => {
         try {
-            await zabbix.login()
+            await zabbix.login();
             const host = await zabbix.request('host.get', {
                 selectInterfaces: 'extend',
                 limit: 1
@@ -185,7 +185,7 @@ async function ask(res) {
         } catch (error) {
             console.error(error)
         }
-    }
+    };
     main();
 
 
