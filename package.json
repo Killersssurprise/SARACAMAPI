@@ -15,5 +15,8 @@
     "zabbix-agent-client": "^0.1.1",
     "zabbix-client": "^1.2.7",
     "zabbix-promise": "^2.0.2"
+  },
+  "devDependencies": {
+    "request": "^2.88.2"
   }
 }

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var http = require('http');
 const jsonParser = express.json();
-
+var request = require('request');
 var login = "admin";
 var password = "Fk5bu8jG";
 var job = "getTelemetry";
@@ -77,7 +77,6 @@ router.post("/", jsonParser, function (req, res) {
 
     // http://{ip_адрес}:{порт}/telemetry.json?usr={логин}&pwd={пароль}
 
-    var request = require('request');
 
     var options = {
         url: '192.168.73.4:8080/telemetry.json?usr=OrlanUser&pwd=OrlanPassword'
