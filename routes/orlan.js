@@ -82,7 +82,7 @@ router.post("/", jsonParser, function (req, res) {
     };
 
     var options = {
-        url: 'http://192.168.73.4:80/telemetry.json?usr=OrlanUser&pwd=OrlanPassword',
+        url: 'http://192.168.73.4:8080/telemetry.json?usr=OrlanUser&pwd=OrlanPassword',
         headers: headers
     };
 
