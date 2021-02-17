@@ -75,8 +75,6 @@ router.post("/", jsonParser, function (req, res) {
 
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body);
-                res.send(body);
                 let s = '{"violations":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
                 console.log(s);
                 res.send(s);
@@ -107,8 +105,6 @@ router.post("/", jsonParser, function (req, res) {
 
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body);
-                res.send(body);
                 let s = '{"Active":' + JSON.stringify(JSON.parse(body).CamerasDto[0]["DbCamera"]["IsVisible"]) + '}';
                 console.log(s);
                 res.send(s);
