@@ -42,6 +42,7 @@ router.post("/", jsonParser, function (req, res) {
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
+                res.send(body);
             }
         }
 
@@ -72,6 +73,7 @@ router.post("/", jsonParser, function (req, res) {
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
+                res.send(body);
             }
         }
 
@@ -100,6 +102,7 @@ router.post("/", jsonParser, function (req, res) {
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
+                res.send(body);
             }
         }
 
@@ -127,6 +130,7 @@ router.post("/", jsonParser, function (req, res) {
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
+                res.send(body);
             }
         }
 
