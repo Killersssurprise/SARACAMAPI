@@ -77,9 +77,13 @@ router.post("/", jsonParser, function (req, res) {
 
     // http://{ip_адрес}:{порт}/telemetry.json?usr={логин}&pwd={пароль}
 
+    var headers = {
+        'Content-Length': '1000'
+    };
 
     var options = {
-        url: '192.168.73.4:80/telemetry.json?usr=OrlanUser&pwd=OrlanPassword'
+        url: 'http://192.168.73.4:80/telemetry.json?usr=OrlanUser&pwd=OrlanPassword',
+        headers: headers
     };
 
     function callback(error, response, body) {
@@ -92,6 +96,21 @@ router.post("/", jsonParser, function (req, res) {
     }
 
     request(options, callback);
+
+    // var options = {
+    //     url: 'http://192.168.73.4:8080/telemetry.json?usr=OrlanUser&pwd=OrlanPassword'
+    // };
+    //
+    // function callback(error, response, body) {
+    //     if (!error && response.statusCode == 200) {
+    //         console.log(body);
+    //         res.send(body);
+    //     }else{
+    //         console.error(error);
+    //     }
+    // }
+    //
+    // request(options, callback);
 
     // var options = {
     //     host: ip,
