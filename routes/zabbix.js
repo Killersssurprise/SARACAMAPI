@@ -10,7 +10,10 @@ var job = "getStats";
 var timestampStart = 1612818000;
 var timestampEnd = 1612891239;
 var ip = '192.168.72.11';
-var deviceType ='kordon';
+var deviceType = 'kordon';
+
+// 192.168.40.26	Вокорд	admin	123456
+
 
 /* GET users listing. */
 /*router.post('/', function(req, res) {
@@ -81,28 +84,32 @@ router.post("/", jsonParser, function (req, res) {
     //     return;
     // }
 
-    var ZabbixAgentClient = require("zabbix-agent-client"),
-        client            = new ZabbixAgentClient(10050, "192.168.40.26"),
-        item              = "system.cpu.util",
-        params            = ["VTObjectBusSrv", "VTTrafficBPM",
-            "VTLPRService", "VTLPRWatchDog"];
+    // var ZabbixAgentClient = require("zabbix-agent-client"),
+    //     client            = new ZabbixAgentClient(10050, "192.168.40.26"),
+    //     item              = "system.cpu.util",
+    //     params            = ["VTObjectBusSrv", "VTTrafficBPM",
+    //         "VTLPRService", "VTLPRWatchDog"];
+    //
+    // if(ip === "one"){
+    //
+    //     ZabbixAgentClient = require("zabbix-agent-client"),
+    //         client            = new ZabbixAgentClient(10050, "192.168.40.26"),
+    //         item              = "VTObjectBusSrv",
+    //         params            = [""];
+    //
+    // }
+    //
+    // client.getItemWithParams(item, params, function(error, result) {
+    //     if (error) {
+    //         console.log("Got error", error);
+    //     }
+    //
+    //     console.log("Result: " + result);
+    // });
 
-    if(ip === "one"){
+    ask(res);
+    //res.send("Hi there");
 
-        ZabbixAgentClient = require("zabbix-agent-client"),
-            client            = new ZabbixAgentClient(10050, "192.168.40.26"),
-            item              = "VTObjectBusSrv",
-            params            = [""];
-
-    }
-
-    client.getItemWithParams(item, params, function(error, result) {
-        if (error) {
-            console.log("Got error", error);
-        }
-
-        console.log("Result: " + result);
-    });
 
     var answ = '';
     // try {
@@ -133,5 +140,54 @@ router.post("/", jsonParser, function (req, res) {
     //res.send(data);
 });
 
+
+async function ask(res) {
+//     try {
+//
+//         const {ZabbixClient} = require("zabbix-client");
+//
+//         const client = new ZabbixClient("http://company.com/zabbix/api_jsonrpc.php");
+//
+//         const api = await client.login("theusername", "thepassword");
+// // To enable relogin: client.login("theusername", "thepassword", true);
+//
+//         const allHosts = await api.method("host.get").call();
+//
+// // The version info needs an unauthenticated user, you
+// // can disable the token sending using the second parameters
+// // like the following
+//         const version = await api.method("apiinfo.version").call({}, false);
+//
+//         console.log(version); // 4.0.0
+//     } catch (e){
+//         console.log(e);
+//     }
+//     //res.send(version);
+
+    const Zabbix = require('zabbix-promise')
+
+    const zabbix = new Zabbix({
+        url: '192.168.72.11',
+        user: 'admin',
+        password: '123456'
+    })
+
+    const main = async () => {
+        try {
+            await zabbix.login()
+            const host = await zabbix.request('host.get', {
+                selectInterfaces: 'extend',
+                limit: 1
+            });
+            console.log(JSON.stringify(host, null, 2));
+            zabbix.logout()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    main();
+
+
+}
 
 module.exports = router;
