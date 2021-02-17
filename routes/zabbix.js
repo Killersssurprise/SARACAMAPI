@@ -164,7 +164,7 @@ async function ask(res) {
 //     }
 //     //res.send(version);
 
-    const Zabbix = require('zabbix-promise')
+    const Zabbix = require('zabbix-promise');
 
     const zabbix = new Zabbix({
         url: '192.168.72.11:80/',
