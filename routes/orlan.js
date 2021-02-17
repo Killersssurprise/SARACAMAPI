@@ -86,6 +86,8 @@ router.post("/", jsonParser, function (req, res) {
         if (!error && response.statusCode == 200) {
             console.log(body);
             res.send(body);
+        }else{
+            console.error(error);
         }
     }
 
