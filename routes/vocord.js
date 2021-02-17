@@ -17,8 +17,9 @@ router.post("/", jsonParser, function (req, res) {
     var type = req.param('type');
 
 
+
     //проезды
-    if (type === 1) {
+    if (type == '1') {
         var headers = {
             'Connection': 'keep-alive',
             'Accept': 'application/json, text/plain, */*',
