@@ -77,7 +77,7 @@ router.post("/", jsonParser, function (req, res) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
                 res.send(body);
-                let s = '{"violations":' + JSON.stringify(body['TotalItems']) + '}';
+                let s = '{"violations":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
                 console.log(s);
                 res.send(s);
             }
@@ -109,7 +109,7 @@ router.post("/", jsonParser, function (req, res) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
                 res.send(body);
-                let s = '{"Active":' + JSON.stringify(body.CamerasDto[0]["DbCamera"]["IsVisible"]) + '}';
+                let s = '{"Active":' + JSON.stringify(JSON.parse(body).CamerasDto[0]["DbCamera"]["IsVisible"]) + '}';
                 console.log(s);
                 res.send(s);
             }
