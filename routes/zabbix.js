@@ -179,7 +179,8 @@ async function ask(res) {
                 selectInterfaces: 'extend',
                 limit: 1
             });
-            console.log(JSON.stringify(host, null, 2));
+            //console.log(JSON.stringify(host, null, 2));
+            console.log(host);
             zabbix.logout()
         } catch (error) {
             console.error(error)
