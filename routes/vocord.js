@@ -50,7 +50,7 @@ router.post("/", jsonParser, function (req, res) {
         request(options, callback);
 
         //нарушения
-    } else if (type === 2) {
+    } else if (type == '2') {
         var headers = {
             'Connection': 'keep-alive',
             'Accept': 'application/json, text/plain, */*',
@@ -81,7 +81,7 @@ router.post("/", jsonParser, function (req, res) {
         request(options, callback);
 
         //Состояние камеры
-    } else if (type === 3) {
+    } else if (type == '3') {
 
         var headers = {
             'Connection': 'keep-alive',
@@ -110,7 +110,7 @@ router.post("/", jsonParser, function (req, res) {
         request(options, callback);
 
         //какой-то лаг
-    } else if (type === 4) {
+    } else if (type == '4') {
         var headers = {
             'Connection': 'keep-alive',
             'Cache-Control': 'no-cache',
