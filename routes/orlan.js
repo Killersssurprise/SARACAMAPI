@@ -14,51 +14,51 @@ var deviceType ='kordon';
 
 router.post("/", jsonParser, function (req, res) {
 
-    var st = req.param('start_time');
-    var et = req.param('end_time');
-    var lg = req.param('login');
-    var ps = req.param('password');
-    var i = req.param('ip');
-
-    if (typeof lg !== 'undefined' && lg !== null) {
-        login = lg;
-    } else {
-        let s = '{"error":' + "no param login" + '}';
-        res.send(s);
-        return;
-    }
-
-    if (typeof ps !== 'undefined' && ps !== null) {
-        password = ps;
-    } else {
-        let s = '{"error":' + "no param password" + '}';
-        res.send(s);
-        return;
-    }
-
-    if (typeof st !== 'undefined' && st !== null) {
-        timestampStart = st;
-    } else {
-        let s = '{"error":' + "no param start_time" + '}';
-        res.send(s);
-        return;
-    }
-
-    if (typeof et !== 'undefined' && et !== null) {
-        timestampEnd = et;
-    } else {
-        let s = '{"error":' + "no param end_time" + '}';
-        res.send(s);
-        return;
-    }
-
-    if (typeof ip !== 'undefined' && ip !== null) {
-        ip = i;
-    } else {
-        let s = '{"error":' + "no param ip" + '}';
-        res.send(s);
-        return;
-    }
+    // var st = req.param('start_time');
+    // var et = req.param('end_time');
+    // var lg = req.param('login');
+    // var ps = req.param('password');
+    // var i = req.param('ip');
+    //
+    // if (typeof lg !== 'undefined' && lg !== null) {
+    //     login = lg;
+    // } else {
+    //     let s = '{"error":' + "no param login" + '}';
+    //     res.send(s);
+    //     return;
+    // }
+    //
+    // if (typeof ps !== 'undefined' && ps !== null) {
+    //     password = ps;
+    // } else {
+    //     let s = '{"error":' + "no param password" + '}';
+    //     res.send(s);
+    //     return;
+    // }
+    //
+    // if (typeof st !== 'undefined' && st !== null) {
+    //     timestampStart = st;
+    // } else {
+    //     let s = '{"error":' + "no param start_time" + '}';
+    //     res.send(s);
+    //     return;
+    // }
+    //
+    // if (typeof et !== 'undefined' && et !== null) {
+    //     timestampEnd = et;
+    // } else {
+    //     let s = '{"error":' + "no param end_time" + '}';
+    //     res.send(s);
+    //     return;
+    // }
+    //
+    // if (typeof ip !== 'undefined' && ip !== null) {
+    //     ip = i;
+    // } else {
+    //     let s = '{"error":' + "no param ip" + '}';
+    //     res.send(s);
+    //     return;
+    // }
 
     // var data = JSON.stringify({
     //     "auth": {
@@ -77,6 +77,18 @@ router.post("/", jsonParser, function (req, res) {
 
     // http://{ip_адрес}:{порт}/telemetry.json?usr={логин}&pwd={пароль}
 
+    var string = [{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}];
+    var values = JSON.stringify(string);
+
+    values.forEach(function(V){
+        let key = V.Key;
+        let value = V.Value;
+
+        console.log('{'+key+':'+value+'}')
+
+    });
+
+
     var headers = {
         'Content-Length': '1000'
     };
@@ -89,64 +101,26 @@ router.post("/", jsonParser, function (req, res) {
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
+
+            var values = body;
+
+            values.forEach(function(V){
+                let key = V.Key;
+                let value = V.Value;
+
+                console.log('{'+key+':'+value+'}')
+
+            });
+
             res.send(body);
         }else{
             console.error(error);
         }
     }
 
-    request(options, callback);
-
-    // var options = {
-    //     url: 'http://192.168.73.4:8080/telemetry.json?usr=OrlanUser&pwd=OrlanPassword'
-    // };
-    //
-    // function callback(error, response, body) {
-    //     if (!error && response.statusCode == 200) {
-    //         console.log(body);
-    //         res.send(body);
-    //     }else{
-    //         console.error(error);
-    //     }
-    // }
-    //
     // request(options, callback);
 
-    // var options = {
-    //     host: ip,
-    //     path: '/telemetry.json',
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Content-Length': Buffer.byteLength(data)
-    //     }
-    //
-    // };
-    // var answ = '';
-    // try {
-    //     var httpreq = http.request(options, function (response) {
-    //         //response.setEncoding('utf8');
-    //         response.on('data', function (chunk) {
-    //             //console.log(chunk);
-    //             answ += chunk;
-    //         }).on('end', function () {
-    //
-    //             console.log(answ);
-    //             res.send(answ);
-    //         }).on('error', (err) => {
-    //             let s = '{"status":' + "inactive" + '}';
-    //             res.send(s);
-    //             console.error(err.stack);
-    //             return;
-    //         });
-    //     });
-    //     httpreq.write(data);
-    //     httpreq.end();
-    // } catch (e) {
-    //
-    //     console.log(e);
-    // }
-    //res.send(data);
+
 });
 
 
