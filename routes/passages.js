@@ -3,8 +3,8 @@ var router = express.Router();
 
 var http = require('http');
 const jsonParser = express.json();
-var kordon_driver = require('/drivers/kordon_driver');
-
+var kordon_driver = require('../drivers/kordon_driver');
+// var indexRouter = require('./routes/index');
 var login = "admin";
 var password = "Fk5bu8jG";
 var job = "getStats";
@@ -81,7 +81,6 @@ router.post("/", jsonParser, function (req, res) {
 
     switch (a) {
         case null:
-
             answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
             break;
         case 'undefined':
