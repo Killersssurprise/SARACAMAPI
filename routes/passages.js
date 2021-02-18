@@ -19,85 +19,92 @@ const vocordID = '5';
 
 router.post("/", jsonParser, function (req, res) {
 
-    var st = req.param('start_time');
-    var et = req.param('end_time');
-    var lg = req.param('login');
-    var ps = req.param('password');
-    var i = req.param('ip');
-    var dt = req.param('device_type');
+    try {
+        var st = req.param('start_time');
+        var et = req.param('end_time');
+        var lg = req.param('login');
+        var ps = req.param('password');
+        var i = req.param('ip');
+        var dt = req.param('device_type');
 
 
-    if (typeof lg !== 'undefined' && lg !== null) {
-        login = lg;
-    } else {
-        let s = '{"error":' + "no param login" + '}';
-        res.send(s);
-        return;
-    }
+        if (typeof lg !== 'undefined' && lg !== null) {
+            login = lg;
+        } else {
+            let s = '{"error":' + "no param login" + '}';
+            res.send(s);
+            return;
+        }
 
-    if (typeof ps !== 'undefined' && ps !== null) {
-        password = ps;
-    } else {
-        let s = '{"error":' + "no param password" + '}';
-        res.send(s);
-        return;
-    }
+        if (typeof ps !== 'undefined' && ps !== null) {
+            password = ps;
+        } else {
+            let s = '{"error":' + "no param password" + '}';
+            res.send(s);
+            return;
+        }
 
-    if (typeof st !== 'undefined' && st !== null) {
-        timestampStart = st;
-    } else {
-        let s = '{"error":' + "no param start_time" + '}';
-        res.send(s);
-        return;
-    }
+        if (typeof st !== 'undefined' && st !== null) {
+            timestampStart = st;
+        } else {
+            let s = '{"error":' + "no param start_time" + '}';
+            res.send(s);
+            return;
+        }
 
-    if (typeof et !== 'undefined' && et !== null) {
-        timestampEnd = et;
-    } else {
-        let s = '{"error":' + "no param end_time" + '}';
-        res.send(s);
-        return;
-    }
+        if (typeof et !== 'undefined' && et !== null) {
+            timestampEnd = et;
+        } else {
+            let s = '{"error":' + "no param end_time" + '}';
+            res.send(s);
+            return;
+        }
 
-    if (typeof ip !== 'undefined' && ip !== null) {
-        ip = i;
-    } else {
-        let s = '{"error":' + "no param ip" + '}';
-        res.send(s);
-        return;
-    }
+        if (typeof ip !== 'undefined' && ip !== null) {
+            ip = i;
+        } else {
+            let s = '{"error":' + "no param ip" + '}';
+            res.send(s);
+            return;
+        }
 
-    // if (typeof dt !== 'undefined' && dt !== null){
-    device_type = dt;
-    // }else{
-    //     let s = '{"error":'+"no param device_type"+'}';
-    //     res.send(s);
-    //     return;
-    // }
+        // if (typeof dt !== 'undefined' && dt !== null){
+        device_type = dt;
+        // }else{
+        //     let s = '{"error":'+"no param device_type"+'}';
+        //     res.send(s);
+        //     return;
+        // }
 
-    //test code
+        //test code
 
-    var answ='';
+        var answ = '';
 
-    switch (a) {
-        case null:
-            answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
-            break;
-        case 'undefined':
-            answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
-            break;
-        case kordonID:
-            answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
-            break;
-        case vocordID:
-            answ = '{"error":' + "no vocord driver yet" + '}';
-            break;
-        case orlanID:
-            answ = '{"status":' + "no orlan driver yet" + '}';
-            break;
-        default:
-            answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
-            break;
+        switch (device_type) {
+            case null:
+                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                break;
+            case 'undefined':
+                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                break;
+            case kordonID:
+                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                break;
+            case vocordID:
+                answ = '{"error":' + "no vocord driver yet" + '}';
+                break;
+            case orlanID:
+                answ = '{"status":' + "no orlan driver yet" + '}';
+                break;
+            default:
+                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                break;
+        }
+
+    } catch (e) {
+
+        console.log(e);
+        res.send(e);
     }
 
     res.send(answ);
