@@ -1,3 +1,5 @@
+var http = require('http');
+
 module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd) {
