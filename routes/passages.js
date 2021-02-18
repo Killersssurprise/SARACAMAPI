@@ -78,7 +78,7 @@ router.post("/", jsonParser, function (req, res) {
 
         //test code
 
-        var answ = '';
+       var answ = '';
 
         switch (device_type) {
             case null:
@@ -92,9 +92,11 @@ router.post("/", jsonParser, function (req, res) {
                 break;
             case vocordID:
                 answ = '{"error":' + "no vocord driver yet" + '}';
+                res.send(answ);
                 break;
             case orlanID:
                 answ = '{"status":' + "no orlan driver yet" + '}';
+                res.send(answ);
                 break;
             default:
                 kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd, res);
