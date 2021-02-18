@@ -11,7 +11,7 @@ var job = "getStats";
 var timestampStart = 1612818000;
 var timestampEnd = 1612891239;
 var ip = '192.168.72.11';
-var device_type = '192.168.72.11';
+var device_type;
 
 const kordonID = '2';
 const orlanID = '3';
