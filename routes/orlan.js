@@ -77,7 +77,7 @@ router.post("/", jsonParser, function (req, res) {
 
     // http://{ip_адрес}:{порт}/telemetry.json?usr={логин}&pwd={пароль}
 
-    var body = '[{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}]';
+    // var body = '[{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}]';
     //
     //
     // var newarr=[];
@@ -151,7 +151,7 @@ router.post("/", jsonParser, function (req, res) {
         }
     }
 
-    // request(options, callback);
+    request(options, callback);
 
 
 });

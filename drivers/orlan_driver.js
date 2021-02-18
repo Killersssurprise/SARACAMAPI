@@ -5,7 +5,7 @@ const jsonParser = express.json();
 var request = require('request');
 
 var headers = {
-    'Content-Length': '10000'
+    'Content-Length': '1000'
 };
 
 module.exports = {
