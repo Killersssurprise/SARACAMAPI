@@ -58,13 +58,12 @@ module.exports = {
                     let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
                     console.log(s);
                     //res.send(s);
-                    answ = s;
+                    res.send(s);
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
                     console.error(err.stack);
-                    answ = s;
-                    return;
+                    res.send(s);
                 });
             });
             httpreq.write(data);
@@ -73,8 +72,6 @@ module.exports = {
 
             console.log(e);
         }
-
-        return answ;
 
     },
 

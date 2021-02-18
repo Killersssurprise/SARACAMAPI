@@ -4,7 +4,6 @@ var router = express.Router();
 var http = require('http');
 const jsonParser = express.json();
 var kordon_driver = require('../drivers/kordon_driver');
-// var indexRouter = require('./routes/index');
 var login = "admin";
 var password = "Fk5bu8jG";
 var job = "getStats";
