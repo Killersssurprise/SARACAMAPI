@@ -148,6 +148,7 @@ router.post("/", jsonParser, function (req, res) {
 
         }else{
             console.error(error);
+            res.send(error);
         }
     }
 
