@@ -3,7 +3,7 @@ var job = "getStats";
 
 module.exports = {
 
-    getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd) {
+    getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {
@@ -78,7 +78,7 @@ module.exports = {
 
     },
 
-    getPassagesData: function getPassagesData(login, password, ip, timestampStart, timestampEnd) {
+    getPassagesData: function getPassagesData(login, password, ip, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {
@@ -132,14 +132,14 @@ module.exports = {
                     let s = '{"passages":' + JSON.stringify(str['getStats']['common']['total']) + '}';
                     console.log(s);
                     answ = s;
-                    return s;
+                    res.send(s);
                     //res.send(s);
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
                     answ = s;
                     console.error(err.stack);
-                    return s;
+                    res.send(s);
                 });
             });
 
@@ -153,7 +153,7 @@ module.exports = {
         // return answ;
     },
 
-    getIsActiveData: function getIsActiveData(login, password, ip, timestampStart, timestampEnd) {
+    getIsActiveData: function getIsActiveData(login, password, ip, timestampStart, timestampEnd, res) {
 
 
         var data = JSON.stringify({
@@ -230,7 +230,7 @@ module.exports = {
 
     },
 
-    getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd) {
+    getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {
@@ -316,7 +316,7 @@ module.exports = {
 
     },
 
-    getFullApiInfo: function getFullApiInfo(login, password, ip, timestampStart, timestampEnd) {
+    getFullApiInfo: function getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {

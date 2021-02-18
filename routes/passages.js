@@ -82,13 +82,13 @@ router.post("/", jsonParser, function (req, res) {
 
         switch (device_type) {
             case null:
-                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             case 'undefined':
-                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             case kordonID:
-                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             case vocordID:
                 answ = '{"error":' + "no vocord driver yet" + '}';
@@ -97,7 +97,7 @@ router.post("/", jsonParser, function (req, res) {
                 answ = '{"status":' + "no orlan driver yet" + '}';
                 break;
             default:
-                answ = kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd);
+                kordon_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
         }
 
@@ -107,7 +107,7 @@ router.post("/", jsonParser, function (req, res) {
         res.send(e);
     }
 
-    res.send(answ);
+    //res.send(answ);
 
 
 //     var data = JSON.stringify({
