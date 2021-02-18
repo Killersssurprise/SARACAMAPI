@@ -132,12 +132,14 @@ module.exports = {
                     let s = '{"passages":' + JSON.stringify(str['getStats']['common']['total']) + '}';
                     console.log(s);
                     answ = s;
+                    return s;
                     //res.send(s);
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
                     answ = s;
                     console.error(err.stack);
+                    return s;
                 });
             });
 
@@ -148,7 +150,7 @@ module.exports = {
 
             console.log(e);
         }
-        return answ;
+        // return answ;
     },
 
     getIsActiveData: function getIsActiveData(login, password, ip, timestampStart, timestampEnd) {
