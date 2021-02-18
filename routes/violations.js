@@ -91,7 +91,7 @@ router.post("/", jsonParser, function (req, res) {
                 res.send(answ);
                 break;
             case orlanID:
-                answ = '{"status":' + "no orlan driver yet" + '}';
+                answ = '{"error":' + "no orlan driver yet" + '}';
                 res.send(answ);
                 break;
             default:

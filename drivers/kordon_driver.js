@@ -294,12 +294,14 @@ module.exports = {
 
                     //console.log(str);
                     //res.send(answer);
-                    answ = answer;
+                    // answ = answer;
+                    res.send(answer);
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
                     console.error(err.stack);
-                    answ = s
+                    // answ = s
+                    res.send(s);
                 });
             });
             httpreq.write(data);
