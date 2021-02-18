@@ -77,17 +77,41 @@ router.post("/", jsonParser, function (req, res) {
 
     // http://{ip_адрес}:{порт}/telemetry.json?usr={логин}&pwd={пароль}
 
-    var string = [{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}];
-    var values = JSON.stringify(string);
+    var body = '[{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}]';
+    //
+    //
+    // var newarr=[];
+    // data.forEach(element => newarr.push('{'+element.Key+' : '+element.Value+'}'));
+    // var newarr='{';
+    //
+    //
+    // for (let i = 0; i < data.length; i++) {
+    //     if(i === data.length-1){
+    //         newarr +='{'+data[i].Key+' : '+data[i].Value+'}}';
+    //     } else{
+    //         newarr +='{'+data[i].Key+' : '+data[i].Value+'},';
+    //     }
+    // }
+    //
+    // res.send(newarr);
 
-    values.forEach(function(V){
-        let key = V.Key;
-        let value = V.Value;
-
-        console.log('{'+key+':'+value+'}')
-
-    });
-
+    // var data = JSON.parse(body);
+    //
+    // var newarr=[];
+    // data.forEach(element => newarr.push('{'+element.Key+' : '+element.Value+'}'));
+    // newarr='{';
+    //
+    //
+    // for (let i = 0; i < data.length; i++) {
+    //     if(i === data.length-1){
+    //         newarr +='{'+data[i].Key+' : '+data[i].Value+'}}';
+    //     } else{
+    //         newarr +='{'+data[i].Key+' : '+data[i].Value+'},';
+    //     }
+    // }
+    //
+    //
+    // res.send(newarr);
 
     var headers = {
         'Content-Length': '1000'
@@ -102,17 +126,26 @@ router.post("/", jsonParser, function (req, res) {
         if (!error && response.statusCode == 200) {
             console.log(body);
 
-            var values = body;
 
-            values.forEach(function(V){
-                let key = V.Key;
-                let value = V.Value;
+            var data = JSON.parse(body);
 
-                console.log('{'+key+':'+value+'}')
+            var newarr=[];
+            data.forEach(element => newarr.push('{'+element.Key+' : '+element.Value+'}'));
+            newarr='{';
 
-            });
 
-            res.send(body);
+            for (let i = 0; i < data.length; i++) {
+                if(i === data.length-1){
+                    newarr +='{'+data[i].Key+' : '+data[i].Value+'}}';
+                } else{
+                    newarr +='{'+data[i].Key+' : '+data[i].Value+'},';
+                }
+            }
+
+
+            res.send(newarr);
+
+
         }else{
             console.error(error);
         }
