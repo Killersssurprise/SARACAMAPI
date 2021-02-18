@@ -207,11 +207,11 @@ module.exports = {
                     let s = '{"status":' + "active" + '}';
                     console.log(s);
                     //res.send(s);
-                    answ = s;
+                    res.send(s);
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
-                    answ = s;
+                    res.send(s);
                     console.error(err.stack);
                 });
             });
@@ -223,7 +223,7 @@ module.exports = {
             console.log(e);
         }
 
-        return answ;
+        //return answ;
 
     },
 
