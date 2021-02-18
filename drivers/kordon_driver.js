@@ -370,11 +370,13 @@ module.exports = {
                     //let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
                     //console.log(str);
                     //res.send(str);
-                    answ = str;
+                    //answ = str;
+                    res.send(str);
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     console.error(err.stack);
-                    answ = s;
+                    //answ = s;
+                    res.send(s);
                 });
             });
             httpreq.write(data);
