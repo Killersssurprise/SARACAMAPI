@@ -1,4 +1,5 @@
 var http = require('http');
+var job = "getStats";
 
 module.exports = {
 
