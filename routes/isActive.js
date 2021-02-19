@@ -4,6 +4,7 @@ var router = express.Router();
 var http = require('http');
 const jsonParser = express.json();
 var kordon_driver = require('../drivers/kordon_driver');
+var orlan_driver = require('../drivers/orlan_driver');
 var login = "admin";
 var password = "Fk5bu8jG";
 var job = "getStats";
@@ -107,8 +108,7 @@ router.post("/", jsonParser, function (req, res) {
                 res.send(answ);
                 break;
             case orlanID:
-                answ = '{"error":' + "no orlan driver yet" + '}';
-                res.send(answ);
+                orlan_driver.getIsActiveData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             default:
                 kordon_driver.getIsActiveData(login, password, ip, timestampStart, timestampEnd, res);
