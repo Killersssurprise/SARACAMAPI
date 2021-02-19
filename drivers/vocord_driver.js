@@ -450,7 +450,7 @@ function makeLoginRequest(res, passwordCoded){
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = 'grant_type=password&username=admin&password='+passwordCoded;
+    var dataString = 'grant_type=password&username=admin&password='+encodeURIComponent(passwordCoded);
 
     var options = {
         url: 'http://192.168.40.26/MonoblockService/token',
