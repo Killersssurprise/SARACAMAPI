@@ -450,8 +450,8 @@ function makeLoginRequest(res, passwordCoded){
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    // var dataString = 'grant_type=password&username=admin&password='+encodeURIComponent(passwordCoded);
-    var dataString = 'grant_type=password&username=admin&password=SeF%2Fex71FshzlW1%2BE9Tu4f0tR2FIe1NgBlNWKc2eakSs2FHRcAvlQHWtAQAq5nwYhlL%2BqsAbuXs0tKLCEzA8zC5B7jG%2Fc9kKiOJcW3fX8DBwtfNpR41l80Ujj1rMN5i8e86v0ylowqpSPaBSA82B8zdEZvSm0QNbWGB3XICYDgM%3D';
+    var dataString = 'grant_type=password&username=admin&password='+encodeURIComponent(passwordCoded);
+    // var dataString = 'grant_type=password&username=admin&password=SeF%2Fex71FshzlW1%2BE9Tu4f0tR2FIe1NgBlNWKc2eakSs2FHRcAvlQHWtAQAq5nwYhlL%2BqsAbuXs0tKLCEzA8zC5B7jG%2Fc9kKiOJcW3fX8DBwtfNpR41l80Ujj1rMN5i8e86v0ylowqpSPaBSA82B8zdEZvSm0QNbWGB3XICYDgM%3D';
 
     console.log('data: '+dataString);
 
@@ -465,7 +465,7 @@ function makeLoginRequest(res, passwordCoded){
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
-            res.send(body);
+            res.send(body+' '+response);
         }else{
             console.log(error);
             res.send(error);

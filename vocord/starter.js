@@ -23,7 +23,7 @@ if (Array.isArray(input)) {
     answer = encryptImpl(rsa, input);
 }
 
-console.log(answer);
+console.log(encodeURIComponent(answer));
 
 function base64ToHex(str) {
     for (var i = 0, bin = atob(str.replace(/[ \r\n]+$/, "")), hex = []; i < bin.length; ++i) {
