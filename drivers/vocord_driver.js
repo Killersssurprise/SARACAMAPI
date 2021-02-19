@@ -3,6 +3,7 @@ var job = "getStats";
 var rs = require("node-bignumber");
 var atob = require("atob");
 var btoa = require('btoa');
+const {request} = require("http");
 
 module.exports = {
 
