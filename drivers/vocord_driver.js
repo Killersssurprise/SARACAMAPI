@@ -4,12 +4,12 @@ var rs = require("node-bignumber");
 var atob = require("atob");
 var btoa = require('btoa');
 // const {request} = require("http");
-
+var request = require('request');
 module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        var request = require('request');
+
 
         var headers = {
             'Connection': 'keep-alive',
@@ -45,7 +45,7 @@ module.exports = {
                 rsa.setPublic(modulusHex, exponentHex);
 
                 var answer;
-                var input = "OrlanPassword";
+                var input = "123456";
                 if (Array.isArray(input)) {
                     answer = input.map(function(x) { return encryptImpl(rsa, x); });
                 } else {
@@ -438,7 +438,7 @@ function hexToBase64(str) {
 
 
 function makeLoginRequest(res, passwordCoded){
-    var request = require('request');
+    //var request = require('request');
 
     var headers = {
         'Connection': 'keep-alive',
@@ -465,7 +465,7 @@ function makeLoginRequest(res, passwordCoded){
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
-            res.send(body+' '+response);
+            res.send(body+', response: '+response);
         }else{
             console.log(error);
             res.send(error);
