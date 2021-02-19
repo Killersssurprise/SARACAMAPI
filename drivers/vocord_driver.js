@@ -3,7 +3,7 @@ var job = "getStats";
 var rs = require("node-bignumber");
 var atob = require("atob");
 var btoa = require('btoa');
-const {request} = require("http");
+// const {request} = require("http");
 
 module.exports = {
 
@@ -438,6 +438,8 @@ function hexToBase64(str) {
 
 
 function makeLoginRequest(res, passwordCoded){
+    var request = require('request');
+
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
