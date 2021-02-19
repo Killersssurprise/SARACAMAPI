@@ -1,7 +1,7 @@
 var http = require('http');
 var job = "getStats";
 var rsa = require("node-bignumber");
-global.atob = require("atob");
+var atob = require("atob");
 var btoa = require('btoa');
 
 module.exports = {
@@ -32,7 +32,8 @@ module.exports = {
 
                 //var data = JSON.parse(body);
 
-                var pk = JSON.parse(body);
+                //var pk = JSON.parse(body);
+                var pk = body;
                 var modulusHex = base64ToHex(pk.Modulus);
                 var exponentHex = base64ToHex(pk.Exponent);
 
