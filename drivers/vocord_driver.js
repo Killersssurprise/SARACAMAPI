@@ -1,5 +1,8 @@
 var http = require('http');
 var job = "getStats";
+var rsa = require("node-bignumber");
+global.atob = require("atob");
+var btoa = require('btoa');
 
 module.exports = {
 
@@ -26,7 +29,31 @@ module.exports = {
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
-                res.send(body);
+
+                //var data = JSON.parse(body);
+
+                var pk = JSON.parse(body);
+                var modulusHex = base64ToHex(pk.Modulus);
+                var exponentHex = base64ToHex(pk.Exponent);
+
+                var rsa = new rsa.Key();
+                rsa.setPublic(modulusHex, exponentHex);
+
+                var answer;
+                var input = "OrlanPassword";
+                if (Array.isArray(input)) {
+                    answer = input.map(function(x) { return encryptImpl(rsa, x); });
+                } else {
+                    answer = encryptImpl(rsa, input);
+                }
+
+
+                makeLoginRequest(res,answer);
+
+
+
+
+                // res.send(answer);
             }else{
                 console.error(body);
                 res.send(body);
@@ -383,4 +410,57 @@ function doLogin(login, password, ip) {
     request(options, callback);
 }
 
+function base64ToHex(str) {
+    for (var i = 0, bin = atob(str.replace(/[ \r\n]+$/, "")), hex = []; i < bin.length; ++i) {
+        var tmp = bin.charCodeAt(i).toString(16);
+        if (tmp.length === 1) tmp = "0" + tmp;
+        hex[hex.length] = tmp;
+    }
+    return hex.join("");
+}
 
+function encryptImpl(rsa, input) {
+    var encryptedPassword = rsa.encrypt(input);
+    var b64EncryptedPassword = hexToBase64(encryptedPassword);
+    return b64EncryptedPassword;
+}
+
+function hexToBase64(str) {
+    return btoa(String.fromCharCode.apply(null,
+        str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" "))
+    );
+}
+
+
+function makeLoginRequest(res, passwordCoded){
+    var headers = {
+        'Connection': 'keep-alive',
+        'Accept': 'application/json, text/plain, */*',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Origin': 'http://192.168.40.26',
+        'Referer': 'http://192.168.40.26/',
+        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+    };
+
+    var dataString = 'grant_type=password&username=admin&password='+passwordCoded;
+
+    var options = {
+        url: 'http://192.168.40.26/MonoblockService/token',
+        method: 'POST',
+        headers: headers,
+        body: dataString
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.send(body);
+        }else{
+            console.log(error);
+            res.send(error);
+        }
+    }
+
+    request(options, callback);
+}
