@@ -12,7 +12,6 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-
         var url = 'http://' + ip + ':8080/telemetry.json?usr=' + login + '&pwd=' + password;
 
         var options = {
@@ -20,29 +19,6 @@ module.exports = {
             url: url,
             headers: headers
         };
-
-        //var b = '[{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}]';
-        //var data = JSON.parse(b);
-
-
-        // var data = JSON.parse(body);
-        //
-        // var newarr = [];
-        // data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
-        // newarr = '{';
-        // for (let i = 0; i < data.length; i++) {
-        //     if (i === data.length - 1) {
-        //         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
-        //     } else {
-        //         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
-        //     }
-        //
-        //     if (data[i].Key == 'Recog24Hours') {
-        //         // violations_count = value;
-        //         let s = '{"violations":' + data[i].Value + '}';
-        //         res.send(s);
-        //     }
-        // }
 
         function callback(error, response, body) {
             if (!error && response.statusCode === 200) {
@@ -90,29 +66,6 @@ module.exports = {
             headers: headers
         };
 
-        // var b = '[{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}]';
-        // var data = JSON.parse(b);
-        //
-        //
-        // // var data = JSON.parse(body);
-        //
-        // var newarr = [];
-        // data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
-        // newarr = '{';
-        // for (let i = 0; i < data.length; i++) {
-        //     if (i === data.length - 1) {
-        //         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
-        //     } else {
-        //         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
-        //     }
-        //
-        //     if (data[i].Key == 'Recog24Hours') {
-        //         // violations_count = value;
-        //         let s = '{"passages":' + data[i].Value + '}';
-        //         res.send(s);
-        //     }
-        // }
-
         function callback(error, response, body) {
             if (!error && response.statusCode === 200) {
                 console.log(body);
@@ -130,7 +83,7 @@ module.exports = {
 
                     if (data[i].Key == 'Recog24Hours') {
                         // violations_count = value;
-                        let s = '{"violations":' + data[i].Value + '}';
+                        let s = '{"passages":' + data[i].Value + '}';
                         res.send(s);
                     }
                 }
