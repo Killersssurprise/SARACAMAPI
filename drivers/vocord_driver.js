@@ -32,10 +32,13 @@ module.exports = {
 
                 //var data = JSON.parse(body);
 
-                //var pk = JSON.parse(body);
-                var pk = body;
+                var pk = JSON.parse(body);
+                // var pk = body;
                 var modulusHex = base64ToHex(pk.Modulus);
                 var exponentHex = base64ToHex(pk.Exponent);
+
+                console.log(pk.Modulus);
+                console.log(pk.Exponent);
 
                 var rsa = new rsa.Key();
                 rsa.setPublic(modulusHex, exponentHex);
