@@ -29,31 +29,31 @@ module.exports = {
 
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
-                //console.log(body);
-
+                console.log(body);
+                res.send(body);
                 //var data = JSON.parse(body);
 
-                var pk = JSON.parse(body);
-                // var pk = body;
-                var modulusHex = base64ToHex(pk.Modulus);
-                var exponentHex = base64ToHex(pk.Exponent);
-
-                //console.log(pk.Modulus);
-                //console.log(pk.Exponent);
-
-                var rsa = new rs.Key();
-                rsa.setPublic(modulusHex, exponentHex);
-
-                var answer;
-                var input = "OrlanPassword";
-                if (Array.isArray(input)) {
-                    answer = input.map(function(x) { return encryptImpl(rsa, x); });
-                } else {
-                    answer = encryptImpl(rsa, input);
-                }
-
-
-                makeLoginRequest(res,answer);
+                // var pk = JSON.parse(body);
+                // // var pk = body;
+                // var modulusHex = base64ToHex(pk.Modulus);
+                // var exponentHex = base64ToHex(pk.Exponent);
+                //
+                // //console.log(pk.Modulus);
+                // //console.log(pk.Exponent);
+                //
+                // var rsa = new rs.Key();
+                // rsa.setPublic(modulusHex, exponentHex);
+                //
+                // var answer;
+                // var input = "OrlanPassword";
+                // if (Array.isArray(input)) {
+                //     answer = input.map(function(x) { return encryptImpl(rsa, x); });
+                // } else {
+                //     answer = encryptImpl(rsa, input);
+                // }
+                //
+                //
+                // makeLoginRequest(res,answer);
 
 
 
