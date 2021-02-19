@@ -1,6 +1,6 @@
 var http = require('http');
 var job = "getStats";
-var rsa = require("node-bignumber");
+var rs = require("node-bignumber");
 var atob = require("atob");
 var btoa = require('btoa');
 
@@ -28,7 +28,7 @@ module.exports = {
 
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body);
+                //console.log(body);
 
                 //var data = JSON.parse(body);
 
@@ -37,10 +37,10 @@ module.exports = {
                 var modulusHex = base64ToHex(pk.Modulus);
                 var exponentHex = base64ToHex(pk.Exponent);
 
-                console.log(pk.Modulus);
-                console.log(pk.Exponent);
+                //console.log(pk.Modulus);
+                //console.log(pk.Exponent);
 
-                var rsa = new rsa.Key();
+                var rsa = new rs.Key();
                 rsa.setPublic(modulusHex, exponentHex);
 
                 var answer;
