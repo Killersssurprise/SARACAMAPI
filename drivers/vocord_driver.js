@@ -9,14 +9,20 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        var access_token = await getAccessToken(login, password, ip, timestampStart, timestampEnd);
-        console.log('I send:' + access_token);
-        res.send(access_token);
+        // var access_token = getAccessToken(login, password, ip, timestampStart, timestampEnd);
+        // console.log('I send:' + access_token);
+        // res.send(access_token);
 
 
         // var access_token = getPublicKey(ip).then{
         //     encryptPassword(password, pk);
         // };
+
+        getPublicKey(ip).then(resp =>{
+            encryptPassword(resp).then(resp2 =>{
+                res.send('Encrypted password: '+resp2)
+            })
+        })
 
 
     },
@@ -476,7 +482,7 @@ function makeLoginRequest(res, passwordCoded, ip, login) {
     request(options, callback);
 }
 
-async function getAccessToken(login, password, ip, timestampStart, timestampEnd, res) {
+function getAccessToken(login, password, ip, timestampStart, timestampEnd, res) {
 
     var headers = {
         'Connection': 'keep-alive',
