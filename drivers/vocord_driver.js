@@ -9,9 +9,15 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        var access_token = getAccessToken(login, password, ip, timestampStart, timestampEnd);
-        console.log('I send:'+access_token);
+        var access_token = await getAccessToken(login, password, ip, timestampStart, timestampEnd);
+        console.log('I send:' + access_token);
         res.send(access_token);
+
+
+        // var access_token = getPublicKey(ip).then{
+        //     encryptPassword(password, pk);
+        // };
+
 
     },
 
@@ -382,23 +388,74 @@ function hexToBase64(str) {
     );
 }
 
+function getPublicKey(ip) {
+    var headers = {
+        'Connection': 'keep-alive',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Accept': 'application/json, text/plain, */*',
+        'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
+        'Referer': 'http://' + ip + '/',
+        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+    };
 
-function makeLoginRequest(res, passwordCoded, ip, login){
+    var options = {
+        url: 'http://' + ip + '/MonoblockService//api/getPublicKey',
+        headers: headers
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            //console.log(body);
+
+            var pk = JSON.parse(body);
+            return pk;
+
+        } else {
+            return error;
+        }
+    }
+
+    request(options, callback);
+}
+
+function encryptPassword(password, pk) {
+    var modulusHex = base64ToHex(pk.Modulus);
+    var exponentHex = base64ToHex(pk.Exponent);
+
+    var rsa = new rs.Key();
+    rsa.setPublic(modulusHex, exponentHex);
+
+    var answer;
+    var input = password;
+    if (Array.isArray(input)) {
+        answer = input.map(function (x) {
+            return encryptImpl(rsa, x);
+        });
+    } else {
+        answer = encryptImpl(rsa, input);
+    }
+
+    return answer;
+}
+
+function makeLoginRequest(res, passwordCoded, ip, login) {
 
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Origin': 'http://'+ip,
-        'Referer': 'http://'+ip+'/',
+        'Origin': 'http://' + ip,
+        'Referer': 'http://' + ip + '/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = 'grant_type=password&username='+login+'&password='+encodeURIComponent(passwordCoded);
+    var dataString = 'grant_type=password&username=' + login + '&password=' + encodeURIComponent(passwordCoded);
 
     var options = {
-        url: 'http://'+ip+'/MonoblockService/token',
+        url: 'http://' + ip + '/MonoblockService/token',
         method: 'POST',
         headers: headers,
         body: dataString
@@ -409,7 +466,7 @@ function makeLoginRequest(res, passwordCoded, ip, login){
             console.log(body);
             // res.send(body+', response: '+response);
             return body;
-        }else{
+        } else {
             console.log(error);
             //res.send(error);
             return error;
@@ -419,7 +476,7 @@ function makeLoginRequest(res, passwordCoded, ip, login){
     request(options, callback);
 }
 
-function getAccessToken(login, password, ip, timestampStart, timestampEnd, res){
+async function getAccessToken(login, password, ip, timestampStart, timestampEnd, res) {
 
     var headers = {
         'Connection': 'keep-alive',
@@ -428,12 +485,12 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res){
         'Accept': 'application/json, text/plain, */*',
         'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
-        'Referer': 'http://'+ip+'/',
+        'Referer': 'http://' + ip + '/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
     var options = {
-        url: 'http://'+ip+'/MonoblockService//api/getPublicKey',
+        url: 'http://' + ip + '/MonoblockService//api/getPublicKey',
         headers: headers
     };
 
@@ -451,14 +508,16 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res){
             var answer;
             var input = password;
             if (Array.isArray(input)) {
-                answer = input.map(function(x) { return encryptImpl(rsa, x); });
+                answer = input.map(function (x) {
+                    return encryptImpl(rsa, x);
+                });
             } else {
                 answer = encryptImpl(rsa, input);
             }
 
-            return makeLoginRequest(res,answer, ip, login);
+            return makeLoginRequest(res, answer, ip, login);
 
-        }else{
+        } else {
             //console.error(body);
             //res.send(body);
             return error;
