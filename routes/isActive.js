@@ -105,7 +105,7 @@ router.post("/", jsonParser, function (req, res) {
                 kordon_driver.getIsActiveData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             case vocordID:
-                vocord_driver.getPassagesData(login, password, ip, timestampStart, timestampEnd, res);
+                vocord_driver.getIsActiveData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             case orlanID:
                 orlan_driver.getIsActiveData(login, password, ip, timestampStart, timestampEnd, res);
