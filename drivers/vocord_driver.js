@@ -282,28 +282,25 @@ function getIsActive(res, ip, token){
 function getFullInfo(res, ip, token){
     var headers = {
         'Connection': 'keep-alive',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
         'Accept': 'application/json, text/plain, */*',
         'Authorization': 'Bearer '+token,
+        'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Origin': 'http://'+ip,
         'Referer': 'http://'+ip+'/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
-
     var options = {
-        url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
-        method: 'POST',
-        headers: headers,
-        body: dataString
+        url: 'http://'+ip+'/MonoblockService/api/deviceState/getDeviceState',
+        headers: headers
     };
 
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
-            // Получает из ответа общее кол-во проездов
-            //let s = '{"passages":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
+            // Получает из ответа активна ли камера
+            // let s = '{"Active":' + JSON.stringify(JSON.parse(body).CamerasDto[0]["DbCamera"]["IsVisible"]) + '}';
             console.log(JSON.parse(body));
             res.send(JSON.parse(body));
         }
