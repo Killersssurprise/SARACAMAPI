@@ -469,9 +469,13 @@ function makeLoginRequest(res, passwordCoded, ip, login, f) {
 
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body);
+            //console.log(body);
+            var data = JSON.parse(body);
+            console.log(data.access_token);
             // res.send(body+', response: '+response);
-            return body;
+            //f(data.access_token);
+
+            return data.access_token;
         } else {
             console.log(error);
             //res.send(error);
