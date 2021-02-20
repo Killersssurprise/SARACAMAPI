@@ -9,7 +9,7 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        getAccessToken(login, password, ip, timestampStart, timestampEnd, getPassages);
+        getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getPassages);
         //console.log('I send:' + access_token);
         //res.send(access_token);
 
