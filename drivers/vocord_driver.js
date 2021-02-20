@@ -9,336 +9,29 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getPassages);
-        //console.log('I send:' + access_token);
-        //res.send(access_token);
-
-
-        // var access_token = getPublicKey(ip).then{
-        //     encryptPassword(password, pk);
-        // };
-
-        // getPublicKey(ip).then(resp =>{
-        //     encryptPassword(resp).then(resp2 =>{
-        //         res.send('Encrypted password: '+resp2)
-        //     })
-        // })
-
+        getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getViolations);
 
     },
 
     getPassagesData: function getPassagesData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        var data = JSON.stringify({
-            "auth": {
-                "login": login,
-                "password": password
-            },
-            "request": {
-                "job": job,
-                "getStats": {
-                    "timestampStart": timestampStart,
-                    "timestampEnd": timestampEnd,
-                    "speedThresholds": [
-                        {
-                            "name": "Превышение на 20", "min": 23, "max": 43
-                        },
-                        {
-                            "name": "Превышение на 40",
-                            "min": 43, "max": 63
-                        },
-                        {
-                            "name": "Превышение на 60", "min": 63, "max": 83
-                        },
-                        {
-                            "name": "Превышение на 80", "min": 83, "max": 0
-                        }
-                    ],
-                    "showInfo": true
-                }
-            }
-        });
+        getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getPassages);
 
-        var options = {
-            host: ip,
-            path: '/api11.php',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(data)
-            }
-
-        };
-        var answ = '';
-        try {
-            var httpreq = http.request(options, function (response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                }).on('end', function () {
-                    var str = JSON.parse(answ);
-                    let s = '{"passages":' + JSON.stringify(str['getStats']['common']['total']) + '}';
-                    console.log(s);
-                    answ = s;
-                    res.send(s);
-                    //res.send(s);
-                }).on('error', (err) => {
-                    let s = '{"status":' + "inactive" + '}';
-                    //res.send(s);
-                    answ = s;
-                    console.error(err.stack);
-                    res.send(s);
-                });
-            });
-
-            httpreq.write(data);
-            httpreq.end();
-
-        } catch (e) {
-
-            console.log(e);
-        }
-        // return answ;
     },
 
     getIsActiveData: function getIsActiveData(login, password, ip, timestampStart, timestampEnd, res) {
 
 
-        var data = JSON.stringify({
-            "auth": {
-                "login": login,
-                "password": password
-            },
-            "request": {
-                "job": job,
-                "getStats": {
-                    "timestampStart": timestampStart,
-                    "timestampEnd": timestampEnd,
-                    "speedThresholds": [
-                        {
-                            "name": "Превышение на 20", "min": 23, "max": 43
-                        },
-                        {
-                            "name": "Превышение на 40",
-                            "min": 43, "max": 63
-                        },
-                        {
-                            "name": "Превышение на 60", "min": 63, "max": 83
-                        },
-                        {
-                            "name": "Превышение на 80", "min": 83, "max": 0
-                        }
-                    ],
-                    "showInfo": true
-                }
-            }
-        });
-
-        var options = {
-            host: ip,
-            path: '/api11.php',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(data)
-            }
-
-        };
-        var answ = '';
-        try {
-            var httpreq = http.request(options, function (response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                }).on('end', function () {
-                    //var str=JSON.parse(answ)
-
-                    //let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
-                    let s = '{"status":' + "active" + '}';
-                    console.log(s);
-                    //res.send(s);
-                    res.send(s);
-                }).on('error', (err) => {
-                    let s = '{"status":' + "inactive" + '}';
-                    //res.send(s);
-                    res.send(s);
-                    console.error(err.stack);
-                });
-            });
-
-            httpreq.write(data);
-            httpreq.end();
-        } catch (e) {
-
-            console.log(e);
-        }
-
-        //return answ;
-
     },
 
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        var data = JSON.stringify({
-            "auth": {
-                "login": login,
-                "password": password
-            },
-            "request": {
-                "job": job,
-                "getStats": {
-                    "timestampStart": timestampStart,
-                    "timestampEnd": timestampEnd,
-                    "speedThresholds": [
-                        {
-                            "name": "Превышение на 20", "min": 23, "max": 43
-                        },
-                        {
-                            "name": "Превышение на 40",
-                            "min": 43, "max": 63
-                        },
-                        {
-                            "name": "Превышение на 60", "min": 63, "max": 83
-                        },
-                        {
-                            "name": "Превышение на 80", "min": 83, "max": 0
-                        }
-                    ],
-                    "showInfo": true
-                }
-            }
-        });
-
-        var options = {
-            host: ip,
-            path: '/api11.php',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(data)
-            }
-
-        };
-        var answ = '';
-        try {
-            var httpreq = http.request(options, function (response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                }).on('end', function () {
-                    var str = JSON.parse(answ);
-
-                    //let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
-                    let violations = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
-                    let passages = '{"passages":' + JSON.stringify(str['getStats']['common']['total']) + '}';
-                    let isActive = '{"status":' + "active" + '}';
-
-                    var data = {
-                        violations: JSON.stringify(str['getStats']['violation']['total']),
-                        passages: JSON.stringify(str['getStats']['common']['total']),
-                        status: 'active'
-                    };
-
-                    let answer = JSON.stringify(data);
-
-                    //console.log(str);
-                    //res.send(answer);
-                    // answ = answer;
-                    res.send(answer);
-                }).on('error', (err) => {
-                    let s = '{"status":' + "inactive" + '}';
-                    //res.send(s);
-                    console.error(err.stack);
-                    // answ = s
-                    res.send(s);
-                });
-            });
-            httpreq.write(data);
-            httpreq.end();
-        } catch (e) {
-
-            console.log(e);
-        }
-
-        return answ;
 
     },
 
     getFullApiInfo: function getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res) {
 
-        var data = JSON.stringify({
-            "auth": {
-                "login": login,
-                "password": password
-            },
-            "request": {
-                "job": job,
-                "getStats": {
-                    "timestampStart": timestampStart,
-                    "timestampEnd": timestampEnd,
-                    "speedThresholds": [
-                        {
-                            "name": "Превышение на 20", "min": 23, "max": 43
-                        },
-                        {
-                            "name": "Превышение на 40",
-                            "min": 43, "max": 63
-                        },
-                        {
-                            "name": "Превышение на 60", "min": 63, "max": 83
-                        },
-                        {
-                            "name": "Превышение на 80", "min": 83, "max": 0
-                        }
-                    ],
-                    "showInfo": true
-                }
-            }
-        });
 
-        var options = {
-            host: ip,
-            path: '/api11.php',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(data)
-            }
-
-        };
-        var answ = '';
-        try {
-            var httpreq = http.request(options, function (response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                }).on('end', function () {
-                    var str = JSON.parse(answ);
-
-                    //let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
-                    //console.log(str);
-                    //res.send(str);
-                    //answ = str;
-                    res.send(str);
-                }).on('error', (err) => {
-                    let s = '{"status":' + "inactive" + '}';
-                    console.error(err.stack);
-                    //answ = s;
-                    res.send(s);
-                });
-            });
-            httpreq.write(data);
-            httpreq.end();
-        } catch (e) {
-
-            console.log(e);
-        }
-
-        return answ;
 
     }
 
@@ -392,58 +85,6 @@ function hexToBase64(str) {
     return btoa(String.fromCharCode.apply(null,
         str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" "))
     );
-}
-
- function getPublicKey(ip) {
-    var headers = {
-        'Connection': 'keep-alive',
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache',
-        'Accept': 'application/json, text/plain, */*',
-        'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
-        'Referer': 'http://' + ip + '/',
-        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
-    };
-
-    var options = {
-        url: 'http://' + ip + '/MonoblockService//api/getPublicKey',
-        headers: headers
-    };
-
-    function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            //console.log(body);
-
-            var pk = JSON.parse(body);
-            return pk;
-
-        } else {
-            return error;
-        }
-    }
-
-    request(options, callback);
-}
-
-function encryptPassword(password, pk) {
-    var modulusHex = base64ToHex(pk.Modulus);
-    var exponentHex = base64ToHex(pk.Exponent);
-
-    var rsa = new rs.Key();
-    rsa.setPublic(modulusHex, exponentHex);
-
-    var answer;
-    var input = password;
-    if (Array.isArray(input)) {
-        answer = input.map(function (x) {
-            return encryptImpl(rsa, x);
-        });
-    } else {
-        answer = encryptImpl(rsa, input);
-    }
-
-    return answer;
 }
 
 function makeLoginRequest(res, passwordCoded, ip, login, f) {
@@ -562,6 +203,39 @@ function getPassages(res, ip, token){
         if (!error && response.statusCode == 200) {
             // Получает из ответа общее кол-во проездов
             let s = '{"passages":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
+            console.log(s);
+            res.send(s);
+        }
+    }
+
+    request(options, callback);
+}
+
+function getViolations(res, ip, token){
+    var headers = {
+        'Connection': 'keep-alive',
+        'Accept': 'application/json, text/plain, */*',
+        'Authorization': 'Bearer '+token,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Origin': 'http://'+ip,
+        'Referer': 'http://'+ip+'/',
+        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+    };
+
+    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
+
+    var options = {
+        url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+        method: 'POST',
+        headers: headers,
+        body: dataString
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            // Получает из ответа общее кол-во нарушений
+            let s = '{"violations":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
             console.log(s);
             res.send(s);
         }

@@ -5,6 +5,7 @@ var http = require('http');
 const jsonParser = express.json();
 var kordon_driver = require('../drivers/kordon_driver');
 var orlan_driver = require('../drivers/orlan_driver');
+var vocord_driver = require('../drivers/vocord_driver');
 var login = "admin";
 var password = "Fk5bu8jG";
 var job = "getStats";
@@ -89,8 +90,7 @@ router.post("/", jsonParser, function (req, res) {
                 kordon_driver.getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             case vocordID:
-                answ = '{"error":' + "no vocord driver yet" + '}';
-                res.send(answ);
+                vocord_driver.getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res);
                 break;
             case orlanID:
                 orlan_driver.getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res);

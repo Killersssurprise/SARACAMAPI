@@ -3,27 +3,31 @@ var rsa = require("node-bignumber");
 var btoa = require('btoa');
 console.log("Hello World");
 
-var s = '{"Modulus":"qNRcqO0ZZqQ5T15KebLWTBu0SSwWaXbKREFBJqlal+J/pTiDBcs4Kr4oN83KQpnr9BUUrMS/0GlLAtmMV728AIVSaOFUC0kKi9WurerfBdZ7nuOzfABAA/9mEwMQIwInf9BpbyCtnVaquCHvZPLuIZwBO0RqLIFZxJzmDrnGVS8=","Exponent":"AQAB"}';
-var dataString = 'grant_type=password&username=admin&password=SeF%2Fex71FshzlW1%2BE9Tu4f0tR2FIe1NgBlNWKc2eakSs2FHRcAvlQHWtAQAq5nwYhlL%2BqsAbuXs0tKLCEzA8zC5B7jG%2Fc9kKiOJcW3fX8DBwtfNpR41l80Ujj1rMN5i8e86v0ylowqpSPaBSA82B8zdEZvSm0QNbWGB3XICYDgM%3D';
-
-var pk = JSON.parse(s);
-var modulusHex = base64ToHex(pk.Modulus);
-var exponentHex = base64ToHex(pk.Exponent);
-// var rsa = new RSAKey();
+// var s = '{"Modulus":"qNRcqO0ZZqQ5T15KebLWTBu0SSwWaXbKREFBJqlal+J/pTiDBcs4Kr4oN83KQpnr9BUUrMS/0GlLAtmMV728AIVSaOFUC0kKi9WurerfBdZ7nuOzfABAA/9mEwMQIwInf9BpbyCtnVaquCHvZPLuIZwBO0RqLIFZxJzmDrnGVS8=","Exponent":"AQAB"}';
+// var dataString = 'grant_type=password&username=admin&password=SeF%2Fex71FshzlW1%2BE9Tu4f0tR2FIe1NgBlNWKc2eakSs2FHRcAvlQHWtAQAq5nwYhlL%2BqsAbuXs0tKLCEzA8zC5B7jG%2Fc9kKiOJcW3fX8DBwtfNpR41l80Ujj1rMN5i8e86v0ylowqpSPaBSA82B8zdEZvSm0QNbWGB3XICYDgM%3D';
+//
+// var pk = JSON.parse(s);
+// var modulusHex = base64ToHex(pk.Modulus);
+// var exponentHex = base64ToHex(pk.Exponent);
+// // var rsa = new RSAKey();
+// // rsa.setPublic(modulusHex, exponentHex);
+//
+// var rsa = new rsa.Key();
 // rsa.setPublic(modulusHex, exponentHex);
+//
+// var answer;
+// var input = "OrlanPassword";
+// if (Array.isArray(input)) {
+//     answer = input.map(function(x) { return encryptImpl(rsa, x); });
+// } else {
+//     answer = encryptImpl(rsa, input);
+// }
 
-var rsa = new rsa.Key();
-rsa.setPublic(modulusHex, exponentHex);
+// console.log(encodeURIComponent(answer));
+var token_data = '{"access_token":"es0vrQSHxPv9ANnM7Uokj_ya9qmp9KI-qDGsBseowlDTYy4vScPbDYcLeJRkhJ3bCwM_OLhqFCl2-RQLhnTsrv19ViT9gjdmx1PKLtO0kcMH7DAmlO0yqSU-HtUGrhGghhCw6JDXSekP9ZqlrIVhuH9G9-IEAbjCqqbVLYxjwWuubZ3Qzcv3haT3JvkGTMydCkBKPVlz0kZhlQ_SMnPd1KzW__5gyGIcUJ5uOWXOUjY","token_type":"bearer","expires_in":86399}';
 
-var answer;
-var input = "OrlanPassword";
-if (Array.isArray(input)) {
-    answer = input.map(function(x) { return encryptImpl(rsa, x); });
-} else {
-    answer = encryptImpl(rsa, input);
-}
-
-console.log(encodeURIComponent(answer));
+var data = JSON.parse(token_data);
+console.log(data.access_token);
 
 function base64ToHex(str) {
     for (var i = 0, bin = atob(str.replace(/[ \r\n]+$/, "")), hex = []; i < bin.length; ++i) {
