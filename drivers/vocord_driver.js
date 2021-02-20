@@ -404,11 +404,11 @@ function makeLoginRequest(res, passwordCoded, ip, login){
 
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
-            //console.log(body);
-            //res.send(body+', response: '+response);
+            console.log(body);
+            // res.send(body+', response: '+response);
             return body;
         }else{
-            //console.log(error);
+            console.log(error);
             //res.send(error);
             return error;
         }
@@ -437,7 +437,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res){
 
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
-            //console.log(body);
+            console.log(body);
 
             var pk = JSON.parse(body);
             var modulusHex = base64ToHex(pk.Modulus);
@@ -457,7 +457,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res){
             return makeLoginRequest(res,answer, ip, login);
 
         }else{
-            //console.error(body);
+            console.error(body);
             //res.send(body);
             return error;
         }
