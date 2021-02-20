@@ -9,20 +9,20 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        // var access_token = getAccessToken(login, password, ip, timestampStart, timestampEnd);
-        // console.log('I send:' + access_token);
-        // res.send(access_token);
+        var access_token = getAccessToken(login, password, ip, timestampStart, timestampEnd);
+        console.log('I send:' + access_token);
+        res.send(access_token);
 
 
         // var access_token = getPublicKey(ip).then{
         //     encryptPassword(password, pk);
         // };
 
-        getPublicKey(ip).then(resp =>{
-            encryptPassword(resp).then(resp2 =>{
-                res.send('Encrypted password: '+resp2)
-            })
-        })
+        // getPublicKey(ip).then(resp =>{
+        //     encryptPassword(resp).then(resp2 =>{
+        //         res.send('Encrypted password: '+resp2)
+        //     })
+        // })
 
 
     },
@@ -394,7 +394,7 @@ function hexToBase64(str) {
     );
 }
 
-function getPublicKey(ip) {
+ function getPublicKey(ip) {
     var headers = {
         'Connection': 'keep-alive',
         'Cache-Control': 'no-cache',
@@ -423,7 +423,7 @@ function getPublicKey(ip) {
         }
     }
 
-    return request(options, callback);
+    request(options, callback);
 }
 
 function encryptPassword(password, pk) {
@@ -446,7 +446,7 @@ function encryptPassword(password, pk) {
     return answer;
 }
 
-function makeLoginRequest(res, passwordCoded, ip, login) {
+function makeLoginRequest(res, passwordCoded, ip, login, f) {
 
     var headers = {
         'Connection': 'keep-alive',
@@ -482,7 +482,7 @@ function makeLoginRequest(res, passwordCoded, ip, login) {
     request(options, callback);
 }
 
-function getAccessToken(login, password, ip, timestampStart, timestampEnd, res) {
+function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, f) {
 
     var headers = {
         'Connection': 'keep-alive',
@@ -521,7 +521,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res) 
                 answer = encryptImpl(rsa, input);
             }
 
-            return makeLoginRequest(res, answer, ip, login);
+            return makeLoginRequest(res, answer, ip, login, f);
 
         } else {
             //console.error(body);
