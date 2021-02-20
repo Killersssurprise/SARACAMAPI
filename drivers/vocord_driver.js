@@ -276,6 +276,7 @@ function getIsActive(res, ip, token){
             res.send(s);
         }else{
             let s = '{"status":' + "inactive" + '}';
+            res.send(s);
         }
     }
 
