@@ -9,7 +9,8 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-        res.send(getAccessToken(login, password, ip, timestampStart, timestampEnd));
+        var access_token = getAccessToken(login, password, ip, timestampStart, timestampEnd);
+        res.send(access_token);
 
     },
 
@@ -437,7 +438,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res){
 
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body);
+            //console.log(body);
 
             var pk = JSON.parse(body);
             var modulusHex = base64ToHex(pk.Modulus);
@@ -457,7 +458,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res){
             return makeLoginRequest(res,answer, ip, login);
 
         }else{
-            console.error(body);
+            //console.error(body);
             //res.send(body);
             return error;
         }
