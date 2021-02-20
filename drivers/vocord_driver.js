@@ -9,8 +9,6 @@ module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
 
-
-
         var headers = {
             'Connection': 'keep-alive',
             'Cache-Control': 'no-cache',
@@ -18,12 +16,13 @@ module.exports = {
             'Accept': 'application/json, text/plain, */*',
             'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
-            'Referer': 'http://192.168.40.26/',
+            'Referer': 'http://'+ip+'/',
             'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
         };
 
         var options = {
-            url: 'http://192.168.40.26/MonoblockService//api/getPublicKey',
+            // url: 'http://192.168.40.26/MonoblockService//api/getPublicKey',
+            url: 'http://'+ip+'/MonoblockService//api/getPublicKey',
             headers: headers
         };
 
@@ -45,7 +44,8 @@ module.exports = {
                 rsa.setPublic(modulusHex, exponentHex);
 
                 var answer;
-                var input = "123456";
+                // var input = "123456";
+                var input = password;
                 if (Array.isArray(input)) {
                     answer = input.map(function(x) { return encryptImpl(rsa, x); });
                 } else {
@@ -53,10 +53,7 @@ module.exports = {
                 }
 
 
-                makeLoginRequest(res,answer);
-
-
-
+                makeLoginRequest(res,answer, ip, login);
 
                 // res.send(answer);
             }else{
@@ -437,7 +434,7 @@ function hexToBase64(str) {
 }
 
 
-function makeLoginRequest(res, passwordCoded){
+function makeLoginRequest(res, passwordCoded, ip, login){
     //var request = require('request');
 
     var headers = {
@@ -445,18 +442,19 @@ function makeLoginRequest(res, passwordCoded){
         'Accept': 'application/json, text/plain, */*',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Origin': 'http://192.168.40.26',
-        'Referer': 'http://192.168.40.26/',
+        'Origin': 'http://'+ip,
+        'Referer': 'http://'+ip+'/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = 'grant_type=password&username=admin&password='+encodeURIComponent(passwordCoded);
+    var dataString = 'grant_type=password&username='+login+'&password='+encodeURIComponent(passwordCoded);
     // var dataString = 'grant_type=password&username=admin&password=SeF%2Fex71FshzlW1%2BE9Tu4f0tR2FIe1NgBlNWKc2eakSs2FHRcAvlQHWtAQAq5nwYhlL%2BqsAbuXs0tKLCEzA8zC5B7jG%2Fc9kKiOJcW3fX8DBwtfNpR41l80Ujj1rMN5i8e86v0ylowqpSPaBSA82B8zdEZvSm0QNbWGB3XICYDgM%3D';
 
     console.log('data: '+dataString);
 
     var options = {
-        url: 'http://192.168.40.26/MonoblockService/token',
+        // url: 'http://192.168.40.26/MonoblockService/token',
+        url: 'http://'+ip+'/MonoblockService/token',
         method: 'POST',
         headers: headers,
         body: dataString
