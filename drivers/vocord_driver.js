@@ -423,7 +423,7 @@ function getPublicKey(ip) {
         }
     }
 
-    request(options, callback);
+    return request(options, callback);
 }
 
 function encryptPassword(password, pk) {
