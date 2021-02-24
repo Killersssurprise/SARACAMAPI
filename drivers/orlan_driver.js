@@ -205,36 +205,52 @@ module.exports = {
 
                 var data = JSON.parse(body);
 
+                var v;
+                var p;
+                var stat='active';
+
                 var newarr = [];
                 data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
                 newarr = '{';
                 let s = '{status:' + '"active"' + ',';
+
                 for (let i = 0; i < data.length; i++) {
                     if (i === data.length - 1) {
                         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
                         if (data[i].Key === 'Recog24Hours') {
                             // violations_count = value;
                             s +=  'passages' + ':"' + data[i].Value + '"}';
+                            p = data[i].Value;
                         }
                         if (data[i].Key === 'Recog1Hour') {
                             // violations_count = value;
                             s +=  'violations' + ':"' + data[i].Value + '"}';
+                            v = data[i].Value;
                         }
                     } else {
                         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
                         if (data[i].Key === 'Recog24Hours') {
                             // violations_count = value;
-                            s +=  'passages' + ':"' + data[i].Value + '",';
+                            s +=  'passages' + ':"' + data[i].Value + '", ';
+                            p = data[i].Value;
                         }
                         if (data[i].Key === 'Recog1Hour') {
                             // violations_count = value;
-                            s +=  'violations' + ':"' + data[i].Value + '",';
+                            s +=  'violations' + ':"' + data[i].Value + '", ';
+                            p = data[i].Value;
                         }
 
                     }
 
                 }
-                res.send(s);
+
+                var d = {
+                    violations: v,
+                    passages: p,
+                    status: stat
+                };
+
+                res.send(d);
 
             } else {
                 console.error(error);
