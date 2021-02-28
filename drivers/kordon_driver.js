@@ -345,6 +345,7 @@ module.exports = {
         //     console.log(e);
         // }
 //////
+        var answ = '';
         var request = require('request');
 
         var headers = {
@@ -379,6 +380,8 @@ module.exports = {
                 // answ = answer;
                 res.send(answer);
                 console.log(body);
+            }else{
+                console.log(error);
             }
         }
 
