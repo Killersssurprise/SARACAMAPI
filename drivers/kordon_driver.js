@@ -42,9 +42,10 @@ module.exports = {
         }
 
         var options = {
-            host: ip,
-            port: _port,
-            path: '/api11.php',
+            url: 'http://'+ip+':'+_port+'/api11.php',
+            // host: ip,
+            // port: _port,
+            // path: '/api11.php',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -121,9 +122,10 @@ module.exports = {
         }
 
         var options = {
-            host: ip,
-            port: _port,
-            path: '/api11.php',
+            url: 'http://'+ip+':'+_port+'/api11.php',
+            // host: ip,
+            // port: _port,
+            // path: '/api11.php',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -204,9 +206,10 @@ module.exports = {
         }
 
         var options = {
-            host: ip,
-            port: _port,
-            path: '/api11.php',
+            url: 'http://'+ip+':'+_port+'/api11.php',
+            // host: ip,
+            // port: _port,
+            // path: '/api11.php',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -289,9 +292,10 @@ module.exports = {
         console.log("port is: "+_port);
 
         var options = {
-            host: ip,
-            port: _port,
-            path: '/api11.php',
+            url: 'http://'+ip+':'+_port+'/api11.php',
+            // host: ip,
+            // port: _port,
+            // path: '/api11.php',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -384,9 +388,10 @@ module.exports = {
         }
 
         var options = {
-            host: ip,
-            port: _port,
-            path: '/api11.php',
+            url: 'http://'+ip+':'+_port+'/api11.php',
+            // host: ip,
+            // port: _port,
+            // path: '/api11.php',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
