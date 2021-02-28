@@ -286,6 +286,8 @@ module.exports = {
             _port = port;
         }
 
+        console.log("port is: "+_port);
+
         var options = {
             host: ip,
             port: _port,
