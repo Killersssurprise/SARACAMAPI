@@ -37,12 +37,12 @@ module.exports = {
 
         let _port = '80';
 
-        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+        if (port !== '' && typeof port !== 'undefined' && port !== null) {
             _port = port;
         }
 
         var options = {
-            url: 'http://'+ip+':'+_port+'/api11.php',
+            url: 'http://' + ip + ':' + _port + '/api11.php',
             // host: ip,
             // port: _port,
             // path: '/api11.php',
@@ -117,12 +117,12 @@ module.exports = {
 
         let _port = '80';
 
-        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+        if (port !== '' && typeof port !== 'undefined' && port !== null) {
             _port = port;
         }
 
         var options = {
-            url: 'http://'+ip+':'+_port+'/api11.php',
+            url: 'http://' + ip + ':' + _port + '/api11.php',
             // host: ip,
             // port: _port,
             // path: '/api11.php',
@@ -201,12 +201,12 @@ module.exports = {
 
         let _port = '80';
 
-        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+        if (port !== '' && typeof port !== 'undefined' && port !== null) {
             _port = port;
         }
 
         var options = {
-            url: 'http://'+ip+':'+_port+'/api11.php',
+            url: 'http://' + ip + ':' + _port + '/api11.php',
             // host: ip,
             // port: _port,
             // path: '/api11.php',
@@ -253,98 +253,138 @@ module.exports = {
 
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
-        var data = JSON.stringify({
-            "auth": {
-                "login": login,
-                "password": password
-            },
-            "request": {
-                "job": job,
-                "getStats": {
-                    "timestampStart": timestampStart,
-                    "timestampEnd": timestampEnd,
-                    "speedThresholds": [
-                        {
-                            "name": "Превышение на 20", "min": 23, "max": 43
-                        },
-                        {
-                            "name": "Превышение на 40",
-                            "min": 43, "max": 63
-                        },
-                        {
-                            "name": "Превышение на 60", "min": 63, "max": 83
-                        },
-                        {
-                            "name": "Превышение на 80", "min": 83, "max": 0
-                        }
-                    ],
-                    "showInfo": true
-                }
-            }
-        });
+        // var data = JSON.stringify({
+        //     "auth": {
+        //         "login": login,
+        //         "password": password
+        //     },
+        //     "request": {
+        //         "job": job,
+        //         "getStats": {
+        //             "timestampStart": timestampStart,
+        //             "timestampEnd": timestampEnd,
+        //             "speedThresholds": [
+        //                 {
+        //                     "name": "Превышение на 20", "min": 23, "max": 43
+        //                 },
+        //                 {
+        //                     "name": "Превышение на 40",
+        //                     "min": 43, "max": 63
+        //                 },
+        //                 {
+        //                     "name": "Превышение на 60", "min": 63, "max": 83
+        //                 },
+        //                 {
+        //                     "name": "Превышение на 80", "min": 83, "max": 0
+        //                 }
+        //             ],
+        //             "showInfo": true
+        //         }
+        //     }
+        // });
+        //
+        // let _port = '80';
+        //
+        // if (port !== '' && typeof port !== 'undefined' && port !== null) {
+        //     _port = port;
+        // }
+        //
+        // console.log("port is: " + _port);
+        //
+        // var options = {
+        //     url: '' + ip + ':' + _port + '/api11.php',
+        //     // host: ip,
+        //     // port: _port,
+        //     // path: '/api11.php',
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Content-Length': Buffer.byteLength(data)
+        //     }
+        //
+        // };
+        // var answ = '';
+        // try {
+        //     var httpreq = http.request(options, function (response) {
+        //         //response.setEncoding('utf8');
+        //         response.on('data', function (chunk) {
+        //             //console.log(chunk);
+        //             answ += chunk;
+        //         }).on('end', function () {
+        //             var str = JSON.parse(answ);
+        //
+        //             //let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
+        //             let violations = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
+        //             let passages = '{"passages":' + JSON.stringify(str['getStats']['common']['total']) + '}';
+        //             let isActive = '{"status":' + "active" + '}';
+        //
+        //             var data = {
+        //                 violations: JSON.stringify(str['getStats']['violation']['total']),
+        //                 passages: JSON.stringify(str['getStats']['common']['total']),
+        //                 status: 'active'
+        //             };
+        //
+        //             let answer = JSON.stringify(data);
+        //
+        //             //console.log(str);
+        //             //res.send(answer);
+        //             // answ = answer;
+        //             res.send(answer);
+        //         }).on('error', (err) => {
+        //             let s = '{"status":' + "inactive" + '}';
+        //             //res.send(s);
+        //             console.error(err.stack);
+        //             // answ = s
+        //             res.send(s);
+        //         });
+        //     });
+        //     httpreq.write(data);
+        //     httpreq.end();
+        // } catch (e) {
+        //
+        //     console.log(e);
+        // }
+//////
+        var request = require('request');
 
-        let _port = '80';
+        var headers = {
+            'Content-Type': 'application/json'
+        };
 
-        if(port !== '' && typeof port !== 'undefined' && port !== null ){
-            _port = port;
-        }
-
-        console.log("port is: "+_port);
+        var dataString = '{ "auth": {"login":' + login + ',"password": ' + password + '}, "request": { "job": "getStats", "getStats": { "timestampStart": 1612818000, "timestampEnd": 1612891239, "speedThresholds": [{ "name": "Превышение на 20", "min": 23, "max": 43 }, {"name": "Превышение на 40","min": 43, "max": 63},{"name": "Превышение на 60", "min": 63, "max": 83},{"name": "Превышение на 80", "min": 83, "max": 0}],"showInfo": true}}}';
 
         var options = {
-            url: ''+ip+':'+_port+'/api11.php',
-            // host: ip,
-            // port: _port,
-            // path: '/api11.php',
+            // url: 'http://192.168.72.10:8089/api11.php',
+            url: 'http://' + ip + ':8089/api11.php',
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(data)
-            }
-
+            headers: headers,
+            body: dataString
         };
-        var answ = '';
-        try {
-            var httpreq = http.request(options, function (response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                }).on('end', function () {
-                    var str = JSON.parse(answ);
 
-                    //let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
-                    let violations = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
-                    let passages = '{"passages":' + JSON.stringify(str['getStats']['common']['total']) + '}';
-                    let isActive = '{"status":' + "active" + '}';
+        function callback(error, response, body) {
+            if (!error && response.statusCode === 200) {
 
-                    var data = {
-                        violations: JSON.stringify(str['getStats']['violation']['total']),
-                        passages: JSON.stringify(str['getStats']['common']['total']),
-                        status: 'active'
-                    };
+                var str = JSON.parse(body);
 
-                    let answer = JSON.stringify(data);
+                var data = {
+                    violations: JSON.stringify(str['getStats']['violation']['total']),
+                    passages: JSON.stringify(str['getStats']['common']['total']),
+                    status: 'active'
+                };
 
-                    //console.log(str);
-                    //res.send(answer);
-                    // answ = answer;
-                    res.send(answer);
-                }).on('error', (err) => {
-                    let s = '{"status":' + "inactive" + '}';
-                    //res.send(s);
-                    console.error(err.stack);
-                    // answ = s
-                    res.send(s);
-                });
-            });
-            httpreq.write(data);
-            httpreq.end();
-        } catch (e) {
+                let answer = JSON.stringify(data);
 
-            console.log(e);
+                //console.log(str);
+                //res.send(answer);
+                // answ = answer;
+                res.send(answer);
+                console.log(body);
+            }
         }
 
+        request(options, callback);
+
+        //////////
         return answ;
 
     },
@@ -383,12 +423,12 @@ module.exports = {
 
         let _port = '80';
 
-        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+        if (port !== '' && typeof port !== 'undefined' && port !== null) {
             _port = port;
         }
 
         var options = {
-            url: 'http://'+ip+':'+_port+'/api11.php',
+            url: 'http://' + ip + ':' + _port + '/api11.php',
             // host: ip,
             // port: _port,
             // path: '/api11.php',
