@@ -295,7 +295,7 @@ module.exports = {
             // url: 'http://' + ip + ':' + _port + '/api11.php',
             host: ip,
             // port: _port,
-            // path: '/api11.php',
+            path: '/api11.php',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
