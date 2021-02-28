@@ -35,14 +35,15 @@ module.exports = {
             }
         });
 
-        let ip_with_port = ip+':80';
+        let _port = '80';
 
         if(port !== '' && typeof port !== 'undefined' && port !== null ){
-            ip_with_port = ip+':'+port;
+            _port = port;
         }
 
         var options = {
-            host: ip_with_port,
+            host: ip,
+            port: _port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -113,14 +114,15 @@ module.exports = {
             }
         });
 
-        let ip_with_port = ip+':80';
+        let _port = '80';
 
         if(port !== '' && typeof port !== 'undefined' && port !== null ){
-            ip_with_port = ip+':'+port;
+            _port = port;
         }
 
         var options = {
-            host: ip_with_port,
+            host: ip,
+            port: _port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -195,14 +197,15 @@ module.exports = {
             }
         });
 
-        let ip_with_port = ip+':80';
+        let _port = '80';
 
         if(port !== '' && typeof port !== 'undefined' && port !== null ){
-            ip_with_port = ip+':'+port;
+            _port = port;
         }
 
         var options = {
-            host: ip_with_port,
+            host: ip,
+            port: _port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -277,14 +280,15 @@ module.exports = {
             }
         });
 
-        let ip_with_port = ip+':80';
+        let _port = '80';
 
         if(port !== '' && typeof port !== 'undefined' && port !== null ){
-            ip_with_port = ip+':'+port;
+            _port = port;
         }
 
         var options = {
-            host: ip_with_port,
+            host: ip,
+            port: _port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -371,14 +375,15 @@ module.exports = {
             }
         });
 
-        let ip_with_port = ip+':80';
+        let _port = '80';
 
         if(port !== '' && typeof port !== 'undefined' && port !== null ){
-            ip_with_port = ip+':'+port;
+            _port = port;
         }
 
         var options = {
-            host: ip_with_port,
+            host: ip,
+            port: _port,
             path: '/api11.php',
             method: 'POST',
             headers: {
