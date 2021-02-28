@@ -292,7 +292,7 @@ module.exports = {
         console.log("port is: "+_port);
 
         var options = {
-            url: 'http://'+ip+':'+_port+'/api11.php',
+            url: ''+ip+':'+_port+'/api11.php',
             // host: ip,
             // port: _port,
             // path: '/api11.php',
