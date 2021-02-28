@@ -331,7 +331,8 @@ module.exports = {
                     //res.send(answer);
                     // answ = answer;
                     res.send(answer);
-                    httpreq.end();
+                    // httpreq.end();
+                    httpreq.finish();
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
@@ -340,8 +341,8 @@ module.exports = {
                     res.send(s);
                 });
             });
-            // httpreq.write(data);
-            // httpreq.end();
+            httpreq.write(data);
+            httpreq.end();
         } catch (e) {
 
             console.log(e);
