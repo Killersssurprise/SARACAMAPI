@@ -331,8 +331,9 @@ module.exports = {
                     //res.send(answer);
                     // answ = answer;
                     res.send(answer);
+                    res.removeAllListeners('data');
                     // httpreq.end();
-                    httpreq.finish();
+
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
