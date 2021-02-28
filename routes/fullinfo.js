@@ -12,6 +12,7 @@ var job = "getStats";
 var timestampStart = 1612818000;
 var timestampEnd = 1612891239;
 var ip = '192.168.72.11';
+var port = '';
 var device_type;
 
 const kordonID = '2';
@@ -27,6 +28,7 @@ router.post("/", jsonParser, function (req, res) {
         var ps = req.param('password');
         var i = req.param('ip');
         var dt = req.param('device_type');
+        var pt = req.param('port');
 
         if (typeof lg !== 'undefined' && lg !== null) {
             login = lg;
@@ -68,8 +70,22 @@ router.post("/", jsonParser, function (req, res) {
             return;
         }
 
+        if (typeof pt !== 'undefined' && pt !== null) {
+            port = pt;
+        }
+
+        if (typeof dt !== 'undefined' && dt !== null) {
+            device_type = dt;
+        } else {
+            let s = '{"error":' + "no param device_type" + '}';
+            res.send(s);
+            return;
+        }
+
         // if (typeof dt !== 'undefined' && dt !== null){
-        device_type = dt;
+
+
+
         // }else{
         //     let s = '{"error":'+"no param device_type"+'}';
         //     res.send(s);
@@ -80,22 +96,22 @@ router.post("/", jsonParser, function (req, res) {
 
         switch (device_type) {
             case null:
-                kordon_driver.getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res);
+                kordon_driver.getFullApiInfo(login, password, ip, port,timestampStart, timestampEnd, res);
                 break;
             case 'undefined':
-                kordon_driver.getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res);
+                kordon_driver.getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res);
                 break;
             case kordonID:
-                kordon_driver.getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res);
+                kordon_driver.getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res);
                 break;
             case vocordID:
-                vocord_driver.getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res);
+                vocord_driver.getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res);
                 break;
             case orlanID:
-                orlan_driver.getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res);
+                orlan_driver.getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res);
                 break;
             default:
-                kordon_driver.getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res);
+                kordon_driver.getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res);
                 break;
         }
 

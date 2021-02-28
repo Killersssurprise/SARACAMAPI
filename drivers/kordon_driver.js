@@ -3,7 +3,7 @@ var job = "getStats";
 
 module.exports = {
 
-    getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
+    getViolationsData: function getViolationsData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {
@@ -35,8 +35,14 @@ module.exports = {
             }
         });
 
+        let ip_with_port = ip+':80';
+
+        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+            ip_with_port = ip+':'+port;
+        }
+
         var options = {
-            host: ip,
+            host: ip_with_port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -75,7 +81,7 @@ module.exports = {
 
     },
 
-    getPassagesData: function getPassagesData(login, password, ip, timestampStart, timestampEnd, res) {
+    getPassagesData: function getPassagesData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {
@@ -107,8 +113,14 @@ module.exports = {
             }
         });
 
+        let ip_with_port = ip+':80';
+
+        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+            ip_with_port = ip+':'+port;
+        }
+
         var options = {
-            host: ip,
+            host: ip_with_port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -150,7 +162,7 @@ module.exports = {
         // return answ;
     },
 
-    getIsActiveData: function getIsActiveData(login, password, ip, timestampStart, timestampEnd, res) {
+    getIsActiveData: function getIsActiveData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
 
         var data = JSON.stringify({
@@ -183,8 +195,14 @@ module.exports = {
             }
         });
 
+        let ip_with_port = ip+':80';
+
+        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+            ip_with_port = ip+':'+port;
+        }
+
         var options = {
-            host: ip,
+            host: ip_with_port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -227,7 +245,7 @@ module.exports = {
 
     },
 
-    getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res) {
+    getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {
@@ -259,8 +277,14 @@ module.exports = {
             }
         });
 
+        let ip_with_port = ip+':80';
+
+        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+            ip_with_port = ip+':'+port;
+        }
+
         var options = {
-            host: ip,
+            host: ip_with_port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -315,7 +339,7 @@ module.exports = {
 
     },
 
-    getFullApiInfo: function getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res) {
+    getFullApiInfo: function getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         var data = JSON.stringify({
             "auth": {
@@ -347,8 +371,14 @@ module.exports = {
             }
         });
 
+        let ip_with_port = ip+':80';
+
+        if(port !== '' && typeof port !== 'undefined' && port !== null ){
+            ip_with_port = ip+':'+port;
+        }
+
         var options = {
-            host: ip,
+            host: ip_with_port,
             path: '/api11.php',
             method: 'POST',
             headers: {

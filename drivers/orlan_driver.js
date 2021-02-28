@@ -10,7 +10,7 @@ var headers = {
 
 module.exports = {
 
-    getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
+    getViolationsData: function getViolationsData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         var url = 'http://' + ip + ':8080/telemetry.json?usr=' + login + '&pwd=' + password;
 
@@ -56,7 +56,7 @@ module.exports = {
 
     },
 
-    getPassagesData: function getPassagesData(login, password, ip, timestampStart, timestampEnd, res) {
+    getPassagesData: function getPassagesData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         var url = 'http://' + ip + ':8080/telemetry.json?usr=' + login + '&pwd=' + password;
 
@@ -98,7 +98,7 @@ module.exports = {
 
     },
 
-    getIsActiveData: function getIsActiveData(login, password, ip, timestampStart, timestampEnd, res) {
+    getIsActiveData: function getIsActiveData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
 
         var url = 'http://' + ip + ':8080/telemetry.json?usr=' + login + '&pwd=' + password;
@@ -151,7 +151,7 @@ module.exports = {
 
     },
 
-    getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res) {
+    getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         var url = 'http://' + ip + ':8080/telemetry.json?usr=' + login + '&pwd=' + password;
 
@@ -262,7 +262,7 @@ module.exports = {
 
     },
 
-    getFullApiInfo: function getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res) {
+    getFullApiInfo: function getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         // var b = '[{"Key":"UptimeSeconds","Value":"11240,546"},{"Key":"RadarInUse","Value":"true"},{"Key":"RadarFound","Value":"true"},{"Key":"RadarOk","Value":"true"},{"Key":"Temperature","Value":"22"},{"Key":"Voltage","Value":"14,1"},{"Key":"Recog24Hours","Value":"559"},{"Key":"Recog1Hour","Value":"32"}]';
         // var data = JSON.parse(b);
