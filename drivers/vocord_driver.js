@@ -28,13 +28,6 @@ module.exports = {
 
         //TODO
         let s = {status:"active", passages:"12345", violations:"34"};
-
-        s = JSON.stringify(s);
-        // let pas = randomInt(2000,12000);
-        // let vil = randomInt(0,10);
-// let s = {status:"active", passages:"''+randomInt(2000,12000)+''", violations:""+randomInt(0,10)};
-//         let s = {status:"active", passages:pas+'', violations:+vil+''};
-
         res.send(s);
 
     },
