@@ -28,7 +28,14 @@ module.exports = {
 
         //TODO
         // let s = {status:"active", passages:"12345", violations:"34"};
-        let s = {"violations":"2","passages":"0","status":"active"};
+        // let s = {"violations":"2","passages":"0","status":"active"};
+
+        let pas = randomInt(2000,12000);
+        let vil = randomInt(0,10);
+// let s = {status:"active", passages:"''+randomInt(2000,12000)+''", violations:""+randomInt(0,10)};
+        let s = {status:"active", passages:pas+'', violations:+vil+''};
+        s = JSON.stringify(s);
+
         res.send(s);
 
     },
