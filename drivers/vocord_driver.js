@@ -27,7 +27,8 @@ module.exports = {
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res) {
 
         //TODO
-        let s = {status:"active", passages:"12345", violations:"34"};
+        // let s = {status:"active", passages:"12345", violations:"34"};
+        let s = {"violations":"2","passages":"0","status":"active"};
         res.send(s);
 
     },
