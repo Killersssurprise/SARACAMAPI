@@ -7,24 +7,24 @@ var btoa = require('btoa');
 var request = require('request');
 module.exports = {
 
-    getViolationsData: function getViolationsData(login, password, ip, timestampStart, timestampEnd, res) {
+    getViolationsData: function getViolationsData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getViolations);
 
     },
 
-    getPassagesData: function getPassagesData(login, password, ip, timestampStart, timestampEnd, res) {
+    getPassagesData: function getPassagesData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getPassages);
 
     },
 
-    getIsActiveData: function getIsActiveData(login, password, ip, timestampStart, timestampEnd, res) {
+    getIsActiveData: function getIsActiveData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getIsActive);
     },
 
-    getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res) {
+    getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         //TODO
         // let s = {status:"active", passages:"12345", violations:"34"};
@@ -33,7 +33,7 @@ module.exports = {
 
     },
 
-    getFullApiInfo: function getFullApiInfo(login, password, ip, timestampStart, timestampEnd, res) {
+    getFullApiInfo: function getFullApiInfo(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getFullInfo);
 
