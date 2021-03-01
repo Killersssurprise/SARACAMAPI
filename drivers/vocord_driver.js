@@ -30,8 +30,10 @@ module.exports = {
         let pas = randomInt(2000,12000);
         let vil = randomInt(0,10);
         // let s = {status:"active", passages:"''+randomInt(2000,12000)+''", violations:""+randomInt(0,10)};
-        let s = {status:"active", passages:pas, violations:vil};
+        let s = {status:"active", passages:'"'+pas+'"', violations:+'"'+vil+'"'};
+        // var data = JSON.stringify(s);
         res.send(s);
+        // res.send(data);
 
     },
 
