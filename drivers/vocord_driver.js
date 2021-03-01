@@ -27,7 +27,7 @@ module.exports = {
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, timestampStart, timestampEnd, res) {
 
         //TODO
-        let s = {status:"active", passages:"12345", violations:"34"};
+        let s = {status:"active", passages:""+randomInt(2000,12000), violations:""+randomInt(0,10)};
         res.send(s);
 
     },
@@ -311,4 +311,8 @@ function getFullInfo(res, ip, token){
     }
 
     request(options, callback);
+}
+
+function randomInt(low, high) {
+    return Math.floor(Math.random() * (high - low) + low)
 }
