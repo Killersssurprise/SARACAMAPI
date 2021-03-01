@@ -294,7 +294,7 @@ module.exports = {
         var options = {
             // url: 'http://' + ip + ':' + _port + '/api11.php',
             host: ip,
-            port: _port,
+            // port: _port,
             path: '/api11.php',
             method: 'POST',
             headers: {
@@ -303,7 +303,7 @@ module.exports = {
             }
 
         };
-        console.log("url " + 'http://' + ip + ':' + _port + '/api11.php');
+        // console.log("url " + 'http://' + ip + ':' + _port + '/api11.php');
         var answ = '';
         try {
             var httpreq = http.request(options, function (response) {

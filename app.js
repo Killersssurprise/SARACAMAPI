@@ -70,24 +70,24 @@ app.use(function(err, req, res, next) {
 //   res.send('Hello World!')
 // });
 
-function sendData(stringRequest, resource) {
-  https.get(stringRequest, onGotData);
-
-  function onGotData(res) {
-    let chunks = [];
-    res.on('data', onGotData);
-    res.on('end', onEnd);
-
-    function onGotData(chunk) {
-      chunks.push(chunk);
-    }
-
-    function onEnd() {
-      //resource.send(getOptimizedText(chunks.join(''), remoteAddress));
-      resource.send(getFakeJson(), remoteAddress);
-    }
-  }
-
-}
+// function sendData(stringRequest, resource) {
+//   https.get(stringRequest, onGotData);
+//
+//   function onGotData(res) {
+//     let chunks = [];
+//     res.on('data', onGotData);
+//     res.on('end', onEnd);
+//
+//     function onGotData(chunk) {
+//       chunks.push(chunk);
+//     }
+//
+//     function onEnd() {
+//       //resource.send(getOptimizedText(chunks.join(''), remoteAddress));
+//       resource.send(getFakeJson(), remoteAddress);
+//     }
+//   }
+//
+// }
 
 module.exports = app;
