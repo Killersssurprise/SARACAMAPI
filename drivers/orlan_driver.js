@@ -222,7 +222,7 @@ module.exports = {
                             s +=  'passages' + ':"' + data[i].Value + '"}';
                             p = data[i].Value;
                         }
-                        if (data[i].Key === 'Recog1Hour') {
+                        if (data[i].Key === 'Viols24Hours') {
                             // violations_count = value;
                             s +=  'violations' + ':"' + data[i].Value + '"}';
                             v = data[i].Value;
@@ -234,7 +234,7 @@ module.exports = {
                             s +=  'passages' + ':"' + data[i].Value + '", ';
                             p = data[i].Value;
                         }
-                        if (data[i].Key === 'Recog1Hour') {
+                        if (data[i].Key === 'Viols24Hours') {
                             // violations_count = value;
                             s +=  'violations' + ':"' + data[i].Value + '", ';
                             p = data[i].Value;
