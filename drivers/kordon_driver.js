@@ -257,18 +257,18 @@ module.exports = {
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
         let snmp_voltage = -2;
-        var snmpsession = new snmp.Session({host: ip, port: 161, community: 'public'});
+        // var snmpsession = new snmp.Session({host: ip, port: 161, community: 'public'});
         //NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101
         // snmpsession.get({oid: ['NET-SNMP-MIB::netSnmp',99, 1, 1, 1, 3, 18, 72, 101, 97, 108, 116, 104, 58, 32, 80, 67, 32, 118, 111,108,116,97,103,101]}, function (error, varbinds) {
         // snmpsession.get({oid: ['NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101']}, function (error, varbinds) {
-        snmpsession.get({oid: '.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101'}, function (error, varbinds) {
-            if (error) {
-                console.log('Fail :('+error+varbinds[0].oid);
-            } else {
-                console.log(varbinds[0].oid + ' = ' + varbinds[0].value + ' (' + varbinds[0].type + ')');
-                snmp_voltage = varbinds[0].value;
-            }
-        });
+        // snmpsession.get({oid: '.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101'}, function (error, varbinds) {
+        //     if (error) {
+        //         console.log('Fail :('+error+varbinds[0].oid);
+        //     } else {
+        //         console.log(varbinds[0].oid + ' = ' + varbinds[0].value + ' (' + varbinds[0].type + ')');
+        //         snmp_voltage = varbinds[0].value;
+        //     }
+        // });
  //snmpget -v2c -c public 192.168.73.5 1 NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101
 
         function puts(error, stdout, stderr) { sys.puts(stdout) }
