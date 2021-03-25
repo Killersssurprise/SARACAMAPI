@@ -11,9 +11,13 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "jQuery": "^1.7.4",
+    "jsdom": "^16.5.0",
     "morgan": "~1.9.1",
+    "net-snmp": "^3.5.2",
     "node-bignumber": "^1.2.1",
     "pug": "2.0.0-beta11",
+    "snmp-native": "^1.2.0",
     "zabbix-agent-client": "^0.1.1",
     "zabbix-client": "^1.2.7",
     "zabbix-promise": "^2.0.2"
@@ -21,6 +25,7 @@
   "devDependencies": {
     "btoa": "^1.2.1",
     "request": "^2.88.2",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "textversionjs": "^1.1.3"
   }
 }
