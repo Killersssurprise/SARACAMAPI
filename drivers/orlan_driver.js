@@ -251,7 +251,8 @@ module.exports = {
                 var d = {
                     violations: v,
                     passages: p,
-                    status: stat
+                    status: stat,
+                    ping: (pingMS2-pingMS1)
                 };
 
                 res.send(d);
