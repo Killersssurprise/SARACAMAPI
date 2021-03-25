@@ -272,7 +272,7 @@ module.exports = {
  //snmpget -v2c -c public 192.168.73.5 1 NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101
 
         function puts(error, stdout, stderr) { sys.puts(stdout) }
-        exec(("snmpget -v2c -c public 192.168.73.5 1 NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101"), function(err, stdout, stderr) {
+        exec(("snmpget -v2c -c public 192.168.73.5 NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101"), function(err, stdout, stderr) {
             console.log(stdout);
             snmp_voltage = stdout;
         });
