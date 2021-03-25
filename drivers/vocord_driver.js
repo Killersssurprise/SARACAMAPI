@@ -30,12 +30,13 @@ module.exports = {
         // let s = {status:"active", passages:"12345", violations:"34"};
         // let s = {"violations":"2","passages":"0","status":"active"};
 
-        var startDate = new Date(timestampStart);
-        var endDate = new Date(timestampEnd);
+        var startDate = new Date(timestampStart).toISOString();
+        var endDate = new Date(timestampEnd).toISOString();
 
-        //"FromDate":"2021-02-17T00:00:00.000Z"
-        console.log(startDate.toString('yyyy-MM-dd'));
-        console.log(endDate.toString('yyyy-MM-dd'));
+        console.log('Start date: '+startDate);
+        console.log('End date: '+endDate);
+
+        getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getIsActive);
 
         let pas = randomInt(2000,12000);
         let vil = randomInt(0,10);
@@ -105,7 +106,7 @@ function hexToBase64(str) {
     );
 }
 
-function makeLoginRequest(res, passwordCoded, ip, login, f) {
+function makeLoginRequest(res, passwordCoded, ip, login, timestampStart, timestampEnd,f) {
 
     var headers = {
         'Connection': 'keep-alive',
@@ -132,7 +133,7 @@ function makeLoginRequest(res, passwordCoded, ip, login, f) {
             var data = JSON.parse(body);
             console.log(data.access_token);
             // res.send(body+', response: '+response);
-            f(res, ip, data.access_token);
+            f(res, ip, data.access_token,timestampStart, timestampEnd);
 
             return data.access_token;
         } else {
@@ -184,7 +185,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
                 answer = encryptImpl(rsa, input);
             }
 
-            return makeLoginRequest(res, answer, ip, login, f);
+            return makeLoginRequest(res, answer, ip, login, timestampStart, timestampEnd,f);
 
         } else {
             //console.error(body);
@@ -196,7 +197,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
     request(options, callback);
 }
 
-function getPassages(res, ip, token){
+function getPassages(res, ip, token,  timestampStart, timestampEnd, information){
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
@@ -208,7 +209,8 @@ function getPassages(res, ip, token){
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
+    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+    // var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
 
     var options = {
         url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
@@ -229,7 +231,7 @@ function getPassages(res, ip, token){
     request(options, callback);
 }
 
-function getViolations(res, ip, token){
+function getViolations(res, ip, token,  timestampStart, timestampEnd, information){
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
@@ -241,7 +243,8 @@ function getViolations(res, ip, token){
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
+    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+
 
     var options = {
         url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
@@ -262,7 +265,8 @@ function getViolations(res, ip, token){
     request(options, callback);
 }
 
-function getIsActive(res, ip, token){
+
+function getIsActive(res, ip, token,  timestampStart, timestampEnd){
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
@@ -298,7 +302,7 @@ function getIsActive(res, ip, token){
     request(options, callback);
 }
 
-function getFullInfo(res, ip, token){
+function getFullInfo(res, ip, token,  timestampStart, timestampEnd){
     var headers = {
         'Connection': 'keep-alive',
         'Cache-Control': 'no-cache',
