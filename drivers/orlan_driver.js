@@ -264,7 +264,7 @@ module.exports = {
                     passages: p,
                     status: stat,
                     ping: (pingMS2-pingMS1),
-                    voltage: voltage
+                    voltage: voltage.replace(',', '.')
                 };
 
                 res.send(d);
