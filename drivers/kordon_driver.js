@@ -259,7 +259,7 @@ module.exports = {
         //NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101
         // snmpsession.get({oid: ['NET-SNMP-MIB::netSnmp',99, 1, 1, 1, 3, 18, 72, 101, 97, 108, 116, 104, 58, 32, 80, 67, 32, 118, 111,108,116,97,103,101]}, function (error, varbinds) {
         // snmpsession.get({oid: ['NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101']}, function (error, varbinds) {
-        snmpsession.get({oid: '.NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101'}, function (error, varbinds) {
+        snmpsession.get({oid: '.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101'}, function (error, varbinds) {
             if (error) {
                 console.log('Fail :('+error+varbinds[0].oid);
             } else {
