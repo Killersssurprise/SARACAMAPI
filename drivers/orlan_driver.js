@@ -153,6 +153,8 @@ module.exports = {
 
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
+        let pingMS1=Date.now();
+
         var url = 'http://' + ip + ':8080/telemetry.json?usr=' + login + '&pwd=' + password;
 
         var options = {
@@ -203,6 +205,8 @@ module.exports = {
             if (!error && response.statusCode === 200) {
                 console.log(body);
 
+                let pingMS2=Date.now();
+
                 var data = JSON.parse(body);
 
                 var v;
@@ -213,7 +217,7 @@ module.exports = {
                 data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
                 newarr = '{';
                 let s = '{status:' + '"active"' + ',';
-
+                s+='ping:'+(pingMS2-pingMS1)+',';
                 for (let i = 0; i < data.length; i++) {
                     if (i === data.length - 1) {
                         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
