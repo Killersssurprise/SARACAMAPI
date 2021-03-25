@@ -337,7 +337,7 @@ module.exports = {
                     //res.send(answer);
                     // answ = answer;
                     res.send(answer);
-                    res.removeAllListeners('data');
+                    //res.removeAllListeners('data');
                     // httpreq.end();
 
                 }).on('error', (err) => {
