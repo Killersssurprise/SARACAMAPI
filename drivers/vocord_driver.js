@@ -33,8 +33,11 @@ module.exports = {
         console.log('Start: '+timestampStart);
         console.log('End: '+timestampEnd);
 
-        var startDate = new Date(timestampStart).toISOString();
-        var endDate = new Date(timestampEnd).toISOString();
+        var sd = new Date(timestampStart);
+        var ed = new Date(timestampEnd);
+
+        var startDate = sd.toISOString();
+        var endDate = ed.toISOString();
 
         console.log('Start date: '+startDate);
         console.log('End date: '+endDate);
