@@ -1,6 +1,8 @@
 var http = require('http');
 var job = "getStats";
-var snmp = require('snmp-native');
+// var snmp = require('snmp-native');
+var sys = require('sys')
+var exec = require('child_process').exec;
 
 module.exports = {
 
@@ -266,6 +268,12 @@ module.exports = {
                 console.log(varbinds[0].oid + ' = ' + varbinds[0].value + ' (' + varbinds[0].type + ')');
                 snmp_voltage = varbinds[0].value;
             }
+        });
+ //snmpget -v2c -c public 192.168.73.5 1 NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101
+
+        function puts(error, stdout, stderr) { sys.puts(stdout) }
+        exec(("snmpget -v2c -c public 192.168.73.5 1 NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101"), function(err, stdout, stderr) {
+            console.log(stdout);
         });
 
 
