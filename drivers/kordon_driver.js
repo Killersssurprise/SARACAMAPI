@@ -253,6 +253,8 @@ module.exports = {
 
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
+        let pingMS1=Date.now();
+
         var data = JSON.stringify({
             "auth": {
                 "login": login,
@@ -319,10 +321,14 @@ module.exports = {
                     // let passages = '{"passages":' + JSON.stringify(str['getStats']['common']['total']) + '}';
                     // let isActive = '{"status":' + "active" + '}';
 
+                    let pingMS2=Date.now();
+
                     var data = {
                         violations: JSON.stringify(str['getStats']['violation']['total']),
                         passages: JSON.stringify(str['getStats']['common']['total']),
-                        status: 'active'
+                        status: 'active',
+                        ping: (pingMS2-pingMS1),
+                        voltage: -1
                     };
 
                     let answer = JSON.stringify(data);
@@ -348,51 +354,7 @@ module.exports = {
 
             console.log(e);
         }
-//////
-//         var answ = '';
-//         var request = require('request');
-//
-//         var headers = {
-//             'Content-Type': 'application/json'
-//         };
-//
-//         var dataString = '{ "auth": {"login":' + login + ',"password": ' + password + '}, "request": { "job": "getStats", "getStats": { "timestampStart": 1612818000, "timestampEnd": 1612891239, "speedThresholds": [{ "name": "Превышение на 20", "min": 23, "max": 43 }, {"name": "Превышение на 40","min": 43, "max": 63},{"name": "Превышение на 60", "min": 63, "max": 83},{"name": "Превышение на 80", "min": 83, "max": 0}],"showInfo": true}}}';
-//
-//         var options = {
-//             // url: 'http://192.168.72.10:8089/api11.php',
-//             url: 'http://' + ip + ':8089/api11.php',
-//             method: 'POST',
-//             headers: headers,
-//             body: dataString
-//         };
-//
-//         function callback(error, response, body) {
-//             if (!error && response.statusCode === 200) {
-//
-//                 var str = JSON.parse(body);
-//
-//                 var data = {
-//                     violations: JSON.stringify(str['getStats']['violation']['total']),
-//                     passages: JSON.stringify(str['getStats']['common']['total']),
-//                     status: 'active'
-//                 };
-//
-//                 let answer = JSON.stringify(data);
-//
-//                 //console.log(str);
-//                 //res.send(answer);
-//                 // answ = answer;
-//                 res.send(answer);
-//                 console.log(body);
-//             }else{
-//                 console.log(error);
-//             }
-//         }
-//
-//         request(options, callback);
 
-        //////////
-        // return answ;
 
     },
 
