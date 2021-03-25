@@ -155,6 +155,13 @@ module.exports = {
 
         let pingMS1=Date.now();
 
+        var startDate = new Date(timestampStart);
+        var endDate = new Date(timestampEnd);
+
+        //"FromDate":"2021-02-17T00:00:00.000Z"
+        console.log(startDate.toString('yyyy-MM-dd'));
+        console.log(endDate.toString('yyyy-MM-dd'));
+
         var url = 'http://' + ip + ':8080/telemetry.json?usr=' + login + '&pwd=' + password;
 
         var options = {

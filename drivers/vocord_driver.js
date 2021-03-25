@@ -30,6 +30,13 @@ module.exports = {
         // let s = {status:"active", passages:"12345", violations:"34"};
         // let s = {"violations":"2","passages":"0","status":"active"};
 
+        var startDate = new Date(timestampStart);
+        var endDate = new Date(timestampEnd);
+
+        //"FromDate":"2021-02-17T00:00:00.000Z"
+        console.log(startDate.toString('yyyy-MM-dd'));
+        console.log(endDate.toString('yyyy-MM-dd'));
+
         let pas = randomInt(2000,12000);
         let vil = randomInt(0,10);
 // let s = {status:"active", passages:"''+randomInt(2000,12000)+''", violations:""+randomInt(0,10)};
