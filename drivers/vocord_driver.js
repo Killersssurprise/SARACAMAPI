@@ -32,20 +32,13 @@ module.exports = {
 
         console.log('Start: '+timestampStart);
         console.log('End: '+timestampEnd);
-        var dt = Date.now();
-        console.log('Test: '+dt);
 
-        // var sd = new Date(timestampStart);
-        // var ed = new Date(timestampEnd);
-        //
-        // var startDate = sd.toISOString();
-        // var endDate = ed.toISOString();
+        var startDate = new Date(parseInt(timestampStart)).toISOString();
+        var endDate = new Date(parseInt(timestampEnd)).toISOString();
 
-        var startDate = new Date(dt).toISOString();
-        console.log('Start date: '+startDate);
 
-        var endDate = new Date(timestampStart).toISOString();
-        console.log('End date: '+endDate);
+        // console.log('Start date: '+startDate);
+        // console.log('End date: '+endDate);
 
         getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getIsActive);
 
