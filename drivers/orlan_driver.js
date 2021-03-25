@@ -211,6 +211,7 @@ module.exports = {
 
                 var v;
                 var p;
+                var voltage;
                 var stat='active';
 
                 var newarr = [];
@@ -221,27 +222,37 @@ module.exports = {
                 for (let i = 0; i < data.length; i++) {
                     if (i === data.length - 1) {
                         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
-                        if (data[i].Key === 'Recog24Hours') {
+                        if (data[i].Key === 'Recog1Hour') {
                             // violations_count = value;
                             s +=  'passages' + ':"' + data[i].Value + '"}';
                             p = data[i].Value;
                         }
-                        if (data[i].Key === 'Viols24Hours') {
+                        if (data[i].Key === 'Viols1Hour') {
                             // violations_count = value;
                             s +=  'violations' + ':"' + data[i].Value + '"}';
                             v = data[i].Value;
                         }
+                        if (data[i].Key === 'Voltage') {
+                            // violations_count = value;
+                            s +=  'voltage' + ':"' + data[i].Value + '"}';
+                            voltage = data[i].Value;
+                        }
                     } else {
                         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
-                        if (data[i].Key === 'Recog24Hours') {
+                        if (data[i].Key === 'Recog1Hour') {
                             // violations_count = value;
                             s +=  'passages' + ':"' + data[i].Value + '", ';
                             p = data[i].Value;
                         }
-                        if (data[i].Key === 'Viols24Hours') {
+                        if (data[i].Key === 'Viols1Hour') {
                             // violations_count = value;
                             s +=  'violations' + ':"' + data[i].Value + '", ';
                             v = data[i].Value;
+                        }
+                        if (data[i].Key === 'Voltage') {
+                            // violations_count = value;
+                            s +=  'voltage' + ':"' + data[i].Value + '", ';
+                            voltage = data[i].Value;
                         }
 
                     }
@@ -252,7 +263,8 @@ module.exports = {
                     violations: v,
                     passages: p,
                     status: stat,
-                    ping: (pingMS2-pingMS1)
+                    ping: (pingMS2-pingMS1),
+                    voltage: voltage
                 };
 
                 res.send(d);
