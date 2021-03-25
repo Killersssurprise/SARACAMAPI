@@ -30,6 +30,9 @@ module.exports = {
         // let s = {status:"active", passages:"12345", violations:"34"};
         // let s = {"violations":"2","passages":"0","status":"active"};
 
+        console.log('Start: '+timestampStart);
+        console.log('End: '+timestampEnd);
+
         var startDate = new Date(timestampStart).toISOString();
         var endDate = new Date(timestampEnd).toISOString();
 
