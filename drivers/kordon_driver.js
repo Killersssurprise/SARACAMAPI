@@ -275,6 +275,7 @@ module.exports = {
         exec(("snmpget -v2c -Oqv -c public "+ip+" NET-SNMP-MIB::netSnmp.99.1.1.1.3.18.72.101.97.108.116.104.58.32.80.67.32.118.111.108.116.97.103.101"), function(err, stdout, stderr) {
             console.log(stdout);
             snmp_voltage = stdout;
+            snmp_voltage.replace(/\n/g, '');
         });
 
 
@@ -355,7 +356,7 @@ module.exports = {
                         passages: JSON.stringify(str['getStats']['common']['total']),
                         status: 'active',
                         ping: (pingMS2 - pingMS1),
-                        voltage: snmp_voltage
+                        voltage: (snmp_voltage/10)
                     };
 
                     let answer = JSON.stringify(data);
