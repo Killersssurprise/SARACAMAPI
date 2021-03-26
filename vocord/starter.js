@@ -17,51 +17,87 @@ var request = require('request');
 // let s2 = {status:"active", passages:"12345", violations:"34"};
 // console.log(s);
 // console.log(s2);
-dostuff();
+// dostuff();
 
-function dostuff(){
+// var d = Date.now();
+var timestampStart = '1616360400000';
+var timestampEnd = 1616705688017;
 
-    var request = require('request');
 
-    var headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0',
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Origin': 'https://meteoinfo.ru',
-        'DNT': '1',
-        'Connection': 'keep-alive',
-        'Referer': 'https://meteoinfo.ru/archive-pogoda',
-        'Cookie': '66c548aa3ec10b30907b199d946947a3=k6gt0gpal05um1u34035qf42e0; _ym_uid=1615289571874410091; _ym_d=1615289571; _ym_isad=1; _ga=GA1.2.1686620665.1615289575; _gid=GA1.2.531437856.1615289575'
-    };
+//"FromDate":"2021-02-17T00:00:00.000Z"
+// console.log(startDate);
+// console.log(endDate);
+// console.log(1612991239);
+// console.log('2021-02-17T00:00:00.000Z');
+// console.log(formatDate(d)+'T00:00:00.000Z');
+// console.log(new Date(d).toISOString());
+// console.log(new Date(1616705688017).toISOString());
 
-    var dataString = 'lang=ru-RU&id_city=1709&dt=1615215600&has_db=1&dop=0';
+var startDate = new Date(parseInt(timestampStart)).toISOString();
+var endDate = new Date(timestampEnd).toISOString();
 
-    var options = {
-        url: 'https://meteoinfo.ru/hmc-output/observ/obs_arch.php',
-        method: 'POST',
-        headers: headers,
-        body: dataString
-    };
+console.log('Start date: '+startDate);
+console.log('End date: '+endDate);
 
-    function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            //console.log(body.replace(/<[^>]*>?/gm, ''));
-            // console.log(body.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "\n"));
-            body = body.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "\n");
-            body = JSON.stringify(body);
-            body = body.replace('\n\n\n', '\n');
-            body = body.replace("\n\n\n", "\n");
-            body = body.replace("\n\n\n", "\n");
-            body = body.replace("\n\n", "\n");
-            body = body.replace("\n\n", "\n");
-            console.log(body);
-        }
-    }
 
-    request(options, callback);
+
+//"FromDate":"2021-02-17T00:00:00.000Z"
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
 }
+// function dostuff(){
+//
+//     var request = require('request');
+//
+//     var headers = {
+//         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0',
+//         'Accept': 'application/json, text/javascript, */*; q=0.01',
+//         'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
+//         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+//         'X-Requested-With': 'XMLHttpRequest',
+//         'Origin': 'https://meteoinfo.ru',
+//         'DNT': '1',
+//         'Connection': 'keep-alive',
+//         'Referer': 'https://meteoinfo.ru/archive-pogoda',
+//         'Cookie': '66c548aa3ec10b30907b199d946947a3=k6gt0gpal05um1u34035qf42e0; _ym_uid=1615289571874410091; _ym_d=1615289571; _ym_isad=1; _ga=GA1.2.1686620665.1615289575; _gid=GA1.2.531437856.1615289575'
+//     };
+//
+//     var dataString = 'lang=ru-RU&id_city=1709&dt=1615215600&has_db=1&dop=0';
+//
+//     var options = {
+//         url: 'https://meteoinfo.ru/hmc-output/observ/obs_arch.php',
+//         method: 'POST',
+//         headers: headers,
+//         body: dataString
+//     };
+//
+//     function callback(error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//             //console.log(body.replace(/<[^>]*>?/gm, ''));
+//             // console.log(body.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "\n"));
+//             body = body.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "\n");
+//             body = JSON.stringify(body);
+//             body = body.replace('\n\n\n', '\n');
+//             body = body.replace("\n\n\n", "\n");
+//             body = body.replace("\n\n\n", "\n");
+//             body = body.replace("\n\n", "\n");
+//             body = body.replace("\n\n", "\n");
+//             console.log(body);
+//         }
+//     }
+//
+//     request(options, callback);
+// }
 
 // function stripHtml(html)
 // {
