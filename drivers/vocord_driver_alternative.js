@@ -209,6 +209,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
     var accessToken = '';
     var passages;
     var violations;
+    var ping;
 
     var headers1 = {
         'Connection': 'keep-alive',
@@ -333,7 +334,49 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                 }
             }
 
-            request(options3, callback3);
+            request(options3, callback3).then(function(body) {
+                console.log("passages OK: " + body);
+
+                var dt2 = Date.now();
+
+                var headers4 = {
+                    'Connection': 'keep-alive',
+                    'Accept': 'application/json, text/plain, */*',
+                    'Authorization': 'Bearer '+token,
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Origin': 'http://'+ip,
+                    'Referer': 'http://'+ip+'/',
+                    'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+                };
+
+                var dataString4 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+
+
+                var options4 = {
+                    url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+                    method: 'POST',
+                    headers: headers4,
+                    body: dataString4
+                };
+
+                function callback4(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        // Получает из ответа общее кол-во нарушений
+                        let s = '{"violations":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
+                        violations = JSON.stringify(JSON.parse(body).TotalItems);
+                        console.log(s);
+                        var dt1 = Date.now();
+                        ping = dt1-dt2;
+                        let pings = '{"ping":' + ping + '}';
+                        console.log(pings);
+                        //res.send(s);
+                    }
+                }
+
+                request(options4, callback4);
+
+            });
 
         });
 
