@@ -374,6 +374,18 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                         let pings = '{"ping":' + ping + '}';
                         console.log(pings);
                         //res.send(s);
+
+                        var stat='active';
+                        var d = {
+                            violations: violations,
+                            passages: passages,
+                            status: stat,
+                            ping: ping,
+                            voltage: -1
+                        };
+
+                        res.send(d);
+
                     }
                 }
 
