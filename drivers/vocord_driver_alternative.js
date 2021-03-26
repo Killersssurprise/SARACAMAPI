@@ -207,6 +207,8 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
     var answer = '';
     var accessToken = '';
+    var passages;
+    var violations;
 
     var headers1 = {
         'Connection': 'keep-alive',
@@ -298,6 +300,40 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
         request(options2, callback2).then(function(body) {
             console.log("access token OK: " + body);
+
+
+            var headers3 = {
+                'Connection': 'keep-alive',
+                'Accept': 'application/json, text/plain, */*',
+                'Authorization': 'Bearer '+accessToken,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
+                'Content-Type': 'application/json;charset=UTF-8',
+                'Origin': 'http://'+ip,
+                'Referer': 'http://'+ip+'/',
+                'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+            };
+
+            var dataString3 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+            // var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
+
+            var options3 = {
+                url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+                method: 'POST',
+                headers: headers3,
+                body: dataString3
+            };
+
+            function callback3(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    // Получает из ответа общее кол-во проездов
+                    let s = '{"passages":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
+                    console.log(s);
+                    //res.send(s);
+                }
+            }
+
+            request(options3, callback3);
+
         });
 
     });
