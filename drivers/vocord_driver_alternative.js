@@ -4,7 +4,7 @@ var rs = require("node-bignumber");
 var atob = require("atob");
 var btoa = require('btoa');
 // const {request} = require("http");
-var request = require('request');
+var request = require('request-promise');
 module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, port, timestampStart, timestampEnd, res) {
@@ -48,7 +48,9 @@ module.exports = {
         let s = {status:"active", passages:pas+'', violations:+vil+''};
         s = JSON.stringify(s);
 
-        res.send(s);
+
+        dummyFunction(login,password,ip,timestampStart,timestampEnd);
+        //res.send(s);
 
     },
 
@@ -169,7 +171,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
     };
 
     function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
             //console.log(body);
 
             var pk = JSON.parse(body);
@@ -202,6 +204,105 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
 }
 
 function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
+
+    var answer = '';
+    var accessToken = '';
+
+    var headers1 = {
+        'Connection': 'keep-alive',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Accept': 'application/json, text/plain, */*',
+        'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
+        'Referer': 'http://' + ip + '/',
+        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+    };
+
+    var options1 = {
+        url: 'http://' + ip + '/MonoblockService//api/getPublicKey',
+        headers: headers1
+    };
+
+    function callback1(error, response, body) {
+        if (!error && response.statusCode === 200) {
+            //console.log(body);
+
+            var pk = JSON.parse(body);
+            var modulusHex = base64ToHex(pk.Modulus);
+            var exponentHex = base64ToHex(pk.Exponent);
+
+            var rsa = new rs.Key();
+            rsa.setPublic(modulusHex, exponentHex);
+
+            var input = password;
+            if (Array.isArray(input)) {
+                answer = input.map(function (x) {
+                    return encryptImpl(rsa, x);
+                });
+            } else {
+                answer = encryptImpl(rsa, input);
+            }
+
+            //return makeLoginRequest(res, answer, ip, login, timestampStart, timestampEnd,f);
+
+        } else {
+            //console.error(body);
+            //res.send(body);
+            return error;
+        }
+    }
+
+
+
+    request(options1, callback1).then(function(body) {
+        console.log("login OK: " + body);
+
+
+        var headers2 = {
+            'Connection': 'keep-alive',
+            'Accept': 'application/json, text/plain, */*',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'http://' + ip,
+            'Referer': 'http://' + ip + '/',
+            'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+        };
+
+        var dataString = 'grant_type=password&username=' + login + '&password=' + encodeURIComponent(answer);
+
+        var options2 = {
+            url: 'http://' + ip + '/MonoblockService/token',
+            method: 'POST',
+            headers: headers2,
+            body: dataString
+        };
+
+        function callback2(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                //console.log(body);
+                var data = JSON.parse(body);
+                accessToken = data.access_token;
+                console.log(data.access_token);
+                res.send(accessToken);
+                // res.send(body+', response: '+response);
+                //f(res, ip, data.access_token,timestampStart, timestampEnd);
+
+                return data.access_token;
+            } else {
+                console.log(error);
+                //res.send(error);
+                return error;
+            }
+        }
+
+        request(options2, callback2);
+
+    });
+
+
+
+
 
 }
 
