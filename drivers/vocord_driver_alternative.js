@@ -327,6 +327,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                 if (!error && response.statusCode == 200) {
                     // Получает из ответа общее кол-во проездов
                     let s = '{"passages":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
+                    passages = JSON.stringify(JSON.parse(body).TotalItems);
                     console.log(s);
                     //res.send(s);
                 }
