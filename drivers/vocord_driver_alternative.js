@@ -49,7 +49,7 @@ module.exports = {
         s = JSON.stringify(s);
 
 
-        dummyFunction(login,password,ip,timestampStart,timestampEnd);
+        dummyFunction(login,password,ip,timestampStart,timestampEnd, res);
         //res.send(s);
 
     },
