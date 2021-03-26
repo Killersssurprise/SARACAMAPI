@@ -259,6 +259,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
 
     request(options1, callback1).then(function(body) {
+        console.log("\n");
         console.log("login OK: " + body);
 
 
@@ -300,6 +301,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
         }
 
         request(options2, callback2).then(function(body) {
+            console.log("\n");
             console.log("access token OK: " + body);
 
 
@@ -335,14 +337,15 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
             }
 
             request(options3, callback3).then(function(body) {
-                console.log("passages OK: " + body);
+                console.log("\n");
+                console.log("violations OK: " + body);
 
                 var dt2 = Date.now();
 
                 var headers4 = {
                     'Connection': 'keep-alive',
                     'Accept': 'application/json, text/plain, */*',
-                    'Authorization': 'Bearer '+token,
+                    'Authorization': 'Bearer '+accessToken,
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
                     'Content-Type': 'application/json;charset=UTF-8',
                     'Origin': 'http://'+ip,
