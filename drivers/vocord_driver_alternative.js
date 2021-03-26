@@ -260,7 +260,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
     request(options1, callback1).then(function(body) {
         console.log("\n");
-        console.log("login OK: " + body);
+        //console.log("login OK: " + body);
 
 
         var headers2 = {
@@ -302,7 +302,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
         request(options2, callback2).then(function(body) {
             console.log("\n");
-            console.log("access token OK: " + body);
+            //console.log("access token OK: " + body);
 
 
             var headers3 = {
@@ -338,7 +338,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
             request(options3, callback3).then(function(body) {
                 console.log("\n");
-                console.log("violations OK: " + body);
+                //console.log("violations OK: " + body);
 
                 var dt2 = Date.now();
 
