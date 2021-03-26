@@ -284,7 +284,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                 var data = JSON.parse(body);
                 accessToken = data.access_token;
                 console.log(data.access_token);
-                res.send(accessToken);
+                //res.send(accessToken);
                 // res.send(body+', response: '+response);
                 //f(res, ip, data.access_token,timestampStart, timestampEnd);
 
@@ -296,7 +296,9 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
             }
         }
 
-        request(options2, callback2);
+        request(options2, callback2).then(function(body) {
+            console.log("access token OK: " + body);
+        });
 
     });
 
