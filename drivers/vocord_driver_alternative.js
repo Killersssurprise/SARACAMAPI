@@ -205,6 +205,9 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
 
 function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
+    var startDate = new Date(parseInt(timestampStart)).toISOString();
+    var endDate = new Date(timestampEnd).toISOString();
+
     var answer = '';
     var accessToken = '';
     var passages;
@@ -316,7 +319,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                 'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
             };
 
-            var dataString3 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+            var dataString3 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"'+startDate+'","ToDate":"'+endDate+'"}';
             // var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
 
             var options3 = {
@@ -353,7 +356,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                     'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
                 };
 
-                var dataString4 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+                var dataString4 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"'+startDate+'","ToDate":"'+endDate+'"}';
 
 
                 var options4 = {
