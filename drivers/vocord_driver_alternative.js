@@ -206,7 +206,7 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
 function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
     var startDate = new Date(parseInt(timestampStart)).toISOString();
-    var endDate = new Date(timestampEnd).toISOString();
+    var endDate = new Date(parseInt(timestampEnd)).toISOString();
 
     var answer = '';
     var accessToken = '';
