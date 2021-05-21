@@ -346,7 +346,7 @@ module.exports = {
         function callbackDataRequest(error, response, body) {
             if (!error && response.statusCode === 200) {
                 var data = body;
-                // console.log(body);
+                console.log("callbackDataRequest"+body);
                 // res.send(body);
                 return body;
             }
@@ -394,6 +394,7 @@ module.exports = {
                     // };
                     //
                     // let answer = JSON.stringify(data);
+                    console.log("callbackMainData"+body);
                     return str;
                     //res.send(answer);
 
@@ -406,9 +407,9 @@ module.exports = {
                 });
             }
 
-            var httpreq = http.request(options,);
-            httpreq.write(data);
-            httpreq.end();
+            // var httpreq = http.request(options,);
+            // httpreq.write(data);
+            // httpreq.end();
 
 
             request(optionsMainData, callbackMainData()).then(function (body) {
