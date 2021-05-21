@@ -14,6 +14,7 @@ var fullcaminfo = require('./routes/fullcaminfo');
 var telemetry = require('./routes/telemetry');
 var orlan = require('./routes/orlan');
 var vocord = require('./routes/vocord');
+var test = require('./routes/test');
 
 const https = require('https');
 var app = express();
@@ -44,6 +45,7 @@ app.use('/fullcaminfo', fullcaminfo);
 app.use('/telemetry', telemetry);
 app.use('/orlan', orlan);
 app.use('/vocord', vocord);
+app.use('/test', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
