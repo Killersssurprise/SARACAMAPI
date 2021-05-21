@@ -412,27 +412,7 @@ module.exports = {
             // httpreq.write(data);
             // httpreq.end();
 
-
-            request(optionsMainData, callbackMainData()).then(function (body) {
-
-                // var str = JSON.parse(body);
-                //
-                //
-                // let pingMS2 = Date.now();
-                //
-                // var data = {
-                //     violations: JSON.stringify(str['getStats']['violation']['total']),
-                //     passages: JSON.stringify(str['getStats']['common']['total']),
-                //     status: 'active',
-                //     ping: (pingMS2 - pingMS1),
-                //     voltage: (snmp_voltage / 10),
-                //     data: ddd
-                // };
-                //
-                // let answer = JSON.stringify(data);
-                // res.send(answer);
-
-            });
+            request(optionsMainData, callbackMainData());
 
         });
 
