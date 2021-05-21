@@ -318,7 +318,7 @@ module.exports = {
                 var data = body;
 
                 console.log("callbackDataRequest" + body);
-                ddd = body;
+                ddd = JSON.stringify(body);
                 // res.send(body);
                 return body;
             }
