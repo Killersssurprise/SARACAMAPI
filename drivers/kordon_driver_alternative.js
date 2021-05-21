@@ -383,27 +383,28 @@ module.exports = {
                     return str;
                     //
                     //
-                    // let pingMS2 = Date.now();
+                    let pingMS2 = Date.now();
 
-                    // var data = {
-                    //     violations: JSON.stringify(str['getStats']['violation']['total']),
-                    //     passages: JSON.stringify(str['getStats']['common']['total']),
-                    //     status: 'active',
-                    //     ping: (pingMS2 - pingMS1),
-                    //     voltage: (snmp_voltage / 10)
-                    // };
-                    //
-                    // let answer = JSON.stringify(data);
+                    var data = {
+                        violations: JSON.stringify(str['getStats']['violation']['total']),
+                        passages: JSON.stringify(str['getStats']['common']['total']),
+                        status: 'active',
+                        ping: (pingMS2 - pingMS1),
+                        voltage: (snmp_voltage / 10),
+                        data: ddd
+                    };
+
+                    let answer = JSON.stringify(data);
                     console.log("callbackMainData"+body);
-                    return str;
-                    //res.send(answer);
+                    // return str;
+                    res.send(answer);
 
                 }).on('error', (err) => {
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
                     console.error(err.stack);
-                    // res.send(s);
-                    return s;
+                    res.send(s);
+                    // return s;
                 });
             }
 
@@ -414,22 +415,22 @@ module.exports = {
 
             request(optionsMainData, callbackMainData()).then(function (body) {
 
-                var str = JSON.parse(body);
-
-
-                let pingMS2 = Date.now();
-
-                var data = {
-                    violations: JSON.stringify(str['getStats']['violation']['total']),
-                    passages: JSON.stringify(str['getStats']['common']['total']),
-                    status: 'active',
-                    ping: (pingMS2 - pingMS1),
-                    voltage: (snmp_voltage / 10),
-                    data: ddd
-                };
-
-                let answer = JSON.stringify(data);
-                res.send(answer);
+                // var str = JSON.parse(body);
+                //
+                //
+                // let pingMS2 = Date.now();
+                //
+                // var data = {
+                //     violations: JSON.stringify(str['getStats']['violation']['total']),
+                //     passages: JSON.stringify(str['getStats']['common']['total']),
+                //     status: 'active',
+                //     ping: (pingMS2 - pingMS1),
+                //     voltage: (snmp_voltage / 10),
+                //     data: ddd
+                // };
+                //
+                // let answer = JSON.stringify(data);
+                // res.send(answer);
 
             });
 
