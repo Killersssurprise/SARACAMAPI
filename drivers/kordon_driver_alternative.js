@@ -348,6 +348,7 @@ module.exports = {
                 var data = body;
                 // console.log(body);
                 // res.send(body);
+                return body;
             }
         }
 
