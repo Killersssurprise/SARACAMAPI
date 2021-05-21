@@ -373,14 +373,13 @@ module.exports = {
             var ddd = body;
 
 
-            function callbackMainData(response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                }).on('end', function () {
-                    var str = JSON.parse(answ);
-                    return str;
+            function callbackMainData(error, response, body) {
+                if (!error && response.statusCode === 200) {
+                    // var data = body;
+                    console.log("callbackDataRequest"+body);
+                    // res.send(body);
+                    var str = JSON.parse(body);
+                    // return str;
                     //
                     //
                     let pingMS2 = Date.now();
@@ -399,14 +398,49 @@ module.exports = {
                     // return str;
                     res.send(answer);
 
-                }).on('error', (err) => {
+                    // return body;
+                }else{
                     let s = '{"status":' + "inactive" + '}';
                     //res.send(s);
-                    console.error(err.stack);
+                    console.error(error.stack);
                     res.send(s);
-                    // return s;
-                });
+                }
             }
+
+            // function callbackMainData(response) {
+            //     //response.setEncoding('utf8');
+            //     response.on('data', function (chunk) {
+            //         //console.log(chunk);
+            //         answ += chunk;
+            //     }).on('end', function () {
+            //         var str = JSON.parse(answ);
+            //         // return str;
+            //         //
+            //         //
+            //         let pingMS2 = Date.now();
+            //
+            //         var data = {
+            //             violations: JSON.stringify(str['getStats']['violation']['total']),
+            //             passages: JSON.stringify(str['getStats']['common']['total']),
+            //             status: 'active',
+            //             ping: (pingMS2 - pingMS1),
+            //             voltage: (snmp_voltage / 10),
+            //             data: ddd
+            //         };
+            //
+            //         let answer = JSON.stringify(data);
+            //         console.log("callbackMainData"+body);
+            //         // return str;
+            //         res.send(answer);
+            //
+            //     }).on('error', (err) => {
+            //         let s = '{"status":' + "inactive" + '}';
+            //         //res.send(s);
+            //         console.error(err.stack);
+            //         res.send(s);
+            //         // return s;
+            //     });
+            // }
 
             // var httpreq = http.request(options,);
             // httpreq.write(data);
