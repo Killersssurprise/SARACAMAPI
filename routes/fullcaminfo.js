@@ -3,7 +3,8 @@ var router = express.Router();
 
 var http = require('http');
 const jsonParser = express.json();
-var kordon_driver = require('../drivers/kordon_driver');
+// var kordon_driver = require('../drivers/kordon_driver');
+var kordon_driver = require('../drivers/kordon_driver_alternative');
 var orlan_driver = require('../drivers/orlan_driver');
 // var vocord_driver = require('../drivers/vocord_driver');
 var vocord_driver = require('../drivers/vocord_driver_alternative');
