@@ -322,6 +322,7 @@ module.exports = {
                 body = body.replace(/\n/g, '');
                 body = body.replace('   ', '  ');
                 body = body.replace('  ', ' ');
+                body = body.replace('\n', '');
 
                 ddd = JSON.parse(body);
                 // res.send(body);
