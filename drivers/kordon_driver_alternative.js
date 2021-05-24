@@ -389,6 +389,8 @@ module.exports = {
 
                         let pingMS2 = Date.now();
 
+                        ddd.replace(/\n/g, '');
+                        ddd.replace('  ', ' ');
                         var data = {
                             violations: JSON.stringify(str['getStats']['violation']['total']),
                             passages: JSON.stringify(str['getStats']['common']['total']),
