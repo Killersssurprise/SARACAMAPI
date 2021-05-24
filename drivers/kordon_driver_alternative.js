@@ -318,6 +318,10 @@ module.exports = {
                 var data = body;
 
                 console.log("callbackDataRequest" + body);
+
+                body = body.replace(/\n/g, '');
+                body = body.replace('  ', ' ');
+
                 ddd = JSON.parse(body);
                 // res.send(body);
                 return body;
@@ -389,8 +393,6 @@ module.exports = {
 
                         let pingMS2 = Date.now();
 
-                        ddd = ddd.replace(/\n/g, '');
-                        ddd = ddd.replace('  ', ' ');
                         var data = {
                             violations: JSON.stringify(str['getStats']['violation']['total']),
                             passages: JSON.stringify(str['getStats']['common']['total']),
