@@ -320,12 +320,11 @@ module.exports = {
                 console.log("callbackDataRequest" + body);
 
                 body = body.replace(/\n/g, '');
-                body = body.replace('   ', '  ');
+                body = body.replace('   ', ' ');
                 body = body.replace('  ', ' ');
                 body = body.replace('\n', '');
 
-                // ddd = JSON.parse();
-                ddd = JSON.parse(JSON.stringify(body));
+                ddd = JSON.parse(body);
                 // res.send(body);
                 return body;
             }
