@@ -324,7 +324,8 @@ module.exports = {
                 body = body.replace('  ', ' ');
                 body = body.replace('\n', '');
 
-                ddd = JSON.parse(body);
+                // ddd = JSON.parse();
+                ddd = JSON.parse(JSON.stringify(body));
                 // res.send(body);
                 return body;
             }
