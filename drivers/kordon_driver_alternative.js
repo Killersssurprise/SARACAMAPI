@@ -300,7 +300,7 @@ module.exports = {
 
 
         var headersDataRequest = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         };
 
         var dataStringDataRequest = '{ "auth": {"login": "' + login + '","password": "' + password + '"}, "request": { "job": "getDeviceInfo"}}';
