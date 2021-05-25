@@ -5,6 +5,7 @@ var sys = require('sys')
 var exec = require('child_process').exec;
 var rs = require("node-bignumber");
 var request = require('request-promise');
+var utils = require('../utils/utils');
 
 //curl --location --request POST "http://192.168.72.3:80/api11.php" --header "Content-Type: application/json" --data '{ "auth": {"login": "admin","password": "8aHrgDKW"}, "request": { "job": "getDeviceInfo"}}'
 
@@ -353,6 +354,7 @@ module.exports = {
 
                 let errAnswer = JSON.stringify(errData);
 
+                utils.foo();
                 res.send(errAnswer);
 
             }
