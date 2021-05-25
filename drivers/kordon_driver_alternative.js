@@ -335,10 +335,13 @@ module.exports = {
                 // res.send(body);
                 return body;
             } else {
+
                 var authErrMsg = '{"authorization":false,"error":"401"}';
                 var output = '';
 
-                if (error.contains(authErrMsg)) {
+
+
+                if ((error && error.contains(authErrMsg)) || (body && body.contains(authErrMsg))) {
                     output = 'Ошибка авторизации! Не верный логин или пароль!';
                 } else {
                     output = error;
