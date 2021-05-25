@@ -314,12 +314,12 @@ module.exports = {
         var ddd = '';
 
         function callbackDataRequest(error, response, body) {
-            if(error)
-            console.log("error: "+error);
-            if(response)
-            console.log("response: "+response);
-            if(body)
-            console.log("body: "+body);
+            if (error)
+                console.log("error: " + error);
+            if (response)
+                console.log("response: " + response);
+            if (body)
+                console.log("body: " + body);
 
             if (!error && response.statusCode === 200) {
                 //var data = body;
@@ -340,7 +340,7 @@ module.exports = {
                 var output = '';
 
 
-                if ((error && error.contains(authErrMsg)) || (body && body.toString().contains(authErrMsg))) {
+                if ((error && error.toString().includes(authErrMsg)) || (body && body.toString().includes(authErrMsg))) {
                     output = 'Ошибка авторизации! Не верный логин или пароль!';
                 } else {
                     output = error;
