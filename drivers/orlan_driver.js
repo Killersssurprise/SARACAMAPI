@@ -3,6 +3,7 @@ var router = express.Router();
 var http = require('http');
 const jsonParser = express.json();
 var request = require('request');
+var utils = require('../utils/utils');
 
 var headers = {
     'Content-Length': '1000'
@@ -140,10 +141,12 @@ module.exports = {
                 res.send(s);
 
             } else {
-                console.error(error);
-                let s = '{"status":' + "inactive" + '}';
-                res.send(s);
-                //res.send(error);
+                // console.error(error);
+                // let s = '{"status":' + "inactive" + '}';
+                // res.send(s);
+                // //res.send(error);
+                let errAnswer = utils.getErrorMessage(error, response, body);
+                res.send(errAnswer);
             }
         }
 
@@ -153,7 +156,7 @@ module.exports = {
 
     getFullCamInfoData: function getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res) {
 
-        let pingMS1=Date.now();
+        let pingMS1 = Date.now();
 
         var startDate = new Date(timestampStart);
         var endDate = new Date(timestampEnd);
@@ -212,53 +215,53 @@ module.exports = {
             if (!error && response.statusCode === 200) {
                 console.log(body);
 
-                let pingMS2=Date.now();
+                let pingMS2 = Date.now();
 
                 var data = JSON.parse(body);
 
                 var v;
                 var p;
                 var voltage;
-                var stat='active';
+                var stat = 'active';
 
                 var newarr = [];
                 data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
                 newarr = '{';
-                let s = '{status:' + '"active"' + ','+'ping:'+(pingMS2-pingMS1)+',';
+                let s = '{status:' + '"active"' + ',' + 'ping:' + (pingMS2 - pingMS1) + ',';
                 //s+='ping:'+(pingMS2-pingMS1)+',';
                 for (let i = 0; i < data.length; i++) {
                     if (i === data.length - 1) {
                         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
                         if (data[i].Key === 'Recog1Hour') {
                             // violations_count = value;
-                            s +=  'passages' + ':"' + data[i].Value + '"}';
+                            s += 'passages' + ':"' + data[i].Value + '"}';
                             p = data[i].Value;
                         }
                         if (data[i].Key === 'Viols1Hour') {
                             // violations_count = value;
-                            s +=  'violations' + ':"' + data[i].Value + '"}';
+                            s += 'violations' + ':"' + data[i].Value + '"}';
                             v = data[i].Value;
                         }
                         if (data[i].Key === 'Voltage') {
                             // violations_count = value;
-                            s +=  'voltage' + ':"' + data[i].Value + '"}';
+                            s += 'voltage' + ':"' + data[i].Value + '"}';
                             voltage = data[i].Value;
                         }
                     } else {
                         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
                         if (data[i].Key === 'Recog1Hour') {
                             // violations_count = value;
-                            s +=  'passages' + ':"' + data[i].Value + '", ';
+                            s += 'passages' + ':"' + data[i].Value + '", ';
                             p = data[i].Value;
                         }
                         if (data[i].Key === 'Viols1Hour') {
                             // violations_count = value;
-                            s +=  'violations' + ':"' + data[i].Value + '", ';
+                            s += 'violations' + ':"' + data[i].Value + '", ';
                             v = data[i].Value;
                         }
                         if (data[i].Key === 'Voltage') {
                             // violations_count = value;
-                            s +=  'voltage' + ':"' + data[i].Value + '", ';
+                            s += 'voltage' + ':"' + data[i].Value + '", ';
                             voltage = data[i].Value;
                         }
 
@@ -270,15 +273,15 @@ module.exports = {
                     violations: v,
                     passages: p,
                     status: stat,
-                    ping: (pingMS2-pingMS1),
+                    ping: (pingMS2 - pingMS1),
                     voltage: voltage.replace(',', '.')
                 };
 
                 res.send(d);
 
             } else {
-                console.error(error);
-                res.send(error);
+                let errAnswer = utils.getErrorMessage(error, response, body);
+                res.send(errAnswer);
             }
         }
 
@@ -309,9 +312,12 @@ module.exports = {
                 res.send(data);
 
             } else {
-                console.error(error);
-                let s = '{"status":' + "inactive" + '}';
-                res.send(s);
+                // console.error(error);
+                // let s = '{"status":' + "inactive" + '}';
+                // res.send(s);
+
+                let errAnswer = utils.getErrorMessage(error, response, body);
+                res.send(errAnswer);
             }
         }
 

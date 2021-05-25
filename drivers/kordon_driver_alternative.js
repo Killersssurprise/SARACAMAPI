@@ -336,26 +336,8 @@ module.exports = {
                 // res.send(body);
                 return body;
             } else {
-
-                // var authErrMsg = '{"authorization":false,"error":"401"}';
-                // var output = '';
-                //
-                //
-                // if ((error && error.toString().includes(authErrMsg)) || (body && body.toString().includes(authErrMsg))) {
-                //     output = 'Ошибка авторизации! Не верный логин или пароль!';
-                // } else {
-                //     output = error;
-                // }
-                //
-                // var errData = {
-                //     error: output,
-                //     code: response.statusCode,
-                // };
-
                 let errAnswer = utils.getErrorMessage(error, response, body);
-
                 res.send(errAnswer);
-
             }
         }
 
@@ -580,6 +562,9 @@ function dummyFunction(login, password, ip, port, timestampStart, timestampEnd, 
         if (!error && response.statusCode === 200) {
             console.log(body);
             res.send(body);
+        } else {
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 

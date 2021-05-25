@@ -5,6 +5,7 @@ var atob = require("atob");
 var btoa = require('btoa');
 // const {request} = require("http");
 var request = require('request-promise');
+var utils = require('../utils/utils');
 module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, port, timestampStart, timestampEnd, res) {
@@ -30,8 +31,8 @@ module.exports = {
         // let s = {status:"active", passages:"12345", violations:"34"};
         // let s = {"violations":"2","passages":"0","status":"active"};
 
-        console.log('Start: '+timestampStart);
-        console.log('End: '+timestampEnd);
+        console.log('Start: ' + timestampStart);
+        console.log('End: ' + timestampEnd);
 
         var startDate = new Date(parseInt(timestampStart)).toISOString();
         var endDate = new Date(parseInt(timestampEnd)).toISOString();
@@ -42,14 +43,14 @@ module.exports = {
 
         // getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getIsActive);
 
-        let pas = randomInt(2000,12000);
-        let vil = randomInt(0,10);
+        let pas = randomInt(2000, 12000);
+        let vil = randomInt(0, 10);
 // let s = {status:"active", passages:"''+randomInt(2000,12000)+''", violations:""+randomInt(0,10)};
-        let s = {status:"active", passages:pas+'', violations:+vil+''};
+        let s = {status: "active", passages: pas + '', violations: +vil + ''};
         s = JSON.stringify(s);
 
 
-        dummyFunction(login,password,ip,timestampStart,timestampEnd, res);
+        dummyFunction(login, password, ip, timestampStart, timestampEnd, res);
         //res.send(s);
 
     },
@@ -112,7 +113,7 @@ function hexToBase64(str) {
     );
 }
 
-function makeLoginRequest(res, passwordCoded, ip, login, timestampStart, timestampEnd,f) {
+function makeLoginRequest(res, passwordCoded, ip, login, timestampStart, timestampEnd, f) {
 
     var headers = {
         'Connection': 'keep-alive',
@@ -139,13 +140,16 @@ function makeLoginRequest(res, passwordCoded, ip, login, timestampStart, timesta
             var data = JSON.parse(body);
             console.log(data.access_token);
             // res.send(body+', response: '+response);
-            f(res, ip, data.access_token,timestampStart, timestampEnd);
+            f(res, ip, data.access_token, timestampStart, timestampEnd);
 
             return data.access_token;
         } else {
-            console.log(error);
-            //res.send(error);
-            return error;
+            // console.log(error);
+            // //res.send(error);
+            // return error;
+
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 
@@ -191,19 +195,21 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
                 answer = encryptImpl(rsa, input);
             }
 
-            return makeLoginRequest(res, answer, ip, login, timestampStart, timestampEnd,f);
+            return makeLoginRequest(res, answer, ip, login, timestampStart, timestampEnd, f);
 
         } else {
             //console.error(body);
             //res.send(body);
-            return error;
+            // return error;
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 
     request(options, callback);
 }
 
-function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
+function dummyFunction(login, password, ip, timestampStart, timestampEnd, res) {
 
     var startDate = new Date(parseInt(timestampStart)).toISOString();
     var endDate = new Date(parseInt(timestampEnd)).toISOString();
@@ -253,15 +259,13 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
             //return makeLoginRequest(res, answer, ip, login, timestampStart, timestampEnd,f);
 
         } else {
-            //console.error(body);
-            //res.send(body);
-            return error;
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 
 
-
-    request(options1, callback1).then(function(body) {
+    request(options1, callback1).then(function (body) {
         console.log("\n");
         //console.log("login OK: " + body);
 
@@ -297,13 +301,12 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
                 return data.access_token;
             } else {
-                console.log(error);
-                //res.send(error);
-                return error;
+                let errAnswer = utils.getErrorMessage(error, response, body);
+                res.send(errAnswer);
             }
         }
 
-        request(options2, callback2).then(function(body) {
+        request(options2, callback2).then(function (body) {
             console.log("\n");
             //console.log("access token OK: " + body);
 
@@ -311,19 +314,19 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
             var headers3 = {
                 'Connection': 'keep-alive',
                 'Accept': 'application/json, text/plain, */*',
-                'Authorization': 'Bearer '+accessToken,
+                'Authorization': 'Bearer ' + accessToken,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
                 'Content-Type': 'application/json;charset=UTF-8',
-                'Origin': 'http://'+ip,
-                'Referer': 'http://'+ip+'/',
+                'Origin': 'http://' + ip,
+                'Referer': 'http://' + ip + '/',
                 'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
             };
 
-            var dataString3 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"'+startDate+'","ToDate":"'+endDate+'"}';
+            var dataString3 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"' + startDate + '","ToDate":"' + endDate + '"}';
             // var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
 
             var options3 = {
-                url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+                url: 'http://' + ip + '/MonoblockService/api/car/PostCar',
                 method: 'POST',
                 headers: headers3,
                 body: dataString3
@@ -336,10 +339,13 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                     passages = JSON.stringify(JSON.parse(body).TotalItems);
                     console.log(s);
                     //res.send(s);
+                } else {
+                    let errAnswer = utils.getErrorMessage(error, response, body);
+                    res.send(errAnswer);
                 }
             }
 
-            request(options3, callback3).then(function(body) {
+            request(options3, callback3).then(function (body) {
                 console.log("\n");
                 //console.log("violations OK: " + body);
 
@@ -348,37 +354,37 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
                 var headers4 = {
                     'Connection': 'keep-alive',
                     'Accept': 'application/json, text/plain, */*',
-                    'Authorization': 'Bearer '+accessToken,
+                    'Authorization': 'Bearer ' + accessToken,
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'Origin': 'http://'+ip,
-                    'Referer': 'http://'+ip+'/',
+                    'Origin': 'http://' + ip,
+                    'Referer': 'http://' + ip + '/',
                     'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
                 };
 
-                var dataString4 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"'+startDate+'","ToDate":"'+endDate+'"}';
+                var dataString4 = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"' + startDate + '","ToDate":"' + endDate + '"}';
 
 
                 var options4 = {
-                    url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+                    url: 'http://' + ip + '/MonoblockService/api/car/PostCar',
                     method: 'POST',
                     headers: headers4,
                     body: dataString4
                 };
 
                 function callback4(error, response, body) {
-                    if (!error && response.statusCode == 200) {
+                    if (!error && response.statusCode === 200) {
                         // Получает из ответа общее кол-во нарушений
                         let s = '{"violations":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
                         violations = JSON.stringify(JSON.parse(body).TotalItems);
                         console.log(s);
                         var dt1 = Date.now();
-                        ping = dt1-dt2;
+                        ping = dt1 - dt2;
                         let pings = '{"ping":' + ping + '}';
                         console.log(pings);
                         //res.send(s);
 
-                        var stat='active';
+                        var stat = 'active';
                         var d = {
                             violations: violations,
                             passages: passages,
@@ -389,6 +395,9 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
 
                         res.send(d);
 
+                    } else {
+                        let errAnswer = utils.getErrorMessage(error, response, body);
+                        res.send(errAnswer);
                     }
                 }
 
@@ -401,28 +410,25 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res){
     });
 
 
-
-
-
 }
 
-function getPassages(res, ip, token,  timestampStart, timestampEnd, information){
+function getPassages(res, ip, token, timestampStart, timestampEnd, information) {
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
-        'Authorization': 'Bearer '+token,
+        'Authorization': 'Bearer ' + token,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
         'Content-Type': 'application/json;charset=UTF-8',
-        'Origin': 'http://'+ip,
-        'Referer': 'http://'+ip+'/',
+        'Origin': 'http://' + ip,
+        'Referer': 'http://' + ip + '/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"' + timestampStart + '","ToDate":"' + timestampEnd + '"}';
     // var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":0,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
 
     var options = {
-        url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+        url: 'http://' + ip + '/MonoblockService/api/car/PostCar',
         method: 'POST',
         headers: headers,
         body: dataString
@@ -434,29 +440,32 @@ function getPassages(res, ip, token,  timestampStart, timestampEnd, information)
             let s = '{"passages":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
             console.log(s);
             res.send(s);
+        } else {
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 
     request(options, callback);
 }
 
-function getViolations(res, ip, token,  timestampStart, timestampEnd, information){
+function getViolations(res, ip, token, timestampStart, timestampEnd, information) {
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
-        'Authorization': 'Bearer '+token,
+        'Authorization': 'Bearer ' + token,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
         'Content-Type': 'application/json;charset=UTF-8',
-        'Origin': 'http://'+ip,
-        'Referer': 'http://'+ip+'/',
+        'Origin': 'http://' + ip,
+        'Referer': 'http://' + ip + '/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
-    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"'+timestampStart+'","ToDate":"'+timestampEnd+'"}';
+    var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"' + timestampStart + '","ToDate":"' + timestampEnd + '"}';
 
 
     var options = {
-        url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+        url: 'http://' + ip + '/MonoblockService/api/car/PostCar',
         method: 'POST',
         headers: headers,
         body: dataString
@@ -468,6 +477,9 @@ function getViolations(res, ip, token,  timestampStart, timestampEnd, informatio
             let s = '{"violations":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
             console.log(s);
             res.send(s);
+        } else {
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 
@@ -475,22 +487,22 @@ function getViolations(res, ip, token,  timestampStart, timestampEnd, informatio
 }
 
 
-function getIsActive(res, ip, token,  timestampStart, timestampEnd){
+function getIsActive(res, ip, token, timestampStart, timestampEnd) {
     var headers = {
         'Connection': 'keep-alive',
         'Accept': 'application/json, text/plain, */*',
-        'Authorization': 'Bearer '+token,
+        'Authorization': 'Bearer ' + token,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
         'Content-Type': 'application/json;charset=UTF-8',
-        'Origin': 'http://'+ip,
-        'Referer': 'http://'+ip+'/',
+        'Origin': 'http://' + ip,
+        'Referer': 'http://' + ip + '/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
     var dataString = '{"PageNumber":1,"OrderBy":"[CheckTime]","IsOrderDesc":true,"DetectedGrn":"","ItemsPerPage":15,"FromSpeed":null,"ToSpeed":null,"alarm":127,"FromDate":"2021-02-17T00:00:00.000Z","ToDate":"2021-02-17T16:47:01.000Z"}';
 
     var options = {
-        url: 'http://'+ip+'/MonoblockService/api/car/PostCar',
+        url: 'http://' + ip + '/MonoblockService/api/car/PostCar',
         method: 'POST',
         headers: headers,
         body: dataString
@@ -502,30 +514,32 @@ function getIsActive(res, ip, token,  timestampStart, timestampEnd){
             let s = '{"status":' + "active" + '}';
             console.log(s);
             res.send(s);
-        }else{
-            let s = '{"status":' + "inactive" + '}';
-            res.send(s);
+        } else {
+            // let s = '{"status":' + "inactive" + '}';
+            // res.send(s);
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 
     request(options, callback);
 }
 
-function getFullInfo(res, ip, token,  timestampStart, timestampEnd){
+function getFullInfo(res, ip, token, timestampStart, timestampEnd) {
     var headers = {
         'Connection': 'keep-alive',
         'Cache-Control': 'no-cache',
         'Pragma': 'no-cache',
         'Accept': 'application/json, text/plain, */*',
-        'Authorization': 'Bearer '+token,
+        'Authorization': 'Bearer ' + token,
         'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
-        'Referer': 'http://'+ip+'/',
+        'Referer': 'http://' + ip + '/',
         'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
     };
 
     var options = {
-        url: 'http://'+ip+'/MonoblockService/api/deviceState/getDeviceState',
+        url: 'http://' + ip + '/MonoblockService/api/deviceState/getDeviceState',
         headers: headers
     };
 
@@ -535,6 +549,9 @@ function getFullInfo(res, ip, token,  timestampStart, timestampEnd){
             // let s = '{"Active":' + JSON.stringify(JSON.parse(body).CamerasDto[0]["DbCamera"]["IsVisible"]) + '}';
             console.log(JSON.parse(body));
             res.send(JSON.parse(body));
+        } else {
+            let errAnswer = utils.getErrorMessage(error, response, body);
+            res.send(errAnswer);
         }
     }
 
