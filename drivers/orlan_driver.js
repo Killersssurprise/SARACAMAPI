@@ -3,7 +3,6 @@ var router = express.Router();
 var http = require('http');
 const jsonParser = express.json();
 var request = require('request');
-var utils = require('../utils/utils');
 
 var headers = {
     'Content-Length': '1000'
@@ -141,12 +140,10 @@ module.exports = {
                 res.send(s);
 
             } else {
-                // console.error(error);
-                // let s = '{"status":' + "inactive" + '}';
-                // res.send(s);
-                // //res.send(error);
-                let errAnswer = utils.getErrorMessage(error, response, body);
-                res.send(errAnswer);
+                console.error(error);
+                let s = '{"status":' + "inactive" + '}';
+                res.send(s);
+                //res.send(error);
             }
         }
 
@@ -312,12 +309,9 @@ module.exports = {
                 res.send(data);
 
             } else {
-                // console.error(error);
-                // let s = '{"status":' + "inactive" + '}';
-                // res.send(s);
-
-                let errAnswer = utils.getErrorMessage(error, response, body);
-                res.send(errAnswer);
+                console.error(error);
+                let s = '{"status":' + "inactive" + '}';
+                res.send(s);
             }
         }
 
