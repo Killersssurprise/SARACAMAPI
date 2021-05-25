@@ -315,7 +315,7 @@ module.exports = {
 
         function callbackDataRequest(error, response, body) {
             if (!error && response.statusCode === 200) {
-                var data = body;
+                //var data = body;
 
                 console.log("callbackDataRequest" + body);
 
@@ -327,6 +327,25 @@ module.exports = {
                 ddd = JSON.parse(body);
                 // res.send(body);
                 return body;
+            } else {
+                var authErrMsg = '{"authorization":false,"error":"401"}';
+                var output = '';
+
+                if (error.contains(authErrMsg)) {
+                    output = 'Ошибка авторизации! Не верный логин или пароль!';
+                } else {
+                    output = error;
+                }
+
+                var errData = {
+                    error: output,
+                    code: response.statusCode,
+                };
+
+                let errAnswer = JSON.stringify(errData);
+
+                res.send(errAnswer);
+
             }
         }
 
