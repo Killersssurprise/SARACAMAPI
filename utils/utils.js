@@ -2,6 +2,12 @@ module.exports = {
     getErrorMessage: function (error, response, body) {
         // whatever
         console.log("Hello from utils!")
+        if (error)
+            console.log(error);
+        if (response)
+            console.log(response);
+        if (body)
+            console.log(body);
 
         var authErrMsg = '{"authorization":false,"error":"401"}';
         var output = '';
