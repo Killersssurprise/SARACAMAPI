@@ -354,7 +354,6 @@ module.exports = {
 
                 let errAnswer = utils.getErrorMessage(error, response, body);
 
-                utils.foo();
                 res.send(errAnswer);
 
             }
