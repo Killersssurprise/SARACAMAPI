@@ -340,8 +340,7 @@ module.exports = {
                 var output = '';
 
 
-
-                if ((error && error.contains(authErrMsg)) || (body && body.contains(authErrMsg))) {
+                if ((error && error.contains(authErrMsg)) || (body && body.toString().contains(authErrMsg))) {
                     output = 'Ошибка авторизации! Не верный логин или пароль!';
                 } else {
                     output = error;
