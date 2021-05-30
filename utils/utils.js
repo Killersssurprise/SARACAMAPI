@@ -19,9 +19,13 @@ module.exports = {
             output = error;
         }
 
+        let c = '';
+        if (response.statusCode)
+            c = response.statusCode;
+
         var errData = {
             error: output,
-            code: response.statusCode,
+            code: c,
         };
 
         let errAnswer = JSON.stringify(errData);
