@@ -338,6 +338,7 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res) {
                     let s = '{"passages":' + JSON.stringify(JSON.parse(body).TotalItems) + '}';
                     passages = JSON.stringify(JSON.parse(body).TotalItems);
                     console.log(s);
+                    console.log("Full body: " + body);
                     //res.send(s);
                 } else {
                     let errAnswer = utils.getErrorMessage(error, response, body);
