@@ -406,6 +406,8 @@ module.exports = {
 
                         let pingMS2 = Date.now();
 
+                        console.log("full kordon info: "+str);
+
                         var data = {
                             violations: JSON.stringify(str['getStats']['violation']['total']),
                             passages: JSON.stringify(str['getStats']['common']['total']),
