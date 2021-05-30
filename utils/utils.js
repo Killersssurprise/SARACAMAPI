@@ -20,7 +20,7 @@ module.exports = {
         }
 
         let c = '';
-        if (typeof response.statusCode !== 'undefined' && response.statusCode)
+        if (typeof response !== 'undefined' && response && typeof response.statusCode !== 'undefined' && response.statusCode)
             c = response.statusCode;
 
         var errData = {
