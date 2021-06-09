@@ -317,7 +317,7 @@ module.exports = {
                 // console.log(objectValues(data).join(""));
                 // var data = JSON.parse(objectValues(body).join(""));
                 var data = body;
-                console.log(data)
+                console.log(data);
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
@@ -326,11 +326,6 @@ module.exports = {
                 // }
 
 
-
-                var newarr = [];
-                data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
-
-                console.log(newarr);
 
                 // var v;
                 // var p;
