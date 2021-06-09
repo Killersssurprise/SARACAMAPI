@@ -296,7 +296,7 @@ module.exports = {
                 // console.log("Body: "+body.toString());
                 // console.log("Response: "+response);
                 // var data = JSON.parse(body);
-
+                var data = JSON.stringify(body);
                 // var v;
                 // var p;
                 // var voltage;
@@ -346,7 +346,7 @@ module.exports = {
                 //     }
                 //
                 // }
-                body = JSON.stringify(body);
+                // body = JSON.stringify(body);
                 // console.log("UptimeSeconds: "+body.UptimeSeconds);
                 // console.log("RadarInUse: "+body.RadarInUse);
                 // console.log("RadarFound: "+body.RadarFound);
