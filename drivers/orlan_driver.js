@@ -297,11 +297,12 @@ module.exports = {
                 // console.log("Response: "+response);
                 // var data = JSON.parse(body);
                 // var data = JSON.stringify(body);
-                let s = '{"Recog1Hour":' + JSON.stringify(JSON.parse(body).Recog1Hour) + '}';
-                console.log(s);
 
-                var data = JSON.parse(response.body);
-                console.log(data);
+                // var data = JSON.parse(body);
+                console.log(body.toString());
+                console.log(body.toLocaleString());
+                console.log(body.toISOString());
+                console.log(body.toJSON());
 
 
 
