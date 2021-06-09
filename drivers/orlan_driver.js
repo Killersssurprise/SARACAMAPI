@@ -301,7 +301,8 @@ module.exports = {
 
                 // var data = JSON.parse(body);
 
-                var data = JSON.parse(body.replace('\n',''));
+                // var data = JSON.parse(body.replace('\n',''));
+                var data = body;
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
