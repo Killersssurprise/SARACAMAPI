@@ -318,6 +318,8 @@ module.exports = {
                 // var data = JSON.parse(objectValues(body).join(""));
                 var data = body;
                 console.log(data);
+
+                console.log(Object.keys(data));
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
