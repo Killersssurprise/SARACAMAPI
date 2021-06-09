@@ -9,7 +9,13 @@ var headers = {
     'Content-Length': '1000',
     'Content-Type': 'application/json'
 };
-
+function objectValues(obj) {
+    let vals = [];
+    for (const prop in obj) {
+        vals.push(obj[prop]);
+    }
+    return vals;
+}
 module.exports = {
 
     getViolationsData: function getViolationsData(login, password, ip, port, timestampStart, timestampEnd, res) {
@@ -308,7 +314,7 @@ module.exports = {
                 // var data = JSON.parse(JSON.stringify(body));
                 var data = body;
 
-                console.log(data.getAllKeys());
+                console.log(objectValues(data));
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
