@@ -305,7 +305,8 @@ module.exports = {
                 // var t = ""+body;
                 // console.log(t);
                 // var data = JSON.parse(t);
-                var data = JSON.parse(JSON.stringify(body));
+                // var data = JSON.parse(JSON.stringify(body));
+                var data = body;
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
@@ -367,7 +368,7 @@ module.exports = {
                 //
                 // }
                 // body = JSON.stringify(body);
-                console.log("UptimeSeconds: "+data.UptimeSeconds);
+                console.log("UptimeSeconds: "+data[0].UptimeSeconds);
                 console.log("RadarInUse: "+data.RadarInUse);
                 console.log("RadarFound: "+data.RadarFound);
                 console.log("RadarOk: "+data.RadarOk);
