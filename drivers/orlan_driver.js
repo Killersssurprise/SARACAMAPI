@@ -346,19 +346,19 @@ module.exports = {
                 //     }
                 //
                 // }
-
-                console.log("UptimeSeconds: "+body.UptimeSeconds);
-                console.log("RadarInUse: "+body.RadarInUse);
-                console.log("RadarFound: "+body.RadarFound);
-                console.log("RadarOk: "+body.RadarOk);
-                console.log("Temperature: "+body.Temperature);
-                console.log("Voltage: "+body.Voltage);
-                console.log("Recog24Hours: "+body.Recog24Hours);
-                console.log("Recog1Hour: "+body.Recog1Hour);
-                console.log("Viols24Hours: "+body.Viols24Hours);
-                console.log("Viols1Hour: "+body.Viols1Hour);
-                console.log("TotalRecog24Hours: "+body.TotalRecog24Hours);
-                console.log("TotalRecog1Hour: "+body.TotalRecog1Hour);
+                body = JSON.stringify(body);
+                // console.log("UptimeSeconds: "+body.UptimeSeconds);
+                // console.log("RadarInUse: "+body.RadarInUse);
+                // console.log("RadarFound: "+body.RadarFound);
+                // console.log("RadarOk: "+body.RadarOk);
+                // console.log("Temperature: "+body.Temperature);
+                // console.log("Voltage: "+body.Voltage);
+                // console.log("Recog24Hours: "+body.Recog24Hours);
+                // console.log("Recog1Hour: "+body.Recog1Hour);
+                // console.log("Viols24Hours: "+body.Viols24Hours);
+                // console.log("Viols1Hour: "+body.Viols1Hour);
+                // console.log("TotalRecog24Hours: "+body.TotalRecog24Hours);
+                // console.log("TotalRecog1Hour: "+body.TotalRecog1Hour);
                 let v = body.Voltage;
                 v = v.replace(',', '.');
                 let d = {
