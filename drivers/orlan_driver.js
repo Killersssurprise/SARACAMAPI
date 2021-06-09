@@ -314,7 +314,7 @@ module.exports = {
                 // var data = JSON.parse(JSON.stringify(body));
                 var data = body;
 
-                console.log(objectValues(data));
+                console.log(objectValues(data).join(""));
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
