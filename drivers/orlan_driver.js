@@ -297,9 +297,9 @@ module.exports = {
                 // console.log("Response: "+response);
                 // var data = JSON.parse(body);
 
-                var v;
-                var p;
-                var voltage;
+                // var v;
+                // var p;
+                // var voltage;
                 var stat = 'active';
 
                 var newarr = [];
@@ -347,12 +347,14 @@ module.exports = {
                 //
                 // }
 
+                var v = body.Voltage;
+                v = v.replace(',', '.');
                 var d = {
                     violations: body.Viols1Hour,
                     passages: body.Recog1Hour,
                     status: stat,
                     ping: (pingMS2 - pingMS1),
-                    voltage: body.Voltage.replace(',', '.')
+                    voltage: v
                 };
 
                 res.send(d);
