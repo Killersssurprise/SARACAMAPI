@@ -299,11 +299,8 @@ module.exports = {
                 // var data = JSON.stringify(body);
 
                 // var data = JSON.parse(body);
-                console.log(body.toString());
-                console.log(body.toLocaleString());
-                console.log(body.toJSON);
 
-                var data = JSON.parse(body.toJSON);
+                var data = JSON.parse(body);
 
 
 
