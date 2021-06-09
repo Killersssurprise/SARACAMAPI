@@ -303,9 +303,9 @@ module.exports = {
                 var stat = 'active';
 
                 var newarr = [];
-                data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
-                newarr = '{';
-                let s = '{status:' + '"active"' + ',' + 'ping:' + (pingMS2 - pingMS1) + ',';
+                // data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
+                // newarr = '{';
+                // let s = '{status:' + '"active"' + ',' + 'ping:' + (pingMS2 - pingMS1) + ',';
                 //s+='ping:'+(pingMS2-pingMS1)+',';
                 // for (let i = 0; i < data.length; i++) {
                 //     if (i === data.length - 1) {
