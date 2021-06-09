@@ -296,7 +296,8 @@ module.exports = {
                 // console.log("Body: "+body.toString());
                 // console.log("Response: "+response);
                 // var data = JSON.parse(body);
-                var data = JSON.stringify(body);
+                // var data = JSON.stringify(body);
+                var data = body;
                 console.log(data);
                 // var v;
                 // var p;
