@@ -6,7 +6,8 @@ var request = require('request');
 var utils = require('../utils/utils');
 
 var headers = {
-    'Content-Length': '1000'
+    'Content-Length': '1000',
+    'Content-Type': 'application/json'
 };
 
 module.exports = {
