@@ -217,6 +217,8 @@ module.exports = {
 
                 let pingMS2 = Date.now();
 
+                console.log("Body: "+body);
+                console.log("Response: "+response);
                 var data = JSON.parse(body);
 
                 var v;
