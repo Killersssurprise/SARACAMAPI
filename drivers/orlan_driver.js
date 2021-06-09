@@ -315,7 +315,9 @@ module.exports = {
                 // var data = body;
 
                 // console.log(objectValues(data).join(""));
-                var data = JSON.parse(objectValues(body).join(""));
+                // var data = JSON.parse(objectValues(body).join(""));
+                var data = body;
+                console.log(data)
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
@@ -325,8 +327,9 @@ module.exports = {
 
 
 
-
-
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i].Key)
+                }
                 // var v;
                 // var p;
                 // var voltage;
@@ -377,7 +380,7 @@ module.exports = {
                 //
                 // }
                 // body = JSON.stringify(body);
-                console.log("UptimeSeconds: "+data.UptimeSeconds);
+                console.log("UptimeSeconds: "+data[1].UptimeSeconds);
                 console.log("RadarInUse: "+data.RadarInUse);
                 console.log("RadarFound: "+data.RadarFound);
                 console.log("RadarOk: "+data.RadarOk);
