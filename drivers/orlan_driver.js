@@ -377,7 +377,7 @@ module.exports = {
                 //
                 // }
                 // body = JSON.stringify(body);
-                console.log("UptimeSeconds: "+data[1].UptimeSeconds);
+                console.log("UptimeSeconds: "+data.UptimeSeconds);
                 console.log("RadarInUse: "+data.RadarInUse);
                 console.log("RadarFound: "+data.RadarFound);
                 console.log("RadarOk: "+data.RadarOk);
