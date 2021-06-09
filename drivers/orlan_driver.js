@@ -293,9 +293,9 @@ module.exports = {
 
                 let pingMS2 = Date.now();
 
-                console.log("Body: "+body.toString());
-                console.log("Response: "+response);
-                var data = JSON.parse(body);
+                // console.log("Body: "+body.toString());
+                // console.log("Response: "+response);
+                // var data = JSON.parse(body);
 
                 var v;
                 var p;
@@ -348,11 +348,11 @@ module.exports = {
                 // }
 
                 var d = {
-                    violations: data.Viols1Hour,
-                    passages: data.Recog1Hour,
+                    violations: body.Viols1Hour,
+                    passages: body.Recog1Hour,
                     status: stat,
                     ping: (pingMS2 - pingMS1),
-                    voltage: data.voltage.replace(',', '.')
+                    voltage: body.voltage.replace(',', '.')
                 };
 
                 res.send(d);
