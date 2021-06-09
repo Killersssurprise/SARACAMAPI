@@ -211,6 +211,82 @@ module.exports = {
         // res.send(s);
 
 
+        // function callback(error, response, body) {
+        //     if (!error && response.statusCode === 200) {
+        //         console.log(body);
+        //
+        //         let pingMS2 = Date.now();
+        //
+        //         console.log("Body: "+body.toString());
+        //         console.log("Response: "+response);
+        //         var data = JSON.parse(body);
+        //
+        //         var v;
+        //         var p;
+        //         var voltage;
+        //         var stat = 'active';
+        //
+        //         var newarr = [];
+        //         data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
+        //         newarr = '{';
+        //         let s = '{status:' + '"active"' + ',' + 'ping:' + (pingMS2 - pingMS1) + ',';
+        //         //s+='ping:'+(pingMS2-pingMS1)+',';
+        //         for (let i = 0; i < data.length; i++) {
+        //             if (i === data.length - 1) {
+        //                 newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
+        //                 if (data[i].Key === 'Recog1Hour') {
+        //                     // violations_count = value;
+        //                     s += 'passages' + ':"' + data[i].Value + '"}';
+        //                     p = data[i].Value;
+        //                 }
+        //                 if (data[i].Key === 'Viols1Hour') {
+        //                     // violations_count = value;
+        //                     s += 'violations' + ':"' + data[i].Value + '"}';
+        //                     v = data[i].Value;
+        //                 }
+        //                 if (data[i].Key === 'Voltage') {
+        //                     // violations_count = value;
+        //                     s += 'voltage' + ':"' + data[i].Value + '"}';
+        //                     voltage = data[i].Value;
+        //                 }
+        //             } else {
+        //                 newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
+        //                 if (data[i].Key === 'Recog1Hour') {
+        //                     // violations_count = value;
+        //                     s += 'passages' + ':"' + data[i].Value + '", ';
+        //                     p = data[i].Value;
+        //                 }
+        //                 if (data[i].Key === 'Viols1Hour') {
+        //                     // violations_count = value;
+        //                     s += 'violations' + ':"' + data[i].Value + '", ';
+        //                     v = data[i].Value;
+        //                 }
+        //                 if (data[i].Key === 'Voltage') {
+        //                     // violations_count = value;
+        //                     s += 'voltage' + ':"' + data[i].Value + '", ';
+        //                     voltage = data[i].Value;
+        //                 }
+        //
+        //             }
+        //
+        //         }
+        //
+        //         var d = {
+        //             violations: v,
+        //             passages: p,
+        //             status: stat,
+        //             ping: (pingMS2 - pingMS1),
+        //             voltage: voltage.replace(',', '.')
+        //         };
+        //
+        //         res.send(d);
+        //
+        //     } else {
+        //         let errAnswer = utils.getErrorMessage(error, response, body);
+        //         res.send(errAnswer);
+        //     }
+        // }
+
         function callback(error, response, body) {
             if (!error && response.statusCode === 200) {
                 console.log(body);
@@ -219,7 +295,7 @@ module.exports = {
 
                 console.log("Body: "+body.toString());
                 console.log("Response: "+response);
-                var data = JSON.parse(body.toString());
+                var data = JSON.parse(body);
 
                 var v;
                 var p;
@@ -231,52 +307,52 @@ module.exports = {
                 newarr = '{';
                 let s = '{status:' + '"active"' + ',' + 'ping:' + (pingMS2 - pingMS1) + ',';
                 //s+='ping:'+(pingMS2-pingMS1)+',';
-                for (let i = 0; i < data.length; i++) {
-                    if (i === data.length - 1) {
-                        newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
-                        if (data[i].Key === 'Recog1Hour') {
-                            // violations_count = value;
-                            s += 'passages' + ':"' + data[i].Value + '"}';
-                            p = data[i].Value;
-                        }
-                        if (data[i].Key === 'Viols1Hour') {
-                            // violations_count = value;
-                            s += 'violations' + ':"' + data[i].Value + '"}';
-                            v = data[i].Value;
-                        }
-                        if (data[i].Key === 'Voltage') {
-                            // violations_count = value;
-                            s += 'voltage' + ':"' + data[i].Value + '"}';
-                            voltage = data[i].Value;
-                        }
-                    } else {
-                        newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
-                        if (data[i].Key === 'Recog1Hour') {
-                            // violations_count = value;
-                            s += 'passages' + ':"' + data[i].Value + '", ';
-                            p = data[i].Value;
-                        }
-                        if (data[i].Key === 'Viols1Hour') {
-                            // violations_count = value;
-                            s += 'violations' + ':"' + data[i].Value + '", ';
-                            v = data[i].Value;
-                        }
-                        if (data[i].Key === 'Voltage') {
-                            // violations_count = value;
-                            s += 'voltage' + ':"' + data[i].Value + '", ';
-                            voltage = data[i].Value;
-                        }
-
-                    }
-
-                }
+                // for (let i = 0; i < data.length; i++) {
+                //     if (i === data.length - 1) {
+                //         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '}}';
+                //         if (data[i].Key === 'Recog1Hour') {
+                //             // violations_count = value;
+                //             s += 'passages' + ':"' + data[i].Value + '"}';
+                //             p = data[i].Value;
+                //         }
+                //         if (data[i].Key === 'Viols1Hour') {
+                //             // violations_count = value;
+                //             s += 'violations' + ':"' + data[i].Value + '"}';
+                //             v = data[i].Value;
+                //         }
+                //         if (data[i].Key === 'Voltage') {
+                //             // violations_count = value;
+                //             s += 'voltage' + ':"' + data[i].Value + '"}';
+                //             voltage = data[i].Value;
+                //         }
+                //     } else {
+                //         newarr += '{' + data[i].Key + ' : ' + data[i].Value + '},';
+                //         if (data[i].Key === 'Recog1Hour') {
+                //             // violations_count = value;
+                //             s += 'passages' + ':"' + data[i].Value + '", ';
+                //             p = data[i].Value;
+                //         }
+                //         if (data[i].Key === 'Viols1Hour') {
+                //             // violations_count = value;
+                //             s += 'violations' + ':"' + data[i].Value + '", ';
+                //             v = data[i].Value;
+                //         }
+                //         if (data[i].Key === 'Voltage') {
+                //             // violations_count = value;
+                //             s += 'voltage' + ':"' + data[i].Value + '", ';
+                //             voltage = data[i].Value;
+                //         }
+                //
+                //     }
+                //
+                // }
 
                 var d = {
-                    violations: v,
-                    passages: p,
+                    violations: data.Viols1Hour,
+                    passages: data.Recog1Hour,
                     status: stat,
                     ping: (pingMS2 - pingMS1),
-                    voltage: voltage.replace(',', '.')
+                    voltage: data.voltage.replace(',', '.')
                 };
 
                 res.send(d);
