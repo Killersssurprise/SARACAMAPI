@@ -312,9 +312,10 @@ module.exports = {
                 // console.log(t);
                 // var data = JSON.parse(t);
                 // var data = JSON.parse(JSON.stringify(body));
-                var data = body;
+                // var data = body;
 
-                console.log(objectValues(data).join(""));
+                // console.log(objectValues(data).join(""));
+                var data = JSON.parse(objectValues(body).join(""));
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
