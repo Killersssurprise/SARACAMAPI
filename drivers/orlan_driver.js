@@ -327,9 +327,11 @@ module.exports = {
 
 
 
-                for (let i = 0; i < data.length; i++) {
-                    console.log(data[i].Key)
-                }
+                var newarr = [];
+                data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
+
+                console.log(newarr);
+
                 // var v;
                 // var p;
                 // var voltage;
