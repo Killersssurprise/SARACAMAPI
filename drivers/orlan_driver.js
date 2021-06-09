@@ -300,8 +300,8 @@ module.exports = {
 
                 // var data = JSON.parse(body);
 
-                var data = body.replaceAll('\n','');
-                data = data.replaceAll(' ','');
+                var data = body.replace('\n','');
+                data = data.replace(' ','');
                 try{
                     data = JSON.parse(body.replaceAll('\n',''));
                 }catch(e){
