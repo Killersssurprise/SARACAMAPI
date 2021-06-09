@@ -317,9 +317,9 @@ module.exports = {
                 // console.log(objectValues(data).join(""));
                 // var data = JSON.parse(objectValues(body).join(""));
                 var data = JSON.parse(body.trim());
-                console.log(data);
-
-                console.log(typeof data);
+                // console.log(data);
+                //
+                // console.log(typeof data);
                 // console.log(Object.keys(data));
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
@@ -380,18 +380,18 @@ module.exports = {
                 //
                 // }
                 // body = JSON.stringify(body);
-                console.log("UptimeSeconds: "+data.UptimeSeconds);
-                console.log("RadarInUse: "+data.RadarInUse);
-                console.log("RadarFound: "+data.RadarFound);
-                console.log("RadarOk: "+data.RadarOk);
-                console.log("Temperature: "+data.Temperature);
-                console.log("Voltage: "+data.Voltage);
-                console.log("Recog24Hours: "+data.Recog24Hours);
-                console.log("Recog1Hour: "+data.Recog1Hour);
-                console.log("Viols24Hours: "+data.Viols24Hours);
-                console.log("Viols1Hour: "+data.Viols1Hour);
-                console.log("TotalRecog24Hours: "+data.TotalRecog24Hours);
-                console.log("TotalRecog1Hour: "+data.TotalRecog1Hour);
+                // console.log("UptimeSeconds: "+data.UptimeSeconds);
+                // console.log("RadarInUse: "+data.RadarInUse);
+                // console.log("RadarFound: "+data.RadarFound);
+                // console.log("RadarOk: "+data.RadarOk);
+                // console.log("Temperature: "+data.Temperature);
+                // console.log("Voltage: "+data.Voltage);
+                // console.log("Recog24Hours: "+data.Recog24Hours);
+                // console.log("Recog1Hour: "+data.Recog1Hour);
+                // console.log("Viols24Hours: "+data.Viols24Hours);
+                // console.log("Viols1Hour: "+data.Viols1Hour);
+                // console.log("TotalRecog24Hours: "+data.TotalRecog24Hours);
+                // console.log("TotalRecog1Hour: "+data.TotalRecog1Hour);
                 let v = data.Voltage;
                 v = v.replace(',', '.');
                 let d = {
