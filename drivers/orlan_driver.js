@@ -302,9 +302,10 @@ module.exports = {
                 // var data = JSON.parse(body);
 
                 // var data = JSON.parse(body.replace('\n',''));
-                var t = ""+body;
-                console.log(t);
-                var data = JSON.parse(t);
+                // var t = ""+body;
+                // console.log(t);
+                // var data = JSON.parse(t);
+                var data = JSON.parse(JSON.stringify(body));
                 // try{
                 //     data = JSON.parse(body.replaceAll('\n',''));
                 // }catch(e){
