@@ -347,23 +347,23 @@ module.exports = {
                 //
                 // }
                 // body = JSON.stringify(body);
-                console.log("UptimeSeconds: "+body.UptimeSeconds);
-                console.log("RadarInUse: "+body.RadarInUse);
-                console.log("RadarFound: "+body.RadarFound);
-                console.log("RadarOk: "+body.RadarOk);
-                console.log("Temperature: "+body.Temperature);
-                console.log("Voltage: "+body.Voltage);
-                console.log("Recog24Hours: "+body.Recog24Hours);
-                console.log("Recog1Hour: "+body.Recog1Hour);
-                console.log("Viols24Hours: "+body.Viols24Hours);
-                console.log("Viols1Hour: "+body.Viols1Hour);
-                console.log("TotalRecog24Hours: "+body.TotalRecog24Hours);
-                console.log("TotalRecog1Hour: "+body.TotalRecog1Hour);
-                let v = body.Voltage;
+                console.log("UptimeSeconds: "+data.UptimeSeconds);
+                console.log("RadarInUse: "+data.RadarInUse);
+                console.log("RadarFound: "+data.RadarFound);
+                console.log("RadarOk: "+data.RadarOk);
+                console.log("Temperature: "+data.Temperature);
+                console.log("Voltage: "+data.Voltage);
+                console.log("Recog24Hours: "+data.Recog24Hours);
+                console.log("Recog1Hour: "+data.Recog1Hour);
+                console.log("Viols24Hours: "+data.Viols24Hours);
+                console.log("Viols1Hour: "+data.Viols1Hour);
+                console.log("TotalRecog24Hours: "+data.TotalRecog24Hours);
+                console.log("TotalRecog1Hour: "+data.TotalRecog1Hour);
+                let v = data.Voltage;
                 v = v.replace(',', '.');
                 let d = {
-                    violations: body.Viols1Hour,
-                    passages: body.Recog1Hour,
+                    violations: data.Viols1Hour,
+                    passages: data.Recog1Hour,
                     status: stat,
                     ping: (pingMS2 - pingMS1),
                     voltage: v
