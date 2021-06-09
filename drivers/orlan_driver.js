@@ -352,7 +352,7 @@ module.exports = {
                     passages: body.Recog1Hour,
                     status: stat,
                     ping: (pingMS2 - pingMS1),
-                    voltage: body.voltage.replace(',', '.')
+                    voltage: body.Voltage.replace(',', '.')
                 };
 
                 res.send(d);
