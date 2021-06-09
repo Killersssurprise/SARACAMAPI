@@ -302,7 +302,7 @@ module.exports = {
                 // var voltage;
                 var stat = 'active';
 
-                var newarr = [];
+                // var newarr = [];
                 // data.forEach(element => newarr.push('{' + element.Key + ' : ' + element.Value + '}'));
                 // newarr = '{';
                 // let s = '{status:' + '"active"' + ',' + 'ping:' + (pingMS2 - pingMS1) + ',';
@@ -347,9 +347,10 @@ module.exports = {
                 //
                 // }
 
-                var v = body.Voltage;
+                console.log("Voltage: "+body.Voltage);
+                let v = body.Voltage;
                 v = v.replace(',', '.');
-                var d = {
+                let d = {
                     violations: body.Viols1Hour,
                     passages: body.Recog1Hour,
                     status: stat,
