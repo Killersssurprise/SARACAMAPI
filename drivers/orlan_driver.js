@@ -299,6 +299,10 @@ module.exports = {
                 // var data = JSON.stringify(body);
                 var data = JSON.parse(response.body);
                 console.log(data);
+
+                let s = '{"Recog1Hour":' + JSON.stringify(JSON.parse(body).Recog1Hour) + '}';
+                console.log(s);
+
                 // var v;
                 // var p;
                 // var voltage;
