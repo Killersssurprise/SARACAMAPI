@@ -316,7 +316,7 @@ module.exports = {
 
                 // console.log(objectValues(data).join(""));
                 // var data = JSON.parse(objectValues(body).join(""));
-                var data = body;
+                var data = JSON.parse(body);
                 console.log(data);
 
                 console.log(typeof data);
