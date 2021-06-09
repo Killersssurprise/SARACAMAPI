@@ -301,7 +301,7 @@ module.exports = {
                 // var data = JSON.parse(body);
                 console.log(body.toString());
                 console.log(body.toLocaleString());
-                console.log(body.toJSON());
+                console.log(body.toJSON);
 
 
 
