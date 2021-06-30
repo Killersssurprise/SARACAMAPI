@@ -396,7 +396,9 @@ module.exports = {
                 v = v.replace(',', '.');
                 let d = {
                     violations: data.Viols1Hour,
+                    violations24: data.Viols24Hours,
                     passages: data.Recog1Hour,
+                    passages24: data.Recog24Hours,
                     status: stat,
                     ping: (pingMS2 - pingMS1),
                     voltage: v
