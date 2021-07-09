@@ -356,7 +356,7 @@ module.exports = {
             var dddsss = '{ "auth": { "login": "' + login + '", "password": "' + password + '" }, "request": { "job": "getStats", "getStats": { "timestampStart": ' + timestampStart + ', "timestampEnd": ' + timestampEnd + ', "speedThresholds": [ { "name": "Превышение на 20", "min": 23, "max": 43 }, { "name": "Превышение на 40", "min": 43, "max": 63 }, { "name": "Превышение на 60", "min": 63, "max": 83 }, { "name": "Превышение на 80", "min": 83, "max": 0 } ], "showInfo": true } } } ';
 
             var ooo = {
-                url: 'http://' + ip + '//api11.php',
+                url: 'http://' + ip + ':' + port + '/api11.php',
                 method: 'POST',
                 headers: hhh,
                 body: dddsss
