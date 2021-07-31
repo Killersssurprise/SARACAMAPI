@@ -5,7 +5,7 @@ var app = express();
 
 const PORT = 4000;
 
-let target = 'http://direct.fipradio.fr/live/fip-midfi.mp3';
+let target = 'http://192.168.40.10:18000/video/data.mjpg';
 // figure out 'real' target if the server returns a 302 (redirect)
 http.get(target, resp => {
     if(resp.statusCode == 302) {
