@@ -3,7 +3,7 @@
 
 var http = require('http');
 
-http.createServer(onRequest).listen(4000);
+http.createServer(onRequest).listen(3000);
 
 function onRequest(client_req, client_res) {
     console.log('serve: ' + client_req.url);
