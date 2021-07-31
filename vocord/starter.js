@@ -19,10 +19,11 @@ app.use('/', function(clientRequest, clientResponse) {
         parsedPort = 80
         parsedSSL = http
     }
+
     var options = {
         hostname: parsedHost,
-        port: parsedPort,
-        path: clientRequest.url,
+        // port: parsedPort,
+        // path: clientRequest.url,
         method: clientRequest.method,
         headers: {
             'User-Agent': clientRequest.headers['user-agent']
