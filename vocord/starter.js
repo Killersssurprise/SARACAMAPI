@@ -10,15 +10,15 @@ app.use('/', function(clientRequest, clientResponse) {
     // url = 'https://www.google.com'
     url = 'http://192.168.40.10';
     var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
-    var parsedPort;
+    // var parsedPort;
     var parsedSSL;
-    if (url.startsWith('https://')) {
-        parsedPort = 443
-        parsedSSL = https
-    } else if (url.startsWith('http://')) {
-        parsedPort = 80
-        parsedSSL = http
-    }
+    // if (url.startsWith('https://')) {
+    //     parsedPort = 443
+    //     parsedSSL = https
+    // } else if (url.startsWith('http://')) {
+    //     parsedPort = 80
+    //     parsedSSL = http
+    // }
 
     parsedSSL = http;
     var options = {
@@ -26,7 +26,8 @@ app.use('/', function(clientRequest, clientResponse) {
         port: 18000,
         // path: clientRequest.url,
         path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
-        method: clientRequest.method,
+        // method: clientRequest.method,
+        method: 'GET',
         headers: {
             'User-Agent': clientRequest.headers['user-agent']
         }
