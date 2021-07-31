@@ -110,64 +110,66 @@ router.get("/", jsonParser, function (req, res) {
         //
         // var request = require('request');
         //
-        // var options = {
-        //     url: 'http://192.168.40.10:18000/video/data.mjpg'
-        // };
-        //
-        // function callback(error, response, body) {
-        //     if (!error && response.statusCode == 200) {
-        //         console.log(body);
-        //     }
-        // }
-        //
-        // request(options, callback);
-        //
-        //
-
-
         var options = {
-            // url: 'http://' + ip + ':' + _port + '/api11.php',
-            url: 'http://192.168.40.10:18000/video/data.mjpg',
-            // host: ip,
-            // port: _port,
-            // path: '/api11.php',
-            method: 'GET',
-            // headers: {
-            //     'Content-Type': 'application/json',
-            //     'Content-Length': Buffer.byteLength(data)
-            // }
-
+            // url: 'http://192.168.40.10:18000/video/data.mjpg'
+            url: 'http://192.168.40.10:18000/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING'
         };
-        var answ = '';
-        try {
-            var httpreq = http.request(options, function (response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                    res.write(chunk);
-                }).on('end', function () {
-                    // var str = JSON.parse(answ);
-                    // var str = JSON.parse(answ);
 
-                    // let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
-                    // console.log(s);
-                    //res.send(s);
-                    res.write(answ);
-                }).on('error', (err) => {
-                    // let s = '{"status":' + "inactive" + '}';
-                    //res.send(s);
-                    console.error(err.stack);
-                    // res.send(s);
-                });
-            });
-            // httpreq.write(data);
-            httpreq.end();
-        } catch (e) {
-
-            console.log(e);
+        function callback(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+                res.send(body);
+            }
         }
 
+        request(options, callback);
+
+
+
+
+    //     var options = {
+    //         // url: 'http://' + ip + ':' + _port + '/api11.php',
+    //         url: 'http://192.168.40.10:18000/video/data.mjpg',
+    //         // host: ip,
+    //         // port: _port,
+    //         // path: '/api11.php',
+    //         method: 'GET',
+    //         // headers: {
+    //         //     'Content-Type': 'application/json',
+    //         //     'Content-Length': Buffer.byteLength(data)
+    //         // }
+    //
+    //     };
+    //     var answ = '';
+    //     try {
+    //         var httpreq = http.request(options, function (response) {
+    //             //response.setEncoding('utf8');
+    //             response.on('data', function (chunk) {
+    //                 //console.log(chunk);
+    //                 answ += chunk;
+    //                 res.write(chunk);
+    //             }).on('end', function () {
+    //                 // var str = JSON.parse(answ);
+    //                 // var str = JSON.parse(answ);
+    //
+    //                 // let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
+    //                 // console.log(s);
+    //                 //res.send(s);
+    //                 res.write(answ);
+    //             }).on('error', (err) => {
+    //                 // let s = '{"status":' + "inactive" + '}';
+    //                 //res.send(s);
+    //                 console.error(err.stack);
+    //                 // res.send(s);
+    //             });
+    //         });
+    //         // httpreq.write(data);
+    //         httpreq.end();
+    //     } catch (e) {
+    //
+    //         console.log(e);
+    //     }
+    //
     } catch (e) {
 
         console.log(e);
