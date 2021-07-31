@@ -29,7 +29,11 @@ app.use('/', function(clientRequest, clientResponse) {
         // method: clientRequest.method,
         method: 'GET',
         headers: {
-            'User-Agent': clientRequest.headers['user-agent']
+            'User-Agent': clientRequest.headers['user-agent'],
+            'Content-Type':'image/jpeg',
+            'Connection':'keep-alive',
+            'Keep-Alive':'timeout=5',
+            'Transfer-Encoding':'chunked'
         }
     };
 
