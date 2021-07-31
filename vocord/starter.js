@@ -5,7 +5,7 @@ var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
 
 http.createServer(function(req, res) {
-    proxy.web(req, res, { target: 'http://192.168.40.10:18000/video/data.mjpg' });
+    proxy.web(req, res, { target: 'http://192.168.40.10:18000/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING' });
 }).listen(3000);
 
 // var http = require('http');
