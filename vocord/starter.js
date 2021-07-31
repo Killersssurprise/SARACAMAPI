@@ -8,7 +8,7 @@ const { response } = require('express');
 app.use('/', function(clientRequest, clientResponse) {
     var url;
     // url = 'https://www.google.com'
-    url = 'http://192.168.40.10:18000/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING'
+    url = 'http://192.168.40.10';
     var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
     var parsedPort;
     var parsedSSL;
@@ -22,8 +22,9 @@ app.use('/', function(clientRequest, clientResponse) {
 
     var options = {
         hostname: parsedHost,
-        // port: parsedPort,
+        port: 18000,
         // path: clientRequest.url,
+        path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
         method: clientRequest.method,
         headers: {
             'User-Agent': clientRequest.headers['user-agent']
