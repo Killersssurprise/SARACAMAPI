@@ -1,25 +1,55 @@
 // global.atob = require("atob");
+
+
 var http = require('http');
-var express = require('express');
-var app = express();
 
-const PORT = 4000;
+http.createServer(onRequest).listen(4000);
 
-let target = 'http://192.168.40.10:18000/video/data.mjpg';
-// figure out 'real' target if the server returns a 302 (redirect)
-http.get(target, resp => {
-    if(resp.statusCode == 302) {
-        target = resp.headers.location;
-    }
-});
+function onRequest(client_req, client_res) {
+    console.log('serve: ' + client_req.url);
 
-app.use(express.static('dist'));
+    var options = {
+        hostname: 'http://192.168.40.10:18000/video/data.mjpg',
+        port: 80,
+        path: client_req.url,
+        method: client_req.method,
+        headers: client_req.headers
+    };
 
-app.get('/api', (req, res) => {
-    req.pipe(request.get(target)).pipe(res);
-});
+    var proxy = http.request(options, function (res) {
+        client_res.writeHead(res.statusCode, res.headers)
+        res.pipe(client_res, {
+            end: true
+        });
+    });
 
-app.listen(PORT);
+    client_req.pipe(proxy, {
+        end: true
+    });
+}
+
+
+// var http = require('http');
+// var express = require('express');
+// var app = express();
+//
+// const PORT = 4000;
+//
+// let target = 'http://192.168.40.10:18000/video/data.mjpg';
+// // figure out 'real' target if the server returns a 302 (redirect)
+// http.get(target, resp => {
+//     if(resp.statusCode == 302) {
+//         target = resp.headers.location;
+//     }
+// });
+//
+// app.use(express.static('dist'));
+//
+// app.get('/api', (req, res) => {
+//     req.pipe(request.get(target)).pipe(res);
+// });
+//
+// app.listen(PORT);
 
 // var MjpegProxy = require('mjpeg-proxy').MjpegProxy;
 // var express = require('express');
