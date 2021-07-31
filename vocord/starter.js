@@ -20,6 +20,7 @@ app.use('/', function(clientRequest, clientResponse) {
         parsedSSL = http
     }
 
+    parsedSSL = http;
     var options = {
         hostname: parsedHost,
         port: 18000,
