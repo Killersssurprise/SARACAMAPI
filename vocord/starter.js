@@ -1,5 +1,25 @@
 // global.atob = require("atob");
 
+const app = express();
+
+const PORT = 4000;
+
+let target = 'http://direct.fipradio.fr/live/fip-midfi.mp3';
+// figure out 'real' target if the server returns a 302 (redirect)
+http.get(target, resp => {
+    if(resp.statusCode == 302) {
+        target = resp.headers.location;
+    }
+});
+
+app.use(express.static('dist'));
+
+app.get('/api', (req, res) => {
+    req.pipe(request.get(target)).pipe(res);
+});
+
+app.listen(PORT);
+
 // var MjpegProxy = require('mjpeg-proxy').MjpegProxy;
 // var express = require('express');
 // var app = express();
