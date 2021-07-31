@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var request = require('request');
 var http = require('http');
 const jsonParser = express.json();
 var kordon_driver = require('../drivers/kordon_driver_alternative');
@@ -113,6 +113,7 @@ router.get("/", jsonParser, function (req, res) {
         var options = {
             // url: 'http://192.168.40.10:18000/video/data.mjpg'
             url: 'http://192.168.40.10:18000/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING'
+            // url: 'http://google.com'
         };
 
         function callback(error, response, body) {
