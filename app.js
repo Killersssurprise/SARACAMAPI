@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var violationsRouter = require('./routes/violations');
@@ -15,6 +17,8 @@ var telemetry = require('./routes/telemetry');
 var orlan = require('./routes/orlan');
 var vocord = require('./routes/vocord');
 var test = require('./routes/test');
+var video = require('./routes/video');
+
 
 const https = require('https');
 var app = express();
@@ -46,6 +50,7 @@ app.use('/telemetry', telemetry);
 app.use('/orlan', orlan);
 app.use('/vocord', vocord);
 app.use('/test', test);
+app.use('/video', video);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

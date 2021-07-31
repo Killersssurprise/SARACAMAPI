@@ -13,6 +13,7 @@
     "http-errors": "~1.6.3",
     "jQuery": "^1.7.4",
     "jsdom": "^16.5.0",
+    "mjpeg-proxy": "^0.3.0",
     "morgan": "~1.9.1",
     "net-snmp": "^3.5.2",
     "node-bignumber": "^1.2.1",
