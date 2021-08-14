@@ -555,7 +555,7 @@ function getPhoto(res, ip, token, timestampStart, timestampEnd, ChannelId){
         hostname: parsedHost,
         port: 84,
         // path: clientRequest.url,
-        path: ''+ChannelId+'/medium/560.jpg?id='+timestampStart,
+        path: '/'+ChannelId+'/medium/560.jpg?id='+timestampStart,
         // method: clientRequest.method,
         method: 'GET',
         headers: {
