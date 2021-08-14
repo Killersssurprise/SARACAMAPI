@@ -449,6 +449,136 @@ module.exports = {
         }
 
         request(options, callback);
+    },
+
+    getVideo: function getVideo(login, password, ip, port, timestampStart, timestampEnd, res) {
+
+        // var data = JSON.stringify({
+        //     "auth": {
+        //         "login": login,
+        //         "password": password
+        //     },
+        //     "request": {
+        //         "job": job,
+        //         "getStats": {
+        //             "timestampStart": timestampStart,
+        //             "timestampEnd": timestampEnd,
+        //             "speedThresholds": [
+        //                 {
+        //                     "name": "Превышение на 20", "min": 23, "max": 43
+        //                 },
+        //                 {
+        //                     "name": "Превышение на 40",
+        //                     "min": 43, "max": 63
+        //                 },
+        //                 {
+        //                     "name": "Превышение на 60", "min": 63, "max": 83
+        //                 },
+        //                 {
+        //                     "name": "Превышение на 80", "min": 83, "max": 0
+        //                 }
+        //             ],
+        //             "showInfo": true
+        //         }
+        //     }
+        // });
+        //
+        // let _port = '80';
+        //
+        // if (port !== '' && typeof port !== 'undefined' && port !== null) {
+        //     _port = port;
+        // }
+        //
+        // var options = {
+        //     url: 'http://' + ip + ':' + _port + '/api11.php',
+        //     // host: ip,
+        //     // port: _port,
+        //     // path: '/api11.php',
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Content-Length': Buffer.byteLength(data)
+        //     }
+        //
+        // };
+        // var answ = '';
+        // try {
+        //     var httpreq = http.request(options, function (response) {
+        //         //response.setEncoding('utf8');
+        //         response.on('data', function (chunk) {
+        //             //console.log(chunk);
+        //             answ += chunk;
+        //         }).on('end', function () {
+        //             var str = JSON.parse(answ);
+        //
+        //             //let s = '{"violations":' + JSON.stringify(str['getStats']['violation']['total']) + '}';
+        //             //console.log(str);
+        //             //res.send(str);
+        //             //answ = str;
+        //             res.send(str);
+        //         }).on('error', (err) => {
+        //             let s = '{"status":' + "inactive" + '}';
+        //             console.error(err.stack);
+        //             //answ = s;
+        //             res.send(s);
+        //         });
+        //     });
+        //     httpreq.write(data);
+        //     httpreq.end();
+        // } catch (e) {
+        //
+        //     console.log(e);
+        // }
+
+        var url;
+        url = 'http://'+ip;
+        var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
+        // var parsedPort;
+
+        var options = {
+            hostname: parsedHost,
+            port: 18000,
+            // path: clientRequest.url,
+            path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
+            // method: clientRequest.method,
+            method: 'GET',
+            headers: {
+                'User-Agent': 'auto-request-bot',
+                'Content-Type':'image/jpeg',
+                'Connection':'keep-alive',
+                'Keep-Alive':'timeout=5',
+                'Transfer-Encoding':'chunked'
+            }
+        };
+
+        var serverRequest = http.request(options, function(serverResponse) {
+            var body = '';
+            if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
+                serverResponse.on('data', function(chunk) {
+                    body += chunk;
+                });
+
+                serverResponse.on('end', function() {
+                    // Make changes to HTML files when they're done being read.
+                    body = body.replace(`example`, `Cat!` );
+
+                    res.writeHead(serverResponse.statusCode, serverResponse.headers);
+                    res.end(body);
+                });
+            }
+            else {
+                serverResponse.pipe(res, {
+                    end: true
+                });
+                res.contentType(serverResponse.headers['content-type'])
+            }
+        });
+
+        serverRequest.end();
+
+        var answ = '';
+        return answ;
+
     }
 
 };
