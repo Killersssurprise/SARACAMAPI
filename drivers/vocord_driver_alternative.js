@@ -515,7 +515,17 @@ function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd,
     };
 
     function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
+
+            let jsonBody = JSON.parse(body);
+
+            let CamerasDto = jsonBody.CamerasDto;
+            let tmp = CamerasDto[0];
+            let ComponentCamera = tmp.ComponentCamera;
+            let ChannelId = ComponentCamera.ChannelId;
+
+            console.log("ChannelId: "+ChannelId);
+
             res.send(body);
             console.log(body);
         }else{
