@@ -21,7 +21,7 @@ const orlanID = '3';
 const vocordID = '5';
 
 // router.post("/", jsonParser, function (req, res) {
-router.get("/", jsonParser, function (req, res) {
+router.post("/", jsonParser, function (req, res) {
 
 
     try {
@@ -33,57 +33,57 @@ router.get("/", jsonParser, function (req, res) {
         var dt = req.param('device_type');
         var pt = req.param('port');
 
-        // if (typeof lg !== 'undefined' && lg !== null) {
-        //     login = lg;
-        // } else {
-        //     let s = '{"error":' + "no param login" + '}';
-        //     res.send(s);
-        //     return;
-        // }
-        //
-        // if (typeof ps !== 'undefined' && ps !== null) {
-        //     password = ps;
-        // } else {
-        //     let s = '{"error":' + "no param password" + '}';
-        //     res.send(s);
-        //     return;
-        // }
-        //
-        // if (typeof st !== 'undefined' && st !== null) {
-        //     timestampStart = st;
-        // } else {
-        //     let s = '{"error":' + "no param start_time" + '}';
-        //     res.send(s);
-        //     return;
-        // }
-        //
-        // if (typeof et !== 'undefined' && et !== null) {
-        //     timestampEnd = et;
-        // } else {
-        //     let s = '{"error":' + "no param end_time" + '}';
-        //     res.send(s);
-        //     return;
-        // }
-        //
-        // if (typeof ip !== 'undefined' && ip !== null) {
-        //     ip = i;
-        // } else {
-        //     let s = '{"error":' + "no param ip" + '}';
-        //     res.send(s);
-        //     return;
-        // }
-        //
-        // if (typeof pt !== 'undefined' && pt !== null) {
-        //     port = pt;
-        // }
-        //
-        // if (typeof dt !== 'undefined' && dt !== null) {
-        //     device_type = dt;
-        // } else {
-        //     let s = '{"error":' + "no param device_type" + '}';
-        //     res.send(s);
-        //     return;
-        // }
+        if (typeof lg !== 'undefined' && lg !== null) {
+            login = lg;
+        } else {
+            let s = '{"error":' + "no param login" + '}';
+            res.send(s);
+            return;
+        }
+
+        if (typeof ps !== 'undefined' && ps !== null) {
+            password = ps;
+        } else {
+            let s = '{"error":' + "no param password" + '}';
+            res.send(s);
+            return;
+        }
+
+        if (typeof st !== 'undefined' && st !== null) {
+            timestampStart = st;
+        } else {
+            let s = '{"error":' + "no param start_time" + '}';
+            res.send(s);
+            return;
+        }
+
+        if (typeof et !== 'undefined' && et !== null) {
+            timestampEnd = et;
+        } else {
+            let s = '{"error":' + "no param end_time" + '}';
+            res.send(s);
+            return;
+        }
+
+        if (typeof ip !== 'undefined' && ip !== null) {
+            ip = i;
+        } else {
+            let s = '{"error":' + "no param ip" + '}';
+            res.send(s);
+            return;
+        }
+
+        if (typeof pt !== 'undefined' && pt !== null) {
+            port = pt;
+        }
+
+        if (typeof dt !== 'undefined' && dt !== null) {
+            device_type = dt;
+        } else {
+            let s = '{"error":' + "no param device_type" + '}';
+            res.send(s);
+            return;
+        }
 
         var answ = '';
 
