@@ -63,54 +63,8 @@ module.exports = {
 
     getVideo: function getVideo(login, password, ip, port, timestampStart, timestampEnd, res) {
 
-        var url;
-        url = 'http://'+ip;
-        var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
-        // var parsedPort;
-
-        var options = {
-            hostname: parsedHost,
-            port: 18000,
-            // path: clientRequest.url,
-            path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
-            // method: clientRequest.method,
-            method: 'GET',
-            headers: {
-                'User-Agent': 'auto-request-bot',
-                'Content-Type':'image/jpeg',
-                'Connection':'keep-alive',
-                'Keep-Alive':'timeout=5',
-                'Transfer-Encoding':'chunked'
-            }
-        };
-
-        var serverRequest = http.request(options, function(serverResponse) {
-            var body = '';
-            if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
-                serverResponse.on('data', function(chunk) {
-                    body += chunk;
-                });
-
-                serverResponse.on('end', function() {
-                    // Make changes to HTML files when they're done being read.
-                    body = body.replace(`example`, `Cat!` );
-
-                    res.writeHead(serverResponse.statusCode, serverResponse.headers);
-                    res.end(body);
-                });
-            }
-            else {
-                serverResponse.pipe(res, {
-                    end: true
-                });
-                res.contentType(serverResponse.headers['content-type'])
-            }
-        });
-
-        serverRequest.end();
-
-        var answ = '';
-        return answ;
+        /***** запрос на получение channelId*/
+        getAccessToken(login, password, ip, timestampStart, timestampEnd, res, GetCamerasForNotification);
 
     }
 
@@ -534,6 +488,33 @@ function getViolations(res, ip, token, timestampStart, timestampEnd, information
         } else {
             let errAnswer = utils.getErrorMessage(error, response, body);
             res.send(errAnswer);
+        }
+    }
+
+    request(options, callback);
+}
+
+function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd, information) {
+    var headers = {
+        'Connection': 'keep-alive',
+        'Accept': 'application/json, text/plain, */*',
+        'Authorization': 'Bearer ' + token,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Origin': 'http://' + ip,
+        'Referer': 'http://' + ip + '/',
+        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+    };
+
+    var options = {
+        url: 'http://192.168.40.130/MonoblockService/api/camera/GetCamerasForNotification',
+        headers: headers
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.send(body);
+            console.log(body);
         }
     }
 

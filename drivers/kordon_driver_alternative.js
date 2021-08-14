@@ -589,62 +589,94 @@ module.exports = {
 
         return answ;
 
-    },
-
-    getVideo: function getVideo(login, password, ip, port, timestampStart, timestampEnd, res) {
-
-        // http://192.168.40.130:84/140F7FC9-4C38-45F1-9E71-538F0C99C458/medium/560.jpg?id=1627758275951
-
-        var url;
-        url = 'http://192.168.40.130';
-        var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
-        // var parsedPort;
-
-        var options = {
-            hostname: parsedHost,
-            port: 84,
-            // path: clientRequest.url,
-            path:'/140F7FC9-4C38-45F1-9E71-538F0C99C458/medium/560.jpg?id=1627758275951',
-            // method: clientRequest.method,
-            method: 'GET',
-            headers: {
-                'User-Agent': 'auto-request-bot',
-                'Content-Type':'image/jpeg',
-                'Connection':'keep-alive',
-                'Keep-Alive':'timeout=5',
-                'Transfer-Encoding':'chunked'
-            }
-        };
-
-        var serverRequest = http.request(options, function(serverResponse) {
-            var body = '';
-            if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
-                serverResponse.on('data', function(chunk) {
-                    body += chunk;
-                });
-
-                serverResponse.on('end', function() {
-                    // Make changes to HTML files when they're done being read.
-                    body = body.replace(`example`, `Cat!` );
-
-                    res.writeHead(serverResponse.statusCode, serverResponse.headers);
-                    res.end(body);
-                });
-            }
-            else {
-                serverResponse.pipe(res, {
-                    end: true
-                });
-                res.contentType(serverResponse.headers['content-type'])
-            }
-        });
-
-        serverRequest.end();
-
-        var answ = '';
-        return answ;
-
     }
+
+    // getVideo: function getVideo(login, password, ip, port, timestampStart, timestampEnd, res) {
+    //
+    //     // http://192.168.40.130:84/140F7FC9-4C38-45F1-9E71-538F0C99C458/medium/560.jpg?id=1627758275951
+    //
+    //     /***** запрос на получение channelId*/
+    //
+    //     // var request = require('request');
+    //     //
+    //     // var headers = {
+    //     //     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0',
+    //     //     'Accept': 'application/json, text/plain, */*',
+    //     //     'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
+    //     //     'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
+    //     //     'Cache-Control': 'no-cache',
+    //     //     'Pragma': 'no-cache',
+    //     //     'Authorization': 'Bearer qJJbLc9ThmH0A64Pa1SO1nkXznewnC5OSniBvxgMiweQbQiNaGNZ7eS0X-fERC6tbzeEAnv2VP86Kxi9Pww0JR-URjBDCJZzQwO41ZLvPlhp-wNqZwBwRmgverBPU1l9MGVqLn--lnO4u9N-GPJiozoMdRJI_eE1Dc7HplX4gESpQw2UvQ2VTDmrmECeXKyjT_VvcXNiMY1IwKwMi-egDyYw0nwk_3F7Oa_tY6sljrg',
+    //     //     'DNT': '1',
+    //     //     'Connection': 'keep-alive',
+    //     //     'Referer': 'http://192.168.40.130/'
+    //     // };
+    //     //
+    //     // var options = {
+    //     //     url: 'http://192.168.40.130/MonoblockService/api/camera/GetCamerasForNotification',
+    //     //     headers: headers
+    //     // };
+    //     //
+    //     // function callback(error, response, body) {
+    //     //     if (!error && response.statusCode == 200) {
+    //     //         console.log(body);
+    //     //     }
+    //     // }
+    //     //
+    //     // request(options, callback);
+    //
+    //     /*****/
+    //
+    //     var url;
+    //     url = 'http://192.168.40.130';
+    //     var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
+    //     // var parsedPort;
+    //
+    //     var options = {
+    //         hostname: parsedHost,
+    //         port: 84,
+    //         // path: clientRequest.url,
+    //         path:'/140F7FC9-4C38-45F1-9E71-538F0C99C458/medium/560.jpg?id=1627758275951',
+    //         // method: clientRequest.method,
+    //         method: 'GET',
+    //         headers: {
+    //             'User-Agent': 'auto-request-bot',
+    //             'Content-Type':'image/jpeg',
+    //             'Connection':'keep-alive',
+    //             'Keep-Alive':'timeout=5',
+    //             'Transfer-Encoding':'chunked'
+    //         }
+    //     };
+    //
+    //     var serverRequest = http.request(options, function(serverResponse) {
+    //         var body = '';
+    //         if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
+    //             serverResponse.on('data', function(chunk) {
+    //                 body += chunk;
+    //             });
+    //
+    //             serverResponse.on('end', function() {
+    //                 // Make changes to HTML files when they're done being read.
+    //                 body = body.replace(`example`, `Cat!` );
+    //
+    //                 res.writeHead(serverResponse.statusCode, serverResponse.headers);
+    //                 res.end(body);
+    //             });
+    //         }
+    //         else {
+    //             serverResponse.pipe(res, {
+    //                 end: true
+    //             });
+    //             res.contentType(serverResponse.headers['content-type'])
+    //         }
+    //     });
+    //
+    //     serverRequest.end();
+    //
+    //     var answ = '';
+    //     return answ;
+    //
+    // }
 
 
 };
