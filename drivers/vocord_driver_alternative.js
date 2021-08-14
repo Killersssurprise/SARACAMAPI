@@ -59,6 +59,59 @@ module.exports = {
 
         getAccessToken(login, password, ip, timestampStart, timestampEnd, res, getFullInfo);
 
+    },
+
+    getVideo: function getVideo(login, password, ip, port, timestampStart, timestampEnd, res) {
+
+        var url;
+        url = 'http://'+ip;
+        var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
+        // var parsedPort;
+
+        var options = {
+            hostname: parsedHost,
+            port: 18000,
+            // path: clientRequest.url,
+            path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
+            // method: clientRequest.method,
+            method: 'GET',
+            headers: {
+                'User-Agent': 'auto-request-bot',
+                'Content-Type':'image/jpeg',
+                'Connection':'keep-alive',
+                'Keep-Alive':'timeout=5',
+                'Transfer-Encoding':'chunked'
+            }
+        };
+
+        var serverRequest = http.request(options, function(serverResponse) {
+            var body = '';
+            if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
+                serverResponse.on('data', function(chunk) {
+                    body += chunk;
+                });
+
+                serverResponse.on('end', function() {
+                    // Make changes to HTML files when they're done being read.
+                    body = body.replace(`example`, `Cat!` );
+
+                    res.writeHead(serverResponse.statusCode, serverResponse.headers);
+                    res.end(body);
+                });
+            }
+            else {
+                serverResponse.pipe(res, {
+                    end: true
+                });
+                res.contentType(serverResponse.headers['content-type'])
+            }
+        });
+
+        serverRequest.end();
+
+        var answ = '';
+        return answ;
+
     }
 
 };
