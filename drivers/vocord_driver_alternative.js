@@ -515,6 +515,8 @@ function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd,
         if (!error && response.statusCode == 200) {
             res.send(body);
             console.log(body);
+        }else{
+            console.log(error);
         }
     }
 
