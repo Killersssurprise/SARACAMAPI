@@ -569,6 +569,8 @@ function getPhoto(res, ip, token, timestampStart, timestampEnd, ChannelId){
 
     var serverRequest = http.request(options, function(serverResponse) {
         var body = '';
+        console.log(options.path);
+
         if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
             serverResponse.on('data', function(chunk) {
                 body += chunk;
