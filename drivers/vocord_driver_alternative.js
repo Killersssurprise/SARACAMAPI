@@ -510,7 +510,7 @@ function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd,
     };
 
     var options = {
-        url: 'http://192.168.40.130/MonoblockService/api/deviceState/getDeviceState',
+        url: 'http://'+ip+'/MonoblockService/api/deviceState/getDeviceState',
         headers: headers
     };
 
@@ -526,8 +526,15 @@ function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd,
 
             console.log("ChannelId: "+ChannelId);
 
-            res.send(body);
-            console.log(body);
+
+
+            getPhoto(res, ip, token, timestampStart, timestampEnd, ChannelId);
+
+
+
+
+            // res.send(body);
+            // console.log(body);
         }else{
             console.log(error);
         }
@@ -537,6 +544,54 @@ function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd,
 
 }
 
+
+function getPhoto(res, ip, token, timestampStart, timestampEnd, ChannelId){
+    var url;
+    url = 'http://'+ip;
+    var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
+    // var parsedPort;
+
+    var options = {
+        hostname: parsedHost,
+        port: 84,
+        // path: clientRequest.url,
+        path: ''+ChannelId+'/medium/560.jpg?id='+timestampStart,
+        // method: clientRequest.method,
+        method: 'GET',
+        headers: {
+            'User-Agent': 'auto-request-bot',
+            'Content-Type':'image/jpeg',
+            'Connection':'keep-alive',
+            'Keep-Alive':'timeout=5',
+            'Transfer-Encoding':'chunked'
+        }
+    };
+
+    var serverRequest = http.request(options, function(serverResponse) {
+        var body = '';
+        if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
+            serverResponse.on('data', function(chunk) {
+                body += chunk;
+            });
+
+            serverResponse.on('end', function() {
+                // Make changes to HTML files when they're done being read.
+                body = body.replace(`example`, `Cat!` );
+
+                res.writeHead(serverResponse.statusCode, serverResponse.headers);
+                res.end(body);
+            });
+        }
+        else {
+            serverResponse.pipe(res, {
+                end: true
+            });
+            res.contentType(serverResponse.headers['content-type'])
+        }
+    });
+
+    serverRequest.end();
+}
 
 function getIsActive(res, ip, token, timestampStart, timestampEnd) {
     var headers = {
