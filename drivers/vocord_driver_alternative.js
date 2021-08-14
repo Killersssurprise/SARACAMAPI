@@ -495,19 +495,22 @@ function getViolations(res, ip, token, timestampStart, timestampEnd, information
 }
 
 function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd, information) {
+
     var headers = {
-        'Connection': 'keep-alive',
+        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0',
         'Accept': 'application/json, text/plain, */*',
+        'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
+        'If-Modified-Since': 'Mon, 26 Jul 1997 05:00:00 GMT',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
         'Authorization': 'Bearer ' + token,
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Origin': 'http://' + ip,
-        'Referer': 'http://' + ip + '/',
-        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8'
+        'DNT': '1',
+        'Connection': 'keep-alive',
+        'Referer': 'http://' + ip + '/'
     };
 
     var options = {
-        url: 'http://192.168.40.130/MonoblockService/api/camera/GetCamerasForNotification',
+        url: 'http://192.168.40.130/MonoblockService/api/deviceState/getDeviceState',
         headers: headers
     };
 
@@ -521,6 +524,7 @@ function GetCamerasForNotification(res, ip, token, timestampStart, timestampEnd,
     }
 
     request(options, callback);
+
 }
 
 
