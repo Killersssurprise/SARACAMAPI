@@ -87,43 +87,43 @@ router.get("/", jsonParser, function (req, res) {
 
         var answ = '';
 
-        // switch (device_type) {
-        //     case null:
-        //         kordon_driver.getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res);
-        //         break;
-        //     case 'undefined':
-        //         kordon_driver.getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res);
-        //         break;
-        //     case kordonID:
-        //         kordon_driver.getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res);
-        //         break;
-        //     case vocordID:
-        //         vocord_driver.getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res);
-        //         break;
-        //     case orlanID:
-        //         orlan_driver.getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res);
-        //         break;
-        //     default:
-        //         kordon_driver.getFullCamInfoData(login, password, ip, port, timestampStart, timestampEnd, res);
-        //         break;
-        // }
+        switch (device_type) {
+            case null:
+                kordon_driver.getVideo(login, password, ip, port, timestampStart, timestampEnd, res);
+                break;
+            case 'undefined':
+                kordon_driver.getVideo(login, password, ip, port, timestampStart, timestampEnd, res);
+                break;
+            case kordonID:
+                kordon_driver.getVideo(login, password, ip, port, timestampStart, timestampEnd, res);
+                break;
+            case vocordID:
+                vocord_driver.getVideo(login, password, ip, port, timestampStart, timestampEnd, res);
+                break;
+            case orlanID:
+                orlan_driver.getVideo(login, password, ip, port, timestampStart, timestampEnd, res);
+                break;
+            default:
+                kordon_driver.getVideo(login, password, ip, port, timestampStart, timestampEnd, res);
+                break;
+        }
         //
         // var request = require('request');
         //
-        var options = {
-            // url: 'http://192.168.40.10:18000/video/data.mjpg'
-            url: 'http://192.168.40.10:18000/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING'
-            // url: 'http://google.com'
-        };
-
-        function callback(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                console.log(body);
-                res.send(body);
-            }
-        }
-
-        request(options, callback);
+        // var options = {
+        //     // url: 'http://192.168.40.10:18000/video/data.mjpg'
+        //     // url: 'http://192.168.40.10:18000/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING'
+        //     url: 'http://google.com'
+        // };
+        //
+        // function callback(error, response, body) {
+        //     if (!error && response.statusCode == 200) {
+        //         console.log(body);
+        //         res.send(body);
+        //     }
+        // }
+        //
+        // request(options, callback);
 
 
 

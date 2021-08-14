@@ -52,19 +52,19 @@ app.use('/test', test);
 app.use('/video', video);
 
 // let target = 'http://direct.fipradio.fr/live/fip-midfi.mp3';
-let target = 'http://192.168.40.10:18000/video/data.mjpg';
+// let target = 'http://192.168.40.10:18000/video/data.mjpg';
 // figure out 'real' target if the server returns a 302 (redirect)
-http.get(target, resp => {
-    if (resp.statusCode === 302) {
-        target = resp.headers.location;
-    }
-});
+// http.get(target, resp => {
+//     if (resp.statusCode === 302) {
+//         target = resp.headers.location;
+//     }
+// });
 
 app.use(express.static('dist'));
 
-app.get('/stream', (req, res) => {
-    req.pipe(request.get(target)).pipe(res);
-});
+// app.get('/stream', (req, res) => {
+//     req.pipe(request.get(target)).pipe(res);
+// });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
