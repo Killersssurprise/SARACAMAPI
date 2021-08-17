@@ -22,6 +22,30 @@ var video = require('./routes/video');
 const https = require('https');
 var app = express();
 
+// const { proxy, scriptUrl } = require('rtsp-relay')(app);
+// const handler = proxy({
+//     // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
+//     url: `rtsp://admin:C6CDd76z@192.168.72.10:554`,
+//     // if your RTSP stream need credentials, include them in the URL as above
+//     verbose: false,
+// });
+// app.ws('/api/stream', handler);
+//
+//
+// app.get('/streamtest', (req, res) =>
+//     res.send(`
+//   <canvas id='canvas'></canvas>
+//
+//   <script src='${scriptUrl}'></script>
+//   <script>
+//     loadPlayer({
+//       url: 'ws://' + location.host + '/api/stream',
+//       canvas: document.getElementById('canvas')
+//     });
+//   </script>
+// `),
+// );
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
