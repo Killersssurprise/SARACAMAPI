@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 
 const { proxy, scriptUrl } = require('rtsp-relay')(app);
-
+// "rtsp://admin:C6CDd76z@192.168.72.10:554
 const handler = proxy({
     // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
-    url: `rtsp://192.168.72.10:554`,
+    url: `rtsp://admin:C6CDd76z@192.168.72.10:554`,
     // if your RTSP stream need credentials, include them in the URL as above
     verbose: false,
 });
