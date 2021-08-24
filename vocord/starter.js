@@ -21,8 +21,7 @@ app.get('/', (req, res) =>
   <script src='${scriptUrl}'></script>
   <script>
     loadPlayer({
-      // url: 'ws://' + location.host + '/api/stream',
-      url: 'ws://' + location.host,
+      url: 'ws://' + location.host + '/api/stream',
       canvas: document.getElementById('canvas')
     });
   </script>
@@ -32,3 +31,16 @@ app.get('/', (req, res) =>
 app.listen(3001);
 
 console.log('Running on 0.0.0.0:3001');
+
+// Stream = require('node-rtsp-stream');
+//
+// stream = new Stream({
+//     name: 'name',
+//     streamUrl: 'rtsp://admin:C6CDd76z@192.168.72.10:554',
+//     wsPort: 9999,
+//     ffmpegOptions: { // options ffmpeg flags
+//         '-stats': '', // an option with no neccessary value uses a blank string
+//         '-r': 30 // options with required values specify the value after the key
+//     }
+// });
+

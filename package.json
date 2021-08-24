@@ -19,6 +19,7 @@
     "morgan": "~1.9.1",
     "net-snmp": "^3.5.2",
     "node-bignumber": "^1.2.1",
+    "node-rtsp-stream": "^0.0.9",
     "pug": "^2.0.4",
     "rtsp-relay": "^1.5.1",
     "snmp-native": "^1.2.0",
