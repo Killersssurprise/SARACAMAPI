@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5a2bbd0-ffe8-4407-9424-4a614b169e78" name="Default Changelist" comment="" />
+    <list default="true" id="d5a2bbd0-ffe8-4407-9424-4a614b169e78" name="Default Changelist" comment="Fixed bug with cordon">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vocord/starter.js" beforeDir="false" afterPath="$PROJECT_DIR$/vocord/starter.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,11 +19,19 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1oIUhPXDJgBbXhuukLwaRtw9hJz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bin/www" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SaleroBackend/SaleroBackend" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
@@ -35,10 +47,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.VSMachine.js">
     <configuration name="Start" type="NodeJSConfigurationType" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
+    <configuration name="Tester" type="NodeJSConfigurationType" path-to-js-file="vocord/starter.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="VSMachine.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="vocord/VSMachine.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.Start" />
+      <item itemvalue="Node.js.Tester" />
+      <item itemvalue="Node.js.VSMachine.js" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -55,11 +78,433 @@
       <workItem from="1613043003481" duration="3000" />
       <workItem from="1613043038703" duration="5000" />
       <workItem from="1613043766259" duration="3000" />
-      <workItem from="1613231109937" duration="910000" />
+      <workItem from="1613231109937" duration="11120000" />
+      <workItem from="1613406511411" duration="5721000" />
+      <workItem from="1613508212378" duration="2830000" />
+      <workItem from="1613538974797" duration="11294000" />
+      <workItem from="1613634732896" duration="19039000" />
+      <workItem from="1613731107734" duration="23681000" />
+      <workItem from="1614114766648" duration="1150000" />
+      <workItem from="1614148083265" duration="685000" />
+      <workItem from="1614319234746" duration="2093000" />
+      <workItem from="1614534165138" duration="13948000" />
+      <workItem from="1615290625385" duration="5857000" />
+      <workItem from="1615375259689" duration="872000" />
+      <workItem from="1616012827877" duration="1553000" />
+      <workItem from="1616657373323" duration="21202000" />
+      <workItem from="1619162827295" duration="1894000" />
+      <workItem from="1621412047270" duration="1881000" />
+      <workItem from="1621584247346" duration="6003000" />
+      <workItem from="1621832592875" duration="3988000" />
+      <workItem from="1621854419532" duration="7387000" />
+      <workItem from="1622210692810" duration="601000" />
+      <workItem from="1622211758060" duration="616000" />
+      <workItem from="1622388710419" duration="5446000" />
+      <workItem from="1622486627836" duration="599000" />
+      <workItem from="1622580071079" duration="657000" />
+      <workItem from="1623258200322" duration="15088000" />
+      <workItem from="1625041712120" duration="783000" />
+      <workItem from="1625043704057" duration="599000" />
+      <workItem from="1625076626251" duration="597000" />
+      <workItem from="1625425624248" duration="602000" />
+      <workItem from="1625819987271" duration="2165000" />
+      <workItem from="1627505863185" duration="4000" />
+      <workItem from="1627648467590" duration="3910000" />
+      <workItem from="1627745467085" duration="9285000" />
+      <workItem from="1628962316993" duration="8900000" />
+      <workItem from="1629221162477" duration="1952000" />
+      <workItem from="1629223539998" duration="3370000" />
+      <workItem from="1629813348982" duration="4729000" />
     </task>
+    <task id="LOCAL-00253" summary="Fixed bug with cordon">
+      <created>1623271797937</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1623271797937</updated>
+    </task>
+    <task id="LOCAL-00254" summary="Fixed bug with cordon">
+      <created>1623271976362</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1623271976362</updated>
+    </task>
+    <task id="LOCAL-00255" summary="Fixed bug with cordon">
+      <created>1623272222895</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1623272222895</updated>
+    </task>
+    <task id="LOCAL-00256" summary="Fixed bug with cordon">
+      <created>1623272313993</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
+      <option name="project" value="LOCAL" />
+      <updated>1623272313993</updated>
+    </task>
+    <task id="LOCAL-00257" summary="Fixed bug with cordon">
+      <created>1623273041793</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1623273041793</updated>
+    </task>
+    <task id="LOCAL-00258" summary="Fixed bug with cordon">
+      <created>1623273148423</created>
+      <option name="number" value="00258" />
+      <option name="presentableId" value="LOCAL-00258" />
+      <option name="project" value="LOCAL" />
+      <updated>1623273148423</updated>
+    </task>
+    <task id="LOCAL-00259" summary="Fixed bug with cordon">
+      <created>1623273301089</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1623273301089</updated>
+    </task>
+    <task id="LOCAL-00260" summary="Fixed bug with cordon">
+      <created>1625041829857</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1625041829858</updated>
+    </task>
+    <task id="LOCAL-00261" summary="Fixed bug with cordon">
+      <created>1625820194137</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1625820194138</updated>
+    </task>
+    <task id="LOCAL-00262" summary="Fixed bug with cordon">
+      <created>1625820927579</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1625820927580</updated>
+    </task>
+    <task id="LOCAL-00263" summary="Test video to server">
+      <created>1627746813804</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1627746813804</updated>
+    </task>
+    <task id="LOCAL-00264" summary="test req">
+      <created>1627747343371</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1627747343371</updated>
+    </task>
+    <task id="LOCAL-00265" summary="Fixed bug with cordon">
+      <created>1627747823427</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1627747823427</updated>
+    </task>
+    <task id="LOCAL-00266" summary="Fixed bug with cordon">
+      <created>1627747932371</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1627747932371</updated>
+    </task>
+    <task id="LOCAL-00267" summary="Fixed bug with cordon">
+      <created>1627748009549</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1627748009550</updated>
+    </task>
+    <task id="LOCAL-00268" summary="Fixed bug with cordon">
+      <created>1627751802775</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1627751802775</updated>
+    </task>
+    <task id="LOCAL-00269" summary="Fixed bug with cordon">
+      <created>1627751931060</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1627751931060</updated>
+    </task>
+    <task id="LOCAL-00270" summary="Fixed bug with cordon">
+      <created>1627752204968</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1627752204968</updated>
+    </task>
+    <task id="LOCAL-00271" summary="Fixed bug with cordon">
+      <created>1627753561409</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1627753561409</updated>
+    </task>
+    <task id="LOCAL-00272" summary="Fixed bug with cordon">
+      <created>1627753723022</created>
+      <option name="number" value="00272" />
+      <option name="presentableId" value="LOCAL-00272" />
+      <option name="project" value="LOCAL" />
+      <updated>1627753723023</updated>
+    </task>
+    <task id="LOCAL-00273" summary="Fixed bug with cordon">
+      <created>1627753942720</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1627753942720</updated>
+    </task>
+    <task id="LOCAL-00274" summary="Fixed bug with cordon">
+      <created>1627755429178</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1627755429178</updated>
+    </task>
+    <task id="LOCAL-00275" summary="Fixed bug with cordon">
+      <created>1627755722446</created>
+      <option name="number" value="00275" />
+      <option name="presentableId" value="LOCAL-00275" />
+      <option name="project" value="LOCAL" />
+      <updated>1627755722446</updated>
+    </task>
+    <task id="LOCAL-00276" summary="Fixed bug with cordon">
+      <created>1627755859524</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1627755859524</updated>
+    </task>
+    <task id="LOCAL-00277" summary="Fixed bug with cordon">
+      <created>1627756036935</created>
+      <option name="number" value="00277" />
+      <option name="presentableId" value="LOCAL-00277" />
+      <option name="project" value="LOCAL" />
+      <updated>1627756036935</updated>
+    </task>
+    <task id="LOCAL-00278" summary="Fixed bug with cordon">
+      <created>1627756188626</created>
+      <option name="number" value="00278" />
+      <option name="presentableId" value="LOCAL-00278" />
+      <option name="project" value="LOCAL" />
+      <updated>1627756188626</updated>
+    </task>
+    <task id="LOCAL-00279" summary="Fixed bug with cordon">
+      <created>1627756443017</created>
+      <option name="number" value="00279" />
+      <option name="presentableId" value="LOCAL-00279" />
+      <option name="project" value="LOCAL" />
+      <updated>1627756443017</updated>
+    </task>
+    <task id="LOCAL-00280" summary="Cordon (orlan) video route test">
+      <created>1628963637059</created>
+      <option name="number" value="00280" />
+      <option name="presentableId" value="LOCAL-00280" />
+      <option name="project" value="LOCAL" />
+      <updated>1628963637060</updated>
+    </task>
+    <task id="LOCAL-00281" summary="video test">
+      <created>1628963861832</created>
+      <option name="number" value="00281" />
+      <option name="presentableId" value="LOCAL-00281" />
+      <option name="project" value="LOCAL" />
+      <updated>1628963861832</updated>
+    </task>
+    <task id="LOCAL-00282" summary="fix">
+      <created>1628964107982</created>
+      <option name="number" value="00282" />
+      <option name="presentableId" value="LOCAL-00282" />
+      <option name="project" value="LOCAL" />
+      <updated>1628964107982</updated>
+    </task>
+    <task id="LOCAL-00283" summary="Orlan fix">
+      <created>1628965935769</created>
+      <option name="number" value="00283" />
+      <option name="presentableId" value="LOCAL-00283" />
+      <option name="project" value="LOCAL" />
+      <updated>1628965935769</updated>
+    </task>
+    <task id="LOCAL-00284" summary="Fixed bug with cordon">
+      <created>1628966042673</created>
+      <option name="number" value="00284" />
+      <option name="presentableId" value="LOCAL-00284" />
+      <option name="project" value="LOCAL" />
+      <updated>1628966042673</updated>
+    </task>
+    <task id="LOCAL-00285" summary="Fixed bug with cordon">
+      <created>1628966634919</created>
+      <option name="number" value="00285" />
+      <option name="presentableId" value="LOCAL-00285" />
+      <option name="project" value="LOCAL" />
+      <updated>1628966634920</updated>
+    </task>
+    <task id="LOCAL-00286" summary="vocord test">
+      <created>1628967951584</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
+      <option name="project" value="LOCAL" />
+      <updated>1628967951584</updated>
+    </task>
+    <task id="LOCAL-00287" summary="Fixed bug with cordon">
+      <created>1628968901653</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
+      <option name="project" value="LOCAL" />
+      <updated>1628968901653</updated>
+    </task>
+    <task id="LOCAL-00288" summary="Fixed bug with cordon">
+      <created>1628969091876</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
+      <option name="project" value="LOCAL" />
+      <updated>1628969091876</updated>
+    </task>
+    <task id="LOCAL-00289" summary="Fixed bug with cordon">
+      <created>1628969485727</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
+      <option name="project" value="LOCAL" />
+      <updated>1628969485727</updated>
+    </task>
+    <task id="LOCAL-00290" summary="Fixed bug with cordon">
+      <created>1628969903216</created>
+      <option name="number" value="00290" />
+      <option name="presentableId" value="LOCAL-00290" />
+      <option name="project" value="LOCAL" />
+      <updated>1628969903216</updated>
+    </task>
+    <task id="LOCAL-00291" summary="Fixed bug with cordon">
+      <created>1628970026398</created>
+      <option name="number" value="00291" />
+      <option name="presentableId" value="LOCAL-00291" />
+      <option name="project" value="LOCAL" />
+      <updated>1628970026398</updated>
+    </task>
+    <task id="LOCAL-00292" summary="Fixed bug with cordon">
+      <created>1628970690477</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1628970690477</updated>
+    </task>
+    <task id="LOCAL-00293" summary="Fixed bug with cordon">
+      <created>1629221646271</created>
+      <option name="number" value="00293" />
+      <option name="presentableId" value="LOCAL-00293" />
+      <option name="project" value="LOCAL" />
+      <updated>1629221646272</updated>
+    </task>
+    <task id="LOCAL-00294" summary="Fixed bug with cordon">
+      <created>1629222714602</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
+      <option name="project" value="LOCAL" />
+      <updated>1629222714602</updated>
+    </task>
+    <task id="LOCAL-00295" summary="Fixed bug with cordon">
+      <created>1629222782221</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
+      <option name="project" value="LOCAL" />
+      <updated>1629222782221</updated>
+    </task>
+    <task id="LOCAL-00296" summary="Fixed bug with cordon">
+      <created>1629226508971</created>
+      <option name="number" value="00296" />
+      <option name="presentableId" value="LOCAL-00296" />
+      <option name="project" value="LOCAL" />
+      <updated>1629226508972</updated>
+    </task>
+    <task id="LOCAL-00297" summary="Test fixed">
+      <created>1629813414713</created>
+      <option name="number" value="00297" />
+      <option name="presentableId" value="LOCAL-00297" />
+      <option name="project" value="LOCAL" />
+      <updated>1629813414714</updated>
+    </task>
+    <task id="LOCAL-00298" summary="Fixed bug with cordon">
+      <created>1629813664890</created>
+      <option name="number" value="00298" />
+      <option name="presentableId" value="LOCAL-00298" />
+      <option name="project" value="LOCAL" />
+      <updated>1629813664890</updated>
+    </task>
+    <task id="LOCAL-00299" summary="Fixed bug with cordon">
+      <created>1629814890998</created>
+      <option name="number" value="00299" />
+      <option name="presentableId" value="LOCAL-00299" />
+      <option name="project" value="LOCAL" />
+      <updated>1629814890998</updated>
+    </task>
+    <task id="LOCAL-00300" summary="Fixed bug with cordon">
+      <created>1629816357561</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
+      <option name="project" value="LOCAL" />
+      <updated>1629816357561</updated>
+    </task>
+    <task id="LOCAL-00301" summary="Fixed bug with cordon">
+      <created>1629821750218</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
+      <option name="project" value="LOCAL" />
+      <updated>1629821750218</updated>
+    </task>
+    <option name="localTasksCounter" value="302" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added cordon real ping and voltage stub" />
+    <MESSAGE value="Cordon fix" />
+    <MESSAGE value="Kordon add snmpvalueget" />
+    <MESSAGE value="Add dependency" />
+    <MESSAGE value="kordon try" />
+    <MESSAGE value="Cordon try" />
+    <MESSAGE value="try" />
+    <MESSAGE value="Test" />
+    <MESSAGE value="vocord add timestamp" />
+    <MESSAGE value="Fixed string to int parse bug when data time" />
+    <MESSAGE value="vocord try fix" />
+    <MESSAGE value="vokord fix 2" />
+    <MESSAGE value="Added test route for kordon new driver" />
+    <MESSAGE value="gfr" />
+    <MESSAGE value="Orlan back" />
+    <MESSAGE value="Kordon try fix commit" />
+    <MESSAGE value="Test video to server" />
+    <MESSAGE value="test req" />
+    <MESSAGE value="Cordon (orlan) video route test" />
+    <MESSAGE value="video test" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="Orlan fix" />
+    <MESSAGE value="vocord test" />
+    <MESSAGE value="Test fixed" />
+    <MESSAGE value="Fixed bug with cordon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with cordon" />
   </component>
 </project>
