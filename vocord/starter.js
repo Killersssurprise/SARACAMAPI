@@ -21,7 +21,8 @@ app.get('/', (req, res) =>
   <script src='${scriptUrl}'></script>
   <script>
     loadPlayer({
-      url: 'ws://' + location.host + '/api/stream',
+      // url: 'ws://' + location.host + '/api/stream',
+      url: 'ws://' + location.host,
       canvas: document.getElementById('canvas')
     });
   </script>
