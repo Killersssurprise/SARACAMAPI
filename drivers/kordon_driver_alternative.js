@@ -6,6 +6,7 @@ var exec = require('child_process').exec;
 var rs = require("node-bignumber");
 var request = require('request-promise');
 var utils = require('../utils/utils');
+const express = require('express');
 var app = express();
 const {proxy, scriptUrl} = require('rtsp-relay')(app);
 
