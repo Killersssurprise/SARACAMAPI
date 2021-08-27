@@ -7,19 +7,19 @@ var rs = require("node-bignumber");
 var request = require('request-promise');
 var utils = require('../utils/utils');
 const express = require('express');
-var app = express();
-const {proxy, scriptUrl} = require('rtsp-relay')(app);
+// var app = express();
+// const {proxy, scriptUrl} = require('rtsp-relay')(app);
 
 //curl --location --request POST "http://192.168.72.3:80/api11.php" --header "Content-Type: application/json" --data '{ "auth": {"login": "admin","password": "8aHrgDKW"}, "request": { "job": "getDeviceInfo"}}'
 
-const handler = proxy({
-    // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
-    url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
-    // if your RTSP stream need credentials, include them in the URL as above
-    verbose: false,
-});
-
-app.ws('/api/stream', handler);
+// const handler = proxy({
+//     // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
+//     url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
+//     // if your RTSP stream need credentials, include them in the URL as above
+//     verbose: false,
+// });
+//
+// app.ws('/api/stream', handler);
 
 
 module.exports = {
