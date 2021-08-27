@@ -15,8 +15,8 @@ app.ws('/api/stream', handler);
 
 
 // this is an example html page to view the stream
-app.get('/', (req, res) =>
-    res.send(`
+app.get('/', (req, res) => {
+        res.send(`
   <canvas id='canvas'></canvas>
 
   <script src='${scriptUrl}'></script>
@@ -26,7 +26,8 @@ app.get('/', (req, res) =>
       canvas: document.getElementById('canvas')
     });
   </script>
-`),
+`)
+    }
 );
 
 app.listen(3001);
