@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
   <script src='${scriptUrl}'></script>
   <script>
     loadPlayer({
-      url: 'ws://' + location.host + pathh,
+      url: 'ws://' + location.host +'${pathh}',
       canvas: document.getElementById('canvas')
     });
   </script>
