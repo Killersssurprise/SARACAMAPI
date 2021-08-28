@@ -17,9 +17,22 @@ const { proxy, scriptUrl } = require('rtsp-relay')(app);
 // this is an example html page to view the stream
 app.get('/', (req, res) => {
 
+    var ip = req.query.ip;
+    var password = req.query.password;
+    var login = req.query.login;
+
+    if(typeof ip !== 'undefined' && ip !== null
+        && typeof password !== 'undefined' && password !== null
+        && typeof login !== 'undefined' && login !== null){
+
+    }else{
+        res.send("Wrong get parameter [ip or password or login]");
+    }
+
     const handler = proxy({
         // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
-        url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
+        // url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
+        url: 'rtsp://'+login+':'+password+'@'+ip+'+:554',
         // if your RTSP stream need credentials, include them in the URL as above
         verbose: false,
     });
