@@ -15,7 +15,7 @@ app.ws('/api/stream', handler);
 
 
 // this is an example html page to view the stream
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
         res.send(`
   <canvas id='canvas'></canvas>
 
