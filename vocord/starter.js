@@ -3,12 +3,12 @@ const app = express();
 
 const { proxy, scriptUrl } = require('rtsp-relay')(app);
 // "rtsp://admin:C6CDd76z@192.168.72.10:554
-const handler = proxy({
-    // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
-    url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
-    // if your RTSP stream need credentials, include them in the URL as above
-    verbose: false,
-});
+// const handler = proxy({
+//     // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
+//     url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
+//     // if your RTSP stream need credentials, include them in the URL as above
+//     verbose: false,
+// });
 
 // the endpoint our RTSP uses
 // app.ws('/api/stream', handler);
@@ -16,6 +16,13 @@ const handler = proxy({
 
 // this is an example html page to view the stream
 app.get('/', (req, res) => {
+
+    const handler = proxy({
+        // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
+        url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
+        // if your RTSP stream need credentials, include them in the URL as above
+        verbose: false,
+    });
 
     app.ws('/api/stream', handler);
 
