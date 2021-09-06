@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 
             connection.query(
                 // 'SELECT * FROM `devices` ;',
-                'SELECT * FROM `devices` where `id` = \'1\' ;',
+                'SELECT * FROM `devices` where `id` = \''+id+'\' ;',
                 function (err, results, fields) {
                     // console.log(results); // results contains rows returned by server
                     // console.log(results[0].ip); // results contains rows returned by server
