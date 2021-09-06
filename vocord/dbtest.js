@@ -3,9 +3,9 @@ const mysql = require("mysql2");
 const connection = mysql.createConnection({
     host: "10.10.2.10",
     port: 3306,
-    user: "phpmyadmin",
+    user: "dbuser1",
     database: "remote_monitoring_system",
-    password: "mishka777"
+    password: "psw!@#"
 });
 
 // const connection = mysql.createConnection({
