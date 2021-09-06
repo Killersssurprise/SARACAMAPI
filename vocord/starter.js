@@ -31,8 +31,9 @@ app.get('/', (req, res) => {
             // logdata = db.getLoginData(id);
 
 
-            var connection = db.getConnection();
+            // var connection = db.getConnection();
 
+            var connection = db.getNewConnection();
             connection.query(
                 // 'SELECT * FROM `devices` ;',
                 'SELECT * FROM `devices` where `id` = \''+id+'\' ;',

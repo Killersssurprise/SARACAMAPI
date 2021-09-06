@@ -39,13 +39,20 @@ const mysql = require("mysql2");
 // );
 //
 // connection.end();
-const connection = mysql.createConnection({
-    host: "b2bitrest.beget.tech",
-    port: 3306,
-    user: "b2bitrest_sdm3",
-    database: "b2bitrest_sdm3",
-    password: "r&WnEf0X"
-});
+const opts = {
+        host: "b2bitrest.beget.tech",
+        port: 3306,
+        user: "b2bitrest_sdm3",
+        database: "b2bitrest_sdm3",
+        password: "r&WnEf0X"
+    };
+// const connection = mysql.createConnection({
+//     host: "b2bitrest.beget.tech",
+//     port: 3306,
+//     user: "b2bitrest_sdm3",
+//     database: "b2bitrest_sdm3",
+//     password: "r&WnEf0X"
+// });
 
 module.exports = {
 
@@ -73,6 +80,11 @@ module.exports = {
     //
     //     return ooo;
     // },
+
+    getNewConnection(){
+        var connection = mysql.createConnection(opts);
+        return connection;
+    },
 
     async getLoginData(id) {
 
@@ -110,7 +122,7 @@ module.exports = {
 
         // connection.end();
     },
-    getConnection() {
-        return connection;
-    }
+    // getConnection() {
+    //     return connection;
+    // }
 };
