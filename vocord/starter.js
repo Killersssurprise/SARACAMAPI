@@ -70,6 +70,7 @@ app.get('/', (req, res) => {
                         url: 'rtsp://' + login + ':' + password + '@' + ip + ':554',
                         // if your RTSP stream need credentials, include them in the URL as above
                         additionalFlags: ['-s','320x180', '-loglevel','error'],
+                        transport: 'tcp',
                         verbose: false,
                     });
 
