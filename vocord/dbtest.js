@@ -3,10 +3,18 @@ const mysql = require("mysql2");
 const connection = mysql.createConnection({
     host: "10.10.2.10",
     port: 3306,
-    user: "dbuser",
+    user: "phpmyadmin",
     database: "remote_monitoring_system",
-    password: "111777mmm"
+    password: "mishka777"
 });
+
+// const connection = mysql.createConnection({
+//     host: "maksciq9.beget.tech",
+//     port: 3306,
+//     user: "maksciq9_test",
+//     database: "maksciq9_test",
+//     password: "maksciq9_test123"
+// });
 
 connection.query(
     'show tables;',
