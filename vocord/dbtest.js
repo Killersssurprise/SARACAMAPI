@@ -25,10 +25,11 @@ const connection = mysql.createConnection({
 // );
 
 connection.query(
-    'SELECT * FROM `devices`;',
+    'SELECT * FROM `devices` where ip = `192.168.40.13`;',
     function(err, results, fields) {
-        console.log(results); // results contains rows returned by server
-        console.log(fields); // fields contains extra meta data about results, if available
+        // console.log(results); // results contains rows returned by server
+        // console.log(fields); // fields contains extra meta data about results, if available
+        console.log("IP: "+results.ip +", Login: "+results.login+", Password: "+results.password+", Device type id: "+results.device_type_id);
     }
 );
 
