@@ -1,20 +1,20 @@
 const mysql = require("mysql2");
 
-// const connection = mysql.createConnection({
-//     host: "192.168.69.16",
-//     port: 3306,
-//     user: "phpmyadmin",
-//     database: "remote_monitoring_system",
-//     password: "mishka777"
-// });
-
 const connection = mysql.createConnection({
-    host: "maksciq9.beget.tech",
+    host: "192.168.69.16",
     port: 3306,
-    user: "maksciq9_test",
-    database: "maksciq9_test",
-    password: "maksciq9_test123"
+    user: "phpmyadmin",
+    database: "remote_monitoring_system",
+    password: "mishka777"
 });
+
+// const connection = mysql.createConnection({
+//     host: "maksciq9.beget.tech",
+//     port: 3306,
+//     user: "maksciq9_test",
+//     database: "maksciq9_test",
+//     password: "maksciq9_test123"
+// });
 
 connection.query(
     'show tables;',
