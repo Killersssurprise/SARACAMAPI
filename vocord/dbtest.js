@@ -16,8 +16,16 @@ const connection = mysql.createConnection({
 //     password: "maksciq9_test123"
 // });
 
+// connection.query(
+//     'show tables;',
+//     function(err, results, fields) {
+//         console.log(results); // results contains rows returned by server
+//         console.log(fields); // fields contains extra meta data about results, if available
+//     }
+// );
+
 connection.query(
-    'show tables;',
+    'SELECT * FROM \'devices\';',
     function(err, results, fields) {
         console.log(results); // results contains rows returned by server
         console.log(fields); // fields contains extra meta data about results, if available
