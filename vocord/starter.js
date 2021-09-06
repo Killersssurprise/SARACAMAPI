@@ -63,11 +63,13 @@ app.get('/', (req, res) => {
                         res.send("Wrong get parameter [ip or password or login]");
                     }
 
+                    // additionalFlags: ['-s','320x180', '-loglevel','error']
                     const handler = proxy({
                         // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
                         // url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
                         url: 'rtsp://' + login + ':' + password + '@' + ip + ':554',
                         // if your RTSP stream need credentials, include them in the URL as above
+                        additionalFlags: ['-s','320x180', '-loglevel','error'],
                         verbose: false,
                     });
 
