@@ -1,7 +1,7 @@
 const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
-    host: "192.168.69.16",
+    host: "10.10.2.10",
     port: 3306,
     user: "phpmyadmin",
     database: "remote_monitoring_system",
