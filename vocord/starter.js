@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
                         // url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
                         url: 'rtsp://' + login + ':' + password + '@' + ip + ':554',
                         // if your RTSP stream need credentials, include them in the URL as above
-                        // additionalFlags: ['-s','320x180', '-loglevel','error'],
+                        additionalFlags: ['-s','740x440', '-loglevel','error'],
 
                         verbose: false,
                     });
