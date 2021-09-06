@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var db = require('../database/db');
 
 const {proxy, scriptUrl} = require('rtsp-relay')(app);
 // "rtsp://admin:C6CDd76z@192.168.72.10:554
@@ -17,9 +18,26 @@ const {proxy, scriptUrl} = require('rtsp-relay')(app);
 // this is an example html page to view the stream
 app.get('/', (req, res) => {
 
+
+        var id = req.query.id;
+
         var ip = req.query.ip;
         var password = req.query.password;
         var login = req.query.login;
+
+        var logdata;
+        if (id !== undefined && id !== null) {
+            logdata = db.getLoginData(id);
+
+            ip = logdata.ip;
+            password = logdata.password;
+            login = logdata.login;
+        } else {
+            ip = req.query.ip;
+            password = req.query.password;
+            login = req.query.login;
+        }
+
 
         if (typeof ip !== 'undefined' && ip !== null
             && typeof password !== 'undefined' && password !== null
