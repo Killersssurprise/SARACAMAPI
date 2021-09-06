@@ -21,45 +21,61 @@ app.get('/', (req, res) => {
 
         var id = req.query.id;
 
-        var ip = req.query.ip;
-        var password = req.query.password;
-        var login = req.query.login;
+        var ip;
+        var password;
+        var login;
 
         var logdata;
         if (id !== undefined && id !== null) {
-            logdata = db.getLoginData(id);
 
-            ip = logdata.ip;
-            password = logdata.password;
-            login = logdata.login;
-        } else {
-            ip = req.query.ip;
-            password = req.query.password;
-            login = req.query.login;
-        }
+            // logdata = db.getLoginData(id);
 
 
-        if (typeof ip !== 'undefined' && ip !== null
-            && typeof password !== 'undefined' && password !== null
-            && typeof login !== 'undefined' && login !== null) {
+            var connection = db.getConnection();
 
-        } else {
-            res.send("Wrong get parameter [ip or password or login]");
-        }
+            connection.query(
+                // 'SELECT * FROM `devices` ;',
+                'SELECT * FROM `devices` where `id` = \'1\' ;',
+                function (err, results, fields) {
+                    // console.log(results); // results contains rows returned by server
+                    // console.log(results[0].ip); // results contains rows returned by server
+                    // console.log(results[0].login); // results contains rows returned by server
+                    // console.log(results[0].password); // results contains rows returned by server
+                    // console.log(results[0].device_type_id); // results contains rows returned by server
 
-        const handler = proxy({
-            // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
-            // url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
-            url: 'rtsp://' + login + ':' + password + '@' + ip + ':554',
-            // if your RTSP stream need credentials, include them in the URL as above
-            verbose: false,
-        });
+                    var id = results[0].id;
+                    var ip = results[0].ip;
+                    var login = results[0].login;
+                    var password = results[0].password;
+                    var device_type_id = results[0].device_type_id;
 
-        var pathh = '/api/stream' + ip;
+                    // console.log(fields); // fields contains extra meta data about results, if available
+                    // console.log("IP: "+results.ip +", Login: "+results.login+", Password: "+results.password+", Device type id: "+results.device_type_id);
+                    // console.log("ID:"+id+", IP: "+ip +", Login: "+login+", Password: "+password+", Device type id: "+device_type_id);
 
-        app.ws(pathh, handler);
 
-        res.send(`
+                    ///////
+                    if (typeof ip !== 'undefined' && ip !== null
+                        && typeof password !== 'undefined' && password !== null
+                        && typeof login !== 'undefined' && login !== null) {
+
+                    } else {
+                        res.send("Wrong get parameter [ip or password or login]");
+                    }
+
+                    const handler = proxy({
+                        // url: `rtsp://admin:admin@10.0.1.2:554/feed`,
+                        // url: `rtsp://admin:8aHrgDKW@192.168.72.9:554`,
+                        url: 'rtsp://' + login + ':' + password + '@' + ip + ':554',
+                        // if your RTSP stream need credentials, include them in the URL as above
+                        verbose: false,
+                    });
+
+                    var pathh = '/api/stream' + ip;
+
+                    app.ws(pathh, handler);
+
+                    res.send(`
   <canvas id='canvas'></canvas>
 
   <script src='${scriptUrl}'></script>
@@ -70,6 +86,18 @@ app.get('/', (req, res) => {
     });
   </script>
 `)
+
+                }
+            );
+
+        } else {
+            ip = req.query.ip;
+            password = req.query.password;
+            login = req.query.login;
+        }
+
+
+        //////
     }
 );
 
