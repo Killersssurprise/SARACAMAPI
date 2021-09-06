@@ -92,7 +92,7 @@ app.get('/', (req, res) => {
 
                 }
             );
-
+connection.end();
         } else {
             ip = req.query.ip;
             password = req.query.password;
