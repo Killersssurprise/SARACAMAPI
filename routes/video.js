@@ -159,7 +159,7 @@ router.get("/", jsonParser, function (req, res) {
             return;
         }
 
-        if (typeof ip !== 'undefined' && ip !== null) {
+        if (typeof i !== 'undefined' && i !== null) {
             ip = i;
         } else {
             let s = '{"error":' + "no param ip" + '}';
