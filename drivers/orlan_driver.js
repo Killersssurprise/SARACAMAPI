@@ -553,6 +553,9 @@ module.exports = {
         //     }
         // };
 
+        console.log('IP: '+ip);
+        console.log('Timestamp: '+timestampEnd);
+
         var options = {
             'method': 'GET',
             'url': 'http://'+ip+':8080/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt='+timestampEnd+'\'',
