@@ -602,30 +602,34 @@ module.exports = {
             'headers': {
             }
         };
-        var serverRequest = http.request(options, function(serverResponse) {
-            var body = '';
-            if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
-                serverResponse.on('data', function(chunk) {
-                    body += chunk;
-                });
+        // try {
+            var httpreq = http.request(options, function (response) {
+                //response.setEncoding('utf8');
+                response.on('data', function (chunk) {
+                    //console.log(chunk);
+                    answ += chunk;
+                }).on('end', function () {
+                    //var str=JSON.parse(answ)
 
-                serverResponse.on('end', function() {
-                    // Make changes to HTML files when they're done being read.
-                    // body = body.replace(`example`, `Cat!` );
-
-                    res.writeHead(serverResponse.statusCode, serverResponse.headers);
-                    res.end(body);
+                    //let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
+                    let s = '{"status":' + "active" + '}';
+                    console.log(s);
+                    //res.send(s);
+                    res.send(s);
+                }).on('error', (err) => {
+                    let s = '{"status":' + "inactive" + '}';
+                    //res.send(s);
+                    res.send(s);
+                    console.error(err.stack);
                 });
-            }
-            else {
-                serverResponse.pipe(res, {
-                    end: true
-                });
-                res.contentType(serverResponse.headers['content-type'])
-            }
-        });
+            });
 
-        serverRequest.end();
+            httpreq.write(data);
+            httpreq.end();
+        // } catch (e) {
+        //
+        //     console.log(e);
+        // }
 
         var answ = '';
         return answ;
