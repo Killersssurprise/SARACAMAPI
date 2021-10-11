@@ -532,11 +532,11 @@ module.exports = {
 
         var url;
         url = 'http://'+ip;
-        var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
+        // var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
         // var parsedPort;
 
         var options = {
-            hostname: parsedHost,
+            hostname: url,
             // port: 18000,
             port: 8080,
             // path: clientRequest.url,
