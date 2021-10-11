@@ -563,35 +563,35 @@ module.exports = {
             // }
         };
 
-        var serverResponse = request(options, function (error, response) {
-            if (error) throw new Error(error);
-            console.log(response.body);
-            res.writeHead(serverResponse.statusCode, serverResponse.headers);
-            res.end(response.body)
-        });
-
-        // var serverRequest = http.request(options, function(serverResponse) {
-        //     var body = '';
-        //     if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
-        //         serverResponse.on('data', function(chunk) {
-        //             body += chunk;
-        //         });
-        //
-        //         serverResponse.on('end', function() {
-        //             // Make changes to HTML files when they're done being read.
-        //             // body = body.replace(`example`, `Cat!` );
-        //
-        //             res.writeHead(serverResponse.statusCode, serverResponse.headers);
-        //             res.end(body);
-        //         });
-        //     }
-        //     else {
-        //         serverResponse.pipe(res, {
-        //             end: true
-        //         });
-        //         res.contentType(serverResponse.headers['content-type'])
-        //     }
+        // var serverResponse = request(options, function (error, response) {
+        //     if (error) throw new Error(error);
+        //     console.log(response.body);
+        //     res.writeHead(serverResponse.statusCode, serverResponse.headers);
+        //     res.end(response.body)
         // });
+
+        var serverRequest = http.request(options, function(serverResponse) {
+            var body = '';
+            if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
+                serverResponse.on('data', function(chunk) {
+                    body += chunk;
+                });
+
+                serverResponse.on('end', function() {
+                    // Make changes to HTML files when they're done being read.
+                    // body = body.replace(`example`, `Cat!` );
+
+                    res.writeHead(serverResponse.statusCode, serverResponse.headers);
+                    res.end(body);
+                });
+            }
+            else {
+                serverResponse.pipe(res, {
+                    end: true
+                });
+                res.contentType(serverResponse.headers['content-type'])
+            }
+        });
 
         serverRequest.end();
 
