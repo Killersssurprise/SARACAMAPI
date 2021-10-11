@@ -559,34 +559,40 @@ module.exports = {
         var options = {
             'method': 'GET',
             'url': 'http://'+ip+':8080/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt='+timestampEnd+'\'',
-            'headers': {
-            }
+            // 'headers': {
+            // }
         };
 
-        var serverRequest = http.request(options, function(serverResponse) {
-            var body = '';
-            if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
-                serverResponse.on('data', function(chunk) {
-                    body += chunk;
-                });
-
-                serverResponse.on('end', function() {
-                    // Make changes to HTML files when they're done being read.
-                    body = body.replace(`example`, `Cat!` );
-
-                    res.writeHead(serverResponse.statusCode, serverResponse.headers);
-                    res.end(body);
-                });
-            }
-            else {
-                serverResponse.pipe(res, {
-                    end: true
-                });
-                res.contentType(serverResponse.headers['content-type'])
-            }
+        request(options, function (error, response) {
+            if (error) throw new Error(error);
+            console.log(response.body);
+            res.end(response.body)
         });
 
-        serverRequest.end();
+        // var serverRequest = http.request(options, function(serverResponse) {
+        //     var body = '';
+        //     if (String(serverResponse.headers['content-type']).indexOf('text/html') !== -1) {
+        //         serverResponse.on('data', function(chunk) {
+        //             body += chunk;
+        //         });
+        //
+        //         serverResponse.on('end', function() {
+        //             // Make changes to HTML files when they're done being read.
+        //             // body = body.replace(`example`, `Cat!` );
+        //
+        //             res.writeHead(serverResponse.statusCode, serverResponse.headers);
+        //             res.end(body);
+        //         });
+        //     }
+        //     else {
+        //         serverResponse.pipe(res, {
+        //             end: true
+        //         });
+        //         res.contentType(serverResponse.headers['content-type'])
+        //     }
+        // });
+        //
+        // serverRequest.end();
 
         var answ = '';
         return answ;
