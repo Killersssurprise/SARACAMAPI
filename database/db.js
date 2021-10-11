@@ -46,11 +46,11 @@ const opts = {
         // database: "b2bitrest_sdm3",
         // password: "r&WnEf0X"
 
-    host: "81.200.255.38",
+    host: "10.10.2.10",
         port: 3306,
-        user: "phpmyadmin",
+        user: "dbuser1",
         database: "remote_monitoring_system",
-        password: "mishka777"
+        password: "psw!@#"
     };
 // const connection = mysql.createConnection({
 //     host: "b2bitrest.beget.tech",
