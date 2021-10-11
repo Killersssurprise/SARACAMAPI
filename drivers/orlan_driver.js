@@ -530,26 +530,33 @@ module.exports = {
         //     console.log(e);
         // }
 
-        var url;
-        url = 'http://'+ip;
+        // var url;
+        // url = ('http://'+ip+'8080').join('/');
         // var parsedHost = url.split('/').splice(2).splice(0, 1).join('/')
         // var parsedPort;
 
+        // var options = {
+        //     hostname: url,
+        //     // port: 18000,
+        //     port: 8080,
+        //     // path: clientRequest.url,
+        //     // path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
+        //     path:'/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt='+timestampEnd+'\'',
+        //     // method: clientRequest.method,
+        //     method: 'GET',
+        //     headers: {
+        //         'User-Agent': 'auto-request-bot',
+        //         'Content-Type':'image/jpeg',
+        //         'Connection':'keep-alive',
+        //         'Keep-Alive':'timeout=5',
+        //         'Transfer-Encoding':'chunked'
+        //     }
+        // };
+
         var options = {
-            hostname: url,
-            // port: 18000,
-            port: 8080,
-            // path: clientRequest.url,
-            // path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
-            path:'/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt='+timestampEnd+'\'',
-            // method: clientRequest.method,
-            method: 'GET',
-            headers: {
-                'User-Agent': 'auto-request-bot',
-                'Content-Type':'image/jpeg',
-                'Connection':'keep-alive',
-                'Keep-Alive':'timeout=5',
-                'Transfer-Encoding':'chunked'
+            'method': 'GET',
+            'url': 'http://'+ip+':8080/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt='+timestampEnd+'\'',
+            'headers': {
             }
         };
 
