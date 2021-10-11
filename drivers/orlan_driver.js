@@ -597,14 +597,15 @@ module.exports = {
 
         var options = {
             'method': 'GET',
-            'url': 'http://172.19.58.49:8080/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt=1625320030089',
+            // 'url': 'http://172.19.58.49:8080/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt=1625320030089',
+            'url': 'http://172.19.58.49:8080/orlanApi/video/frame',
             'headers': {
             }
         };
         request(options, function (error, response) {
             if (error) throw new Error(error);
             console.log(response.body);
-            res.end(response.body);
+            res.end(response);
         });
 
         var answ = '';
