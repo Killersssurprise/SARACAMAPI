@@ -624,7 +624,7 @@ module.exports = {
                 });
             });
 
-            httpreq.write(data);
+            // httpreq.write(data);
             httpreq.end();
         // } catch (e) {
         //
