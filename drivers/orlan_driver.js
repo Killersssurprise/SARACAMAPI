@@ -563,9 +563,10 @@ module.exports = {
             // }
         };
 
-        request(options, function (error, response) {
+        var serverResponse = request(options, function (error, response) {
             if (error) throw new Error(error);
             console.log(response.body);
+            res.writeHead(serverResponse.statusCode, serverResponse.headers);
             res.end(response.body)
         });
 
@@ -591,8 +592,8 @@ module.exports = {
         //         res.contentType(serverResponse.headers['content-type'])
         //     }
         // });
-        //
-        // serverRequest.end();
+
+        serverRequest.end();
 
         var answ = '';
         return answ;
