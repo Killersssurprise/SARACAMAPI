@@ -40,11 +40,17 @@ const mysql = require("mysql2");
 //
 // connection.end();
 const opts = {
-        host: "b2bitrest.beget.tech",
+        // host: "b2bitrest.beget.tech",
+        // port: 3306,
+        // user: "b2bitrest_sdm3",
+        // database: "b2bitrest_sdm3",
+        // password: "r&WnEf0X"
+
+    host: "81.200.255.38",
         port: 3306,
-        user: "b2bitrest_sdm3",
-        database: "b2bitrest_sdm3",
-        password: "r&WnEf0X"
+        user: "phpmyadmin",
+        database: "remote_monitoring_system",
+        password: "mishka777"
     };
 // const connection = mysql.createConnection({
 //     host: "b2bitrest.beget.tech",
