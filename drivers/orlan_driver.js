@@ -537,9 +537,11 @@ module.exports = {
 
         var options = {
             hostname: parsedHost,
-            port: 18000,
+            // port: 18000,
+            port: 8080,
             // path: clientRequest.url,
-            path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
+            // path:'/video/frame.jpeg?frame=SEQUENCE_COUNTER_TO_PREVENT_CACHING',
+            path:'/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt='+timestampEnd+'\'',
             // method: clientRequest.method,
             method: 'GET',
             headers: {
