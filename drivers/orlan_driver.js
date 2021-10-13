@@ -634,9 +634,9 @@ module.exports = {
 
         var options = {
             'method': 'GET',
-            'hostname': '172.19.58.49',
+            'hostname': ip,
             'port': 8080,
-            'path': '/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt=1625320030089',
+            'path': '/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt='+timestampEnd,
             'headers': {
             },
             'maxRedirects': 20
