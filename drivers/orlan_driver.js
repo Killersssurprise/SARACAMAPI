@@ -4,6 +4,7 @@ var http = require('http');
 const jsonParser = express.json();
 var request = require('request');
 var utils = require('../utils/utils');
+var fs = require('fs');
 
 var headers = {
     'Content-Length': '1000',
@@ -595,41 +596,72 @@ module.exports = {
         //
         // serverRequest.end();
 
-        var options = {
-            'method': 'GET',
-            // 'url': 'http://172.19.58.49:8080/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt=1625320030089',
-            'url': 'http://172.19.58.49:8080/orlanApi/video/frame',
-            'headers': {
-            }
-        };
-        // try {
-            var httpreq = http.request(options, function (response) {
-                //response.setEncoding('utf8');
-                response.on('data', function (chunk) {
-                    //console.log(chunk);
-                    answ += chunk;
-                }).on('end', function () {
-                    //var str=JSON.parse(answ)
-
-                    //let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
-                    let s = '{"status":' + "active" + '}';
-                    console.log(s);
-                    //res.send(s);
-                    res.send(s);
-                }).on('error', (err) => {
-                    let s = '{"status":' + "inactive" + '}';
-                    //res.send(s);
-                    res.send(s);
-                    console.error(err.stack);
-                });
-            });
-
-            // httpreq.write(data);
-            httpreq.end();
+        // var options = {
+        //     'method': 'GET',
+        //     // 'url': 'http://172.19.58.49:8080/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt=1625320030089',
+        //     'url': 'http://172.19.58.49:8080/orlanApi/video/frame',
+        //     'headers': {
+        //     }
+        // };
+        // // try {
+        //     var httpreq = http.request(options, function (response) {
+        //         //response.setEncoding('utf8');
+        //         response.on('data', function (chunk) {
+        //             //console.log(chunk);
+        //             answ += chunk;
+        //         }).on('end', function () {
+        //             //var str=JSON.parse(answ)
+        //
+        //             //let s = '{"common":'+JSON.stringify(str['getStats']['common']['total'])+'}';
+        //             let s = '{"status":' + "active" + '}';
+        //             console.log(s);
+        //             //res.send(s);
+        //             res.send(s);
+        //         }).on('error', (err) => {
+        //             let s = '{"status":' + "inactive" + '}';
+        //             //res.send(s);
+        //             res.send(s);
+        //             console.error(err.stack);
+        //         });
+        //     });
+        //
+        //     // httpreq.write(data);
+        //     httpreq.end();
         // } catch (e) {
         //
         //     console.log(e);
         // }
+
+        var options = {
+            'method': 'GET',
+            'hostname': '172.19.58.49',
+            'port': 8080,
+            'path': '/orlanApi/video/frame?size=100&sizePx=800x600&cam=dir0::0&dt=1625320030089',
+            'headers': {
+            },
+            'maxRedirects': 20
+        };
+
+        var req = http.request(options, function (resource) {
+            var chunks = [];
+
+            resource.on("data", function (chunk) {
+                chunks.push(chunk);
+            });
+
+            resource.on("end", function (chunk) {
+                var body = Buffer.concat(chunks);
+                res.send(body);
+                // console.log(body.toString());
+            });
+
+            resource.on("error", function (error) {
+                res.send(error);
+                // console.error(error);
+            });
+        });
+
+        req.end();
 
         var answ = '';
         return answ;
