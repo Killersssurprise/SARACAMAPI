@@ -651,6 +651,11 @@ module.exports = {
 
             resource.on("end", function (chunk) {
                 var body = Buffer.concat(chunks);
+                res.set({
+                    'Content-Type': 'image/jpeg',
+
+                });
+
                 res.send(body);
                 // console.log(body.toString());
             });
