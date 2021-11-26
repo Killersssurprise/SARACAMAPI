@@ -218,8 +218,14 @@ function getAccessToken(login, password, ip, timestampStart, timestampEnd, res, 
 
 function dummyFunction(login, password, ip, timestampStart, timestampEnd, res) {
 
-    var startDate = new Date(parseInt(timestampStart)).toISOString();
-    var endDate = new Date(parseInt(timestampEnd)).toISOString();
+    var stDate = new Date(parseInt(timestampStart)); // Or the date you'd like converted.
+    var enDate = new Date(parseInt(timestampEnd)); // Or the date you'd like converted.
+
+    var startDate = new Date(stDate.getTime() - (stDate.getTimezoneOffset() * 60000)).toISOString();
+    var endDate = new Date(enDate.getTime() - (enDate.getTimezoneOffset() * 60000)).toISOString();
+
+    // var startDate = new Date(parseInt(timestampStart)).toISOString();
+    // var endDate = new Date(parseInt(timestampEnd)).toISOString();
 
     var answer = '';
     var accessToken = '';
