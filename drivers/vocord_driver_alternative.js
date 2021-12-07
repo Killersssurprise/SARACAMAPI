@@ -398,6 +398,10 @@ function dummyFunction(login, password, ip, timestampStart, timestampEnd, res) {
                         console.log(pings);
                         //res.send(s);
 
+                        if(ping>1000){
+                            ping = ping/10;
+                        }
+
                         var stat = 'active';
                         var d = {
                             violations: violations,

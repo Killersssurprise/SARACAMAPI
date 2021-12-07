@@ -395,13 +395,20 @@ module.exports = {
                 // console.log("TotalRecog1Hour: "+data.TotalRecog1Hour);
                 let v = data.Voltage;
                 v = v.replace(',', '.');
+
+                var p = pingMS2 - pingMS1;
+                if(p>1000){
+                    p = p/10;
+                }
+
                 let d = {
                     violations: data.Viols1Hour,
                     violations24: data.Viols24Hours,
                     passages: data.Recog1Hour,
                     passages24: data.Recog24Hours,
                     status: stat,
-                    ping: (pingMS2 - pingMS1),
+                    // ping: (pingMS2 - pingMS1),
+                    ping: p,
                     voltage: v
                 };
 

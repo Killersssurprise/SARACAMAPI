@@ -384,11 +384,17 @@ module.exports = {
 
                     console.log("full kordon info: " + str);
 
+                    var p = pingMS2 - pingMS1;
+                    if(p>1000){
+                        p = p/10;
+                    }
+
                     var data = {
                         violations: JSON.stringify(str['getStats']['violation']['total']),
                         passages: JSON.stringify(str['getStats']['common']['total']),
                         status: 'active',
-                        ping: (pingMS2 - pingMS1),
+                        // ping: (pingMS2 - pingMS1),
+                        ping: p,
                         voltage: (snmp_voltage / 10),
                         data: ddd
                     };
