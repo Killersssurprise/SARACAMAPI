@@ -44,6 +44,8 @@ app.get('/', (req, res) => {
                     // console.log(results[0].password); // results contains rows returned by server
                     // console.log(results[0].device_type_id); // results contains rows returned by server
 
+                    console.log(results);
+
                     var id = results[0].id;
                     var ip = results[0].ip;
                     var login = results[0].login;
